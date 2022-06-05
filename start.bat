@@ -1,1 +1,1 @@
-artifact\FXServer.exe +exec server.cfg +set sv_enforceGameBuild 2189
+artifact\FXServer.exe +exec server.cfg +set sv_enforceGameBuild 2545
