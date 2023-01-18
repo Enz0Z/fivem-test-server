@@ -1,6 +1,6 @@
 # FiveM Test Server
 > Versions
+- Windows Artifact (`DAILY UPDATED TO LATEST`)
+- Linux Artifact (`DAILY UPDATED TO LATEST`)
 - vMenu (`v3.5.0`)
-- Windows Artifact (`5562`)
-- Linux Artifact (`5562`)
-- GameBuild (`2545`)
+- GameBuild (`2699`)
