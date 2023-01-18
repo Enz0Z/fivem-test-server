@@ -1,0 +1,36 @@
+name: "Update Artifacts"
+on:
+  workflow_dispatch:
+  schedule:
+  - cron: "0 12 * * *"
+
+jobs:
+  update_artifacts:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+      with:
+        persist-credentials: false
+        fetch-depth: 0
+    - name: Install dependencies
+      run: |
+        sudo apt install wget -y
+        sudo apt install jq -y
+        sudo apt install curl -y
+    - name: Manage folder
+      run: |
+        mkdir -p artifact
+        cd artifact
+        rm -rf *
+    - name: Download artifacts
+      run: |
+        wget $(curl -s 'https://changelogs-live.fivem.net/api/changelog/versions/linux/server' | jq -r '.latest_download')
+        wget $(curl -s 'https://changelogs-live.fivem.net/api/changelog/versions/windows/server' | jq -r '.latest_download')
+    - name: Commit changes
+      uses: actions-js/push@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        message: "refactor: updated to \"latest\" artifact"
+        branch: "master"
+        author_name: "Enz0Z [bot]"
+        author_email: "enz0z[bot]@users.noreply.github.com"
