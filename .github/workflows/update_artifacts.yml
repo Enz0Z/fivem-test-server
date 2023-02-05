@@ -17,6 +17,8 @@ jobs:
         sudo apt install wget -y
         sudo apt install jq -y
         sudo apt install curl -y
+        sudo apt install unzip -y
+        sudo apt install tar -y
     - name: Manage folder
       run: |
         mkdir -p artifact
@@ -26,6 +28,10 @@ jobs:
         cd artifact/
         wget $(curl -s 'https://changelogs-live.fivem.net/api/changelog/versions/linux/server' | jq -r '.latest_download')
         wget $(curl -s 'https://changelogs-live.fivem.net/api/changelog/versions/windows/server' | jq -r '.latest_download')
+        unzip server.zip -d windows/
+        mkdir linux/
+        tar -xf fx.tar.xz -C linux/
+        rm -rf server.zip fx.tar.xz
     - name: Commit changes
       uses: actions-js/push@master
       with:
