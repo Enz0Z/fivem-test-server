@@ -32,7 +32,7 @@ jobs:
         mkdir linux/
         tar -xf fx.tar.xz -C linux/
         rm -rf server.zip fx.tar.xz
-        find . -name "*.git" -type f -delete
+        find . -name "*.git*" -type f -delete
     - name: Commit changes
       uses: actions-js/push@master
       with:
