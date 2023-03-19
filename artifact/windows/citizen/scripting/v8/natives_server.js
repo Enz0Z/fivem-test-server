@@ -211,6 +211,9 @@ global.ClearPedProp = function (ped, propId) {
 	return _in(0x00000000, 0x2d23d743, ped, propId);
 };
 
+/**
+ * CLEAR_PED_SECONDARY_TASK
+ */
 global.ClearPedSecondaryTask = function (ped) {
 	return _in(0x00000000, 0xa635f451, ped);
 };
@@ -289,6 +292,10 @@ global.CreatePed = function (pedType, modelHash, x, y, z, heading, isNetwork, bS
 	return _in(0x00000000, 0x0389ef71, pedType, _ch(modelHash), _fv(x), _fv(y), _fv(z), _fv(heading), isNetwork, bScriptHostPed, _r, _ri);
 };
 
+/**
+ * CREATE_PED_INSIDE_VEHICLE
+ * @param pedType See [`CREATE_PED`](#\_0xD49F9B0955C367DE)
+ */
 global.CreatePedInsideVehicle = function (vehicle, pedType, modelHash, seat, isNetwork, bScriptHostPed) {
 	return _in(0x00000000, 0x3000f092, vehicle, pedType, _ch(modelHash), seat, isNetwork, bScriptHostPed, _r, _ri);
 };
@@ -336,10 +343,17 @@ global.DeleteEntity = function (entity) {
 	return _in(0x00000000, 0xfaa3d236, entity);
 };
 
+/**
+ * DELETE_FUNCTION_REFERENCE
+ */
 global.DeleteFunctionReference = function (referenceIdentity) {
 	return _in(0x00000000, 0x1e86f206, _ts(referenceIdentity));
 };
 
+/**
+ * DELETE_RESOURCE_KVP
+ * @param key The key to delete
+ */
 global.DeleteResourceKvp = function (key) {
 	return _in(0x00000000, 0x7389b5df, _ts(key));
 };
@@ -352,6 +366,9 @@ global.DeleteResourceKvpNoSync = function (key) {
 	return _in(0x00000000, 0x04152c90, _ts(key));
 };
 
+/**
+ * DOES_ENTITY_EXIST
+ */
 global.DoesEntityExist = function (entity) {
 	return _in(0x00000000, 0x3ac90869, entity, _r);
 };
@@ -376,18 +393,32 @@ global.DoesPlayerOwnSkuExt = function (playerSrc, skuId) {
 	return _in(0x00000000, 0xdef0480b, _ts(playerSrc), skuId, _r);
 };
 
+/**
+ * DROP_PLAYER
+ */
 global.DropPlayer = function (playerSrc, reason) {
 	return _in(0x00000000, 0xba0613e1, _ts(playerSrc), _ts(reason));
 };
 
+/**
+ * DUPLICATE_FUNCTION_REFERENCE
+ */
 global.DuplicateFunctionReference = function (referenceIdentity) {
 	return _in(0x00000000, 0xf4e2079d, _ts(referenceIdentity), _r, _s);
 };
 
+/**
+ * ENABLE_ENHANCED_HOST_SUPPORT
+ */
 global.EnableEnhancedHostSupport = function (enabled) {
 	return _in(0x00000000, 0xf97b1c93, enabled);
 };
 
+/**
+ * END_FIND_KVP
+ * @param handle The KVP find handle returned from [START_FIND_KVP](#\_0xDD379006)
+ * @return None.
+ */
 global.EndFindKvp = function (handle) {
 	return _in(0x00000000, 0xb3210203, handle);
 };
@@ -399,14 +430,25 @@ global.EnsureEntityStateBag = function (entity) {
 	return _in(0x00000000, 0x3bb78f05, entity);
 };
 
+/**
+ * EXECUTE_COMMAND
+ */
 global.ExecuteCommand = function (commandString) {
 	return _in(0x00000000, 0x561c060b, _ts(commandString));
 };
 
+/**
+ * FIND_KVP
+ * @param handle The KVP find handle returned from [START_FIND_KVP](#\_0xDD379006)
+ * @return None.
+ */
 global.FindKvp = function (handle) {
 	return _in(0x00000000, 0xbd7bebc5, handle, _r, _s);
 };
 
+/**
+ * FLAG_SERVER_AS_PRIVATE
+ */
 global.FlagServerAsPrivate = function (private_) {
 	return _in(0x00000000, 0x13b6855d, private_);
 };
@@ -428,6 +470,10 @@ global.FreezeEntityPosition = function (entity, toggle) {
 	return _in(0x00000000, 0x65c16d57, entity, toggle);
 };
 
+/**
+ * GET_AIR_DRAG_MULTIPLIER_FOR_PLAYERS_VEHICLE
+ * @param playerSrc The player handle
+ */
 global.GetAirDragMultiplierForPlayersVehicle = function (playerSrc) {
 	return _in(0x00000000, 0x62fc38d0, _ts(playerSrc), _r, _rf);
 };
@@ -536,6 +582,9 @@ global.GetEntityFromStateBagName = function (bagName) {
 	return _in(0x00000000, 0x4bdf1867, _ts(bagName), _r, _ri);
 };
 
+/**
+ * GET_ENTITY_HEADING
+ */
 global.GetEntityHeading = function (entity) {
 	return _in(0x00000000, 0x972cc383, entity, _r, _rf);
 };
@@ -554,6 +603,9 @@ global.GetEntityMaxHealth = function (entity) {
 	return _in(0x00000000, 0xc7ae6aa1, entity, _r, _ri);
 };
 
+/**
+ * GET_ENTITY_MODEL
+ */
 global.GetEntityModel = function (entity) {
 	return _in(0x00000000, 0xdafcb3ec, entity, _r, _ri);
 };
@@ -582,10 +634,16 @@ global.GetEntityPopulationType = function (entity) {
 	return _in(0x00000000, 0xfc30ddff, entity, _r, _ri);
 };
 
+/**
+ * GET_ENTITY_ROTATION
+ */
 global.GetEntityRotation = function (entity) {
 	return _in(0x00000000, 0x8ff45b04, entity, _r, _rv);
 };
 
+/**
+ * GET_ENTITY_ROTATION_VELOCITY
+ */
 global.GetEntityRotationVelocity = function (entity) {
 	return _in(0x00000000, 0x9bf8a73f, entity, _r, _rv);
 };
@@ -600,6 +658,9 @@ global.GetEntityRoutingBucket = function (entity) {
 	return _in(0x00000000, 0xed4b0486, entity, _r, _ri);
 };
 
+/**
+ * GET_ENTITY_SCRIPT
+ */
 global.GetEntityScript = function (entity) {
 	return _in(0x00000000, 0xb7f70784, entity, _r, _s);
 };
@@ -646,6 +707,9 @@ global.GetEntityType = function (entity) {
 	return _in(0x00000000, 0x0b1bd08d, entity, _r, _ri);
 };
 
+/**
+ * GET_ENTITY_VELOCITY
+ */
 global.GetEntityVelocity = function (entity) {
 	return _in(0x00000000, 0xc14c9b6b, entity, _r, _rv);
 };
@@ -707,34 +771,62 @@ global.GetHashKey = function (model) {
 	return _in(0x00000000, 0x98eff6f1, _ts(model), _r, _ri);
 };
 
+/**
+ * GET_HELI_MAIN_ROTOR_HEALTH
+ * @param vehicle The target vehicle.
+ * @return See the client-side [GET_HELI_MAIN_ROTOR_HEALTH](https://docs.fivem.net/natives/?\_0xE4CB7541F413D2C5) for the return value.
+ */
 global.GetHeliMainRotorHealth = function (vehicle) {
 	return _in(0x00000000, 0xf01e2aab, vehicle, _r, _rf);
 };
 
+/**
+ * GET_HELI_TAIL_ROTOR_HEALTH
+ * @param vehicle The target vehicle.
+ * @return See the client-side [GET_HELI_TAIL_ROTOR_HEALTH](https://docs.fivem.net/natives/?\_0xAE8CE82A4219AC8C) for the return value.
+ */
 global.GetHeliTailRotorHealth = function (vehicle) {
 	return _in(0x00000000, 0xa41bc13d, vehicle, _r, _rf);
 };
 
+/**
+ * GET_HOST_ID
+ */
 global.GetHostId = function () {
 	return _in(0x00000000, 0x5f70f5a3, _r, _s);
 };
 
+/**
+ * GET_INSTANCE_ID
+ */
 global.GetInstanceId = function () {
 	return _in(0x00000000, 0x9f1c4383, _r, _ri);
 };
 
+/**
+ * GET_INVOKING_RESOURCE
+ */
 global.GetInvokingResource = function () {
 	return _in(0x00000000, 0x4d52fe5b, _r, _s);
 };
 
+/**
+ * GET_IS_VEHICLE_ENGINE_RUNNING
+ */
 global.GetIsVehicleEngineRunning = function (vehicle) {
 	return _in(0x00000000, 0x7dc6d022, vehicle, _r);
 };
 
+/**
+ * GET_IS_VEHICLE_PRIMARY_COLOUR_CUSTOM
+ */
 global.GetIsVehiclePrimaryColourCustom = function (vehicle) {
 	return _in(0x00000000, 0xd7ec8760, vehicle, _r);
 };
 
+/**
+ * GET_IS_VEHICLE_SECONDARY_COLOUR_CUSTOM
+ */
 global.GetIsVehicleSecondaryColourCustom = function (vehicle) {
 	return _in(0x00000000, 0x288ad228, vehicle, _r);
 };
@@ -748,18 +840,33 @@ global.GetLandingGearState = function (vehicle) {
 	return _in(0x00000000, 0xa6f02670, vehicle, _r, _ri);
 };
 
+/**
+ * GET_LAST_PED_IN_VEHICLE_SEAT
+ * @param vehicle The target vehicle.
+ * @param seatIndex See eSeatPosition declared in [`IS_VEHICLE_SEAT_FREE`](#\_0x22AC59A870E6A669).
+ * @return The last ped in the specified seat of the passed vehicle. Returns 0 if the specified seat was never occupied or the last ped does not exist anymore.
+ */
 global.GetLastPedInVehicleSeat = function (vehicle, seatIndex) {
 	return _in(0x00000000, 0xf7c6792d, vehicle, seatIndex, _r, _ri);
 };
 
+/**
+ * GET_NUM_PLAYER_IDENTIFIERS
+ */
 global.GetNumPlayerIdentifiers = function (playerSrc) {
 	return _in(0x00000000, 0xff7f66ab, _ts(playerSrc), _r, _ri);
 };
 
+/**
+ * GET_NUM_PLAYER_INDICES
+ */
 global.GetNumPlayerIndices = function () {
 	return _in(0x00000000, 0x63d13184, _r, _ri);
 };
 
+/**
+ * GET_NUM_PLAYER_TOKENS
+ */
 global.GetNumPlayerTokens = function (playerSrc) {
 	return _in(0x00000000, 0x619e4a3d, _ts(playerSrc), _r, _ri);
 };
@@ -774,30 +881,56 @@ global.GetNumResourceMetadata = function (resourceName, metadataKey) {
 	return _in(0x00000000, 0x0776e864, _ts(resourceName), _ts(metadataKey), _r, _ri);
 };
 
+/**
+ * GET_NUM_RESOURCES
+ */
 global.GetNumResources = function () {
 	return _in(0x00000000, 0x0863f27b, _r, _ri);
 };
 
+/**
+ * GET_PASSWORD_HASH
+ */
 global.GetPasswordHash = function (password) {
 	return _in(0x00000000, 0x23473ea4, _ts(password), _r, _s);
 };
 
+/**
+ * GET_PED_ARMOUR
+ */
 global.GetPedArmour = function (ped) {
 	return _in(0x00000000, 0x2ce311a7, ped, _r, _ri);
 };
 
+/**
+ * GET_PED_CAUSE_OF_DEATH
+ */
 global.GetPedCauseOfDeath = function (ped) {
 	return _in(0x00000000, 0x63458c27, ped, _r, _ri);
 };
 
+/**
+ * GET_PED_DESIRED_HEADING
+ * @param ped The target ped
+ * @return Returns ped's desired heading.
+ */
 global.GetPedDesiredHeading = function (ped) {
 	return _in(0x00000000, 0xc182f76e, ped, _r, _rf);
 };
 
+/**
+ * GET_PED_IN_VEHICLE_SEAT
+ * @param vehicle The target vehicle.
+ * @param seatIndex See eSeatPosition declared in [`IS_VEHICLE_SEAT_FREE`](#\_0x22AC59A870E6A669).
+ * @return The ped in the specified seat of the passed vehicle. Returns 0 if the specified seat is not occupied.
+ */
 global.GetPedInVehicleSeat = function (vehicle, seatIndex) {
 	return _in(0x00000000, 0x388fde9a, vehicle, seatIndex, _r, _ri);
 };
 
+/**
+ * GET_PED_MAX_HEALTH
+ */
 global.GetPedMaxHealth = function (ped) {
 	return _in(0x00000000, 0xa45b6c8d, ped, _r, _ri);
 };
@@ -860,6 +993,9 @@ global.GetPlayerCameraRotation = function (playerSrc) {
 	return _in(0x00000000, 0x433c765d, _ts(playerSrc), _r, _rv);
 };
 
+/**
+ * GET_PLAYER_ENDPOINT
+ */
 global.GetPlayerEndpoint = function (playerSrc) {
 	return _in(0x00000000, 0xfee404f9, _ts(playerSrc), _r, _s);
 };
@@ -873,6 +1009,9 @@ global.GetPlayerFakeWantedLevel = function (playerSrc) {
 	return _in(0x00000000, 0x0098d244, _ts(playerSrc), _r, _ri);
 };
 
+/**
+ * GET_PLAYER_FROM_INDEX
+ */
 global.GetPlayerFromIndex = function (index) {
 	return _in(0x00000000, 0xc8a9ce08, index, _r, _s);
 };
@@ -886,10 +1025,16 @@ global.GetPlayerFromStateBagName = function (bagName) {
 	return _in(0x00000000, 0xa56135e0, _ts(bagName), _r, _ri);
 };
 
+/**
+ * GET_PLAYER_GUID
+ */
 global.GetPlayerGuid = function (playerSrc) {
 	return _in(0x00000000, 0xe52d9680, _ts(playerSrc), _r, _s);
 };
 
+/**
+ * GET_PLAYER_IDENTIFIER
+ */
 global.GetPlayerIdentifier = function (playerSrc, identifier) {
 	return _in(0x00000000, 0x7302dbcf, _ts(playerSrc), identifier, _r, _s);
 };
@@ -904,18 +1049,34 @@ global.GetPlayerIdentifierByType = function (playerSrc, identifierType) {
 	return _in(0x00000000, 0xa61c8fc6, _ts(playerSrc), _ts(identifierType), _r, _s);
 };
 
+/**
+ * GET_PLAYER_INVINCIBLE
+ * @param playerSrc The player handle
+ * @return A boolean to tell if the player is invincible.
+ */
 global.GetPlayerInvincible = function (playerSrc) {
 	return _in(0x00000000, 0x680c90ee, _ts(playerSrc), _r);
 };
 
+/**
+ * GET_PLAYER_LAST_MSG
+ */
 global.GetPlayerLastMsg = function (playerSrc) {
 	return _in(0x00000000, 0x427e8e6a, _ts(playerSrc), _r, _ri);
 };
 
+/**
+ * GET_PLAYER_MAX_ARMOUR
+ * @param playerSrc The player handle
+ */
 global.GetPlayerMaxArmour = function (playerSrc) {
 	return _in(0x00000000, 0x02a50657, _ts(playerSrc), _r, _ri);
 };
 
+/**
+ * GET_PLAYER_MAX_HEALTH
+ * @param playerSrc The player handle
+ */
 global.GetPlayerMaxHealth = function (playerSrc) {
 	return _in(0x00000000, 0x8154e470, _ts(playerSrc), _r, _ri);
 };
@@ -929,14 +1090,23 @@ global.GetPlayerMeleeWeaponDamageModifier = function (playerId) {
 	return _in(0x00000000, 0x8689a825, _ts(playerId), _r, _rf);
 };
 
+/**
+ * GET_PLAYER_NAME
+ */
 global.GetPlayerName = function (playerSrc) {
 	return _in(0x00000000, 0x406b4b20, _ts(playerSrc), _r, _s);
 };
 
+/**
+ * GET_PLAYER_PED
+ */
 global.GetPlayerPed = function (playerSrc) {
 	return _in(0x00000000, 0x6e31e993, _ts(playerSrc), _r, _ri);
 };
 
+/**
+ * GET_PLAYER_PING
+ */
 global.GetPlayerPing = function (playerSrc) {
 	return _in(0x00000000, 0xff1290d4, _ts(playerSrc), _r, _ri);
 };
@@ -951,6 +1121,10 @@ global.GetPlayerRoutingBucket = function (playerSrc) {
 	return _in(0x00000000, 0x52441c34, _ts(playerSrc), _r, _ri);
 };
 
+/**
+ * GET_PLAYER_TEAM
+ * @param playerSrc The player handle
+ */
 global.GetPlayerTeam = function (playerSrc) {
 	return _in(0x00000000, 0x9873e404, _ts(playerSrc), _r, _ri);
 };
@@ -1043,6 +1217,11 @@ global.GetRegisteredCommands = function () {
 	return _in(0x00000000, 0xd4bef069, _r, _ro);
 };
 
+/**
+ * GET_RESOURCE_BY_FIND_INDEX
+ * @param findIndex The index of the resource (starting at 0)
+ * @return The resource name as a `string`
+ */
 global.GetResourceByFindIndex = function (findIndex) {
 	return _in(0x00000000, 0x387246b7, findIndex, _r, _s);
 };
@@ -1120,34 +1299,62 @@ global.GetStateBagValue = function (bagName, key) {
 	return _in(0x00000000, 0x637f4c75, _ts(bagName), _ts(key), _r, _ro);
 };
 
+/**
+ * GET_TRAIN_CARRIAGE_ENGINE
+ * @param train The entity handle.
+ * @return The train engine carriage.
+ */
 global.GetTrainCarriageEngine = function (train) {
 	return _in(0x00000000, 0x095070fa, train, _r, _ri);
 };
 
+/**
+ * GET_TRAIN_CARRIAGE_INDEX
+ * @param train The entity handle.
+ * @return The carriage index. -1 returned if invalid result.
+ */
 global.GetTrainCarriageIndex = function (train) {
 	return _in(0x00000000, 0x4b8285cf, train, _r, _ri);
 };
 
+/**
+ * GET_VEHICLE_BODY_HEALTH
+ */
 global.GetVehicleBodyHealth = function (vehicle) {
 	return _in(0x00000000, 0x2b2fcc28, vehicle, _r, _rf);
 };
 
+/**
+ * GET_VEHICLE_COLOURS
+ */
 global.GetVehicleColours = function (vehicle) {
 	return _in(0x00000000, 0x40d82d88, vehicle, _i, _i);
 };
 
+/**
+ * GET_VEHICLE_CUSTOM_PRIMARY_COLOUR
+ */
 global.GetVehicleCustomPrimaryColour = function (vehicle) {
 	return _in(0x00000000, 0x1c2b9fef, vehicle, _i, _i, _i);
 };
 
+/**
+ * GET_VEHICLE_CUSTOM_SECONDARY_COLOUR
+ */
 global.GetVehicleCustomSecondaryColour = function (vehicle) {
 	return _in(0x00000000, 0x3ff247a2, vehicle, _i, _i, _i);
 };
 
+/**
+ * GET_VEHICLE_DASHBOARD_COLOUR
+ */
 global.GetVehicleDashboardColour = function (vehicle, color) {
 	return _in(0x00000000, 0xa0dbd08d, vehicle, _ii(color) /* may be optional */);
 };
 
+/**
+ * GET_VEHICLE_DIRT_LEVEL
+ */
 global.GetVehicleDirtLevel = function (vehicle) {
 	return _in(0x00000000, 0xfd15c065, vehicle, _r, _rf);
 };
@@ -1174,6 +1381,10 @@ global.GetVehicleDoorLockStatus = function (vehicle) {
 	return _in(0x00000000, 0x0d72cef2, vehicle, _r, _ri);
 };
 
+/**
+ * GET_VEHICLE_DOOR_STATUS
+ * @return A number from 0 to 7.
+ */
 global.GetVehicleDoorStatus = function (vehicle) {
 	return _in(0x00000000, 0x6e35c49c, vehicle, _r, _ri);
 };
@@ -1185,10 +1396,16 @@ global.GetVehicleDoorsLockedForPlayer = function (vehicle) {
 	return _in(0x00000000, 0x1dc50247, vehicle, _r, _ri);
 };
 
+/**
+ * GET_VEHICLE_ENGINE_HEALTH
+ */
 global.GetVehicleEngineHealth = function (vehicle) {
 	return _in(0x00000000, 0x8880038a, vehicle, _r, _rf);
 };
 
+/**
+ * GET_VEHICLE_EXTRA_COLOURS
+ */
 global.GetVehicleExtraColours = function (vehicle) {
 	return _in(0x00000000, 0x80e4659b, vehicle, _i, _i);
 };
@@ -1202,10 +1419,16 @@ global.GetVehicleFlightNozzlePosition = function (vehicle) {
 	return _in(0x00000000, 0xad40ad55, vehicle, _r, _rf);
 };
 
+/**
+ * GET_VEHICLE_HANDBRAKE
+ */
 global.GetVehicleHandbrake = function (vehicle) {
 	return _in(0x00000000, 0x483b013c, vehicle, _r);
 };
 
+/**
+ * GET_VEHICLE_HEADLIGHTS_COLOUR
+ */
 global.GetVehicleHeadlightsColour = function (vehicle) {
 	return _in(0x00000000, 0xd7147656, vehicle, _r, _ri);
 };
@@ -1219,14 +1442,23 @@ global.GetVehicleHomingLockonState = function (vehicle) {
 	return _in(0x00000000, 0xfbde9fd8, vehicle, _r, _ri);
 };
 
+/**
+ * GET_VEHICLE_INTERIOR_COLOUR
+ */
 global.GetVehicleInteriorColour = function (vehicle, color) {
 	return _in(0x00000000, 0xccff3b6e, vehicle, _ii(color) /* may be optional */);
 };
 
+/**
+ * GET_VEHICLE_LIGHTS_STATE
+ */
 global.GetVehicleLightsState = function (vehicle) {
 	return _in(0x00000000, 0x7c278621, vehicle, _i /* actually bool */, _i /* actually bool */, _r);
 };
 
+/**
+ * GET_VEHICLE_LIVERY
+ */
 global.GetVehicleLivery = function (vehicle) {
 	return _in(0x00000000, 0xec82a51d, vehicle, _r, _ri);
 };
@@ -1240,10 +1472,16 @@ global.GetVehicleLockOnTarget = function (vehicle) {
 	return _in(0x00000000, 0x4a557117, vehicle, _r, _ri);
 };
 
+/**
+ * GET_VEHICLE_NUMBER_PLATE_TEXT
+ */
 global.GetVehicleNumberPlateText = function (vehicle) {
 	return _in(0x00000000, 0xe8522d58, vehicle, _r, _s);
 };
 
+/**
+ * GET_VEHICLE_NUMBER_PLATE_TEXT_INDEX
+ */
 global.GetVehicleNumberPlateTextIndex = function (vehicle) {
 	return _in(0x00000000, 0x499747b6, vehicle, _r, _ri);
 };
@@ -1258,18 +1496,30 @@ global.GetVehiclePedIsIn = function (ped, lastVehicle) {
 	return _in(0x00000000, 0xafe92319, ped, lastVehicle, _r, _ri);
 };
 
+/**
+ * GET_VEHICLE_PETROL_TANK_HEALTH
+ */
 global.GetVehiclePetrolTankHealth = function (vehicle) {
 	return _in(0x00000000, 0xe41595ce, vehicle, _r, _rf);
 };
 
+/**
+ * GET_VEHICLE_RADIO_STATION_INDEX
+ */
 global.GetVehicleRadioStationIndex = function (vehicle) {
 	return _in(0x00000000, 0x57037960, vehicle, _r, _ri);
 };
 
+/**
+ * GET_VEHICLE_ROOF_LIVERY
+ */
 global.GetVehicleRoofLivery = function (vehicle) {
 	return _in(0x00000000, 0x0872cf42, vehicle, _r, _ri);
 };
 
+/**
+ * GET_VEHICLE_STEERING_ANGLE
+ */
 global.GetVehicleSteeringAngle = function (vehicle) {
 	return _in(0x00000000, 0x1382fcea, vehicle, _r, _rf);
 };
@@ -1292,38 +1542,65 @@ global.GetVehicleType = function (vehicle) {
 	return _in(0x00000000, 0xa273060e, vehicle, _r, _s);
 };
 
+/**
+ * GET_VEHICLE_TYRE_SMOKE_COLOR
+ */
 global.GetVehicleTyreSmokeColor = function (vehicle) {
 	return _in(0x00000000, 0x75280015, vehicle, _i, _i, _i);
 };
 
+/**
+ * GET_VEHICLE_WHEEL_TYPE
+ */
 global.GetVehicleWheelType = function (vehicle) {
 	return _in(0x00000000, 0xda58d7ae, vehicle, _r, _ri);
 };
 
+/**
+ * GET_VEHICLE_WINDOW_TINT
+ */
 global.GetVehicleWindowTint = function (vehicle) {
 	return _in(0x00000000, 0x13d53892, vehicle, _r, _ri);
 };
 
+/**
+ * GIVE_WEAPON_COMPONENT_TO_PED
+ */
 global.GiveWeaponComponentToPed = function (ped, weaponHash, componentHash) {
 	return _in(0x00000000, 0x3e1e286d, ped, _ch(weaponHash), _ch(componentHash));
 };
 
+/**
+ * GIVE_WEAPON_TO_PED
+ */
 global.GiveWeaponToPed = function (ped, weaponHash, ammoCount, isHidden, bForceInHand) {
 	return _in(0x00000000, 0xc4d88a85, ped, _ch(weaponHash), ammoCount, isHidden, bForceInHand);
 };
 
+/**
+ * HAS_ENTITY_BEEN_MARKED_AS_NO_LONGER_NEEDED
+ */
 global.HasEntityBeenMarkedAsNoLongerNeeded = function (vehicle) {
 	return _in(0x00000000, 0x9c9a3be0, vehicle, _r);
 };
 
+/**
+ * HAS_VEHICLE_BEEN_OWNED_BY_PLAYER
+ */
 global.HasVehicleBeenOwnedByPlayer = function (vehicle) {
 	return _in(0x00000000, 0xe4e83a5b, vehicle, _r);
 };
 
+/**
+ * INVOKE_FUNCTION_REFERENCE
+ */
 global.InvokeFunctionReference = function (referenceIdentity, argsSerialized, argsLength, retvalLength) {
 	return _in(0x00000000, 0xe3551879, _ts(referenceIdentity), _ts(argsSerialized), argsLength, _ii(retvalLength) /* may be optional */, _r, _s);
 };
 
+/**
+ * IS_ACE_ALLOWED
+ */
 global.IsAceAllowed = function (object) {
 	return _in(0x00000000, 0x7ebb9929, _ts(object), _r);
 };
@@ -1352,6 +1629,9 @@ global.IsPedAPlayer = function (ped) {
 	return _in(0x00000000, 0x404794ca, ped, _r);
 };
 
+/**
+ * IS_PLAYER_ACE_ALLOWED
+ */
 global.IsPlayerAceAllowed = function (playerSrc, object) {
 	return _in(0x00000000, 0xdedae23d, _ts(playerSrc), _ts(object), _r);
 };
@@ -1385,26 +1665,46 @@ global.IsPlayerEvadingWantedLevel = function (playerSrc) {
 	return _in(0x00000000, 0x89a3881a, _ts(playerSrc), _r);
 };
 
+/**
+ * IS_PLAYER_USING_SUPER_JUMP
+ * @param playerSrc The player handle
+ * @return A boolean.
+ */
 global.IsPlayerUsingSuperJump = function (playerSrc) {
 	return _in(0x00000000, 0xc7d2c20c, _ts(playerSrc), _r);
 };
 
+/**
+ * IS_PRINCIPAL_ACE_ALLOWED
+ */
 global.IsPrincipalAceAllowed = function (principal, object) {
 	return _in(0x00000000, 0x37cf52ce, _ts(principal), _ts(object), _r);
 };
 
+/**
+ * IS_VEHICLE_ENGINE_STARTING
+ */
 global.IsVehicleEngineStarting = function (vehicle) {
 	return _in(0x00000000, 0xbb340d04, vehicle, _r);
 };
 
+/**
+ * IS_VEHICLE_EXTRA_TURNED_ON
+ */
 global.IsVehicleExtraTurnedOn = function (vehicle, extraId) {
 	return _in(0x00000000, 0x042098b5, vehicle, extraId, _r);
 };
 
+/**
+ * IS_VEHICLE_SIREN_ON
+ */
 global.IsVehicleSirenOn = function (vehicle) {
 	return _in(0x00000000, 0x25eb5873, vehicle, _r);
 };
 
+/**
+ * IS_VEHICLE_TYRE_BURST
+ */
 global.IsVehicleTyreBurst = function (vehicle, wheelID, completely) {
 	return _in(0x00000000, 0x48c80210, vehicle, wheelID, completely, _r);
 };
@@ -1463,6 +1763,9 @@ global.MumbleSetPlayerMuted = function (playerSrc, toggle) {
 	return _in(0x00000000, 0xcc6c2eb1, playerSrc, toggle);
 };
 
+/**
+ * NETWORK_GET_ENTITY_FROM_NETWORK_ID
+ */
 global.NetworkGetEntityFromNetworkId = function (netId) {
 	return _in(0x00000000, 0x5b912c3f, netId, _r, _ri);
 };
@@ -1485,18 +1788,31 @@ global.NetworkGetFirstEntityOwner = function (entity) {
 	return _in(0x00000000, 0x1e546224, entity, _r, _ri);
 };
 
+/**
+ * NETWORK_GET_NETWORK_ID_FROM_ENTITY
+ */
 global.NetworkGetNetworkIdFromEntity = function (entity) {
 	return _in(0x00000000, 0x9e35dab6, entity, _r, _ri);
 };
 
+/**
+ * NETWORK_GET_VOICE_PROXIMITY_OVERRIDE
+ * @param playerSrc The player handle
+ */
 global.NetworkGetVoiceProximityOverride = function (playerSrc) {
 	return _in(0x00000000, 0x7a6462f4, _ts(playerSrc), _r, _rv);
 };
 
+/**
+ * PERFORM_HTTP_REQUEST_INTERNAL
+ */
 global.PerformHttpRequestInternal = function (requestData, requestDataLength) {
 	return _in(0x00000000, 0x8e8cc653, _ts(requestData), requestDataLength, _r, _ri);
 };
 
+/**
+ * PERFORM_HTTP_REQUEST_INTERNAL_EX
+ */
 global.PerformHttpRequestInternalEx = function (requestData) {
 	return _in(0x00000000, 0x6b171e87, ...(_obj(requestData)), _r, _ri);
 };
@@ -1619,6 +1935,9 @@ global.RemoveStateBagChangeHandler = function (cookie) {
 	return _in(0x00000000, 0xd36be661, cookie);
 };
 
+/**
+ * REMOVE_WEAPON_COMPONENT_FROM_PED
+ */
 global.RemoveWeaponComponentFromPed = function (ped, weaponHash, componentHash) {
 	return _in(0x00000000, 0x412aa00d, ped, _ch(weaponHash), _ch(componentHash));
 };
@@ -1691,6 +2010,9 @@ global.SetBlipSprite = function (blip, spriteId) {
 	return _in(0x00000000, 0x8dbbb0b9, blip, spriteId);
 };
 
+/**
+ * SET_CONVAR
+ */
 global.SetConvar = function (varName, value) {
 	return _in(0x00000000, 0x341b16d2, _ts(varName), _ts(value));
 };
@@ -1704,10 +2026,16 @@ global.SetConvarReplicated = function (varName, value) {
 	return _in(0x00000000, 0xf292858c, _ts(varName), _ts(value));
 };
 
+/**
+ * SET_CONVAR_SERVER_INFO
+ */
 global.SetConvarServerInfo = function (varName, value) {
 	return _in(0x00000000, 0x9338d547, _ts(varName), _ts(value));
 };
 
+/**
+ * SET_CURRENT_PED_WEAPON
+ */
 global.SetCurrentPedWeapon = function (ped, weaponHash, bForceInHand) {
 	return _in(0x00000000, 0xb8278882, ped, _ch(weaponHash), bForceInHand);
 };
@@ -1746,6 +2074,10 @@ global.SetEntityHeading = function (entity, heading) {
 	return _in(0x00000000, 0xe0ff064d, entity, _fv(heading));
 };
 
+/**
+ * SET_ENTITY_ROTATION
+ * @param rotationOrder The order yaw pitch roll are applied, see [`GET_ENTITY_ROTATION`](#\_0xAFBD61CC738D9EB9).
+ */
 global.SetEntityRotation = function (entity, pitch, roll, yaw, rotationOrder, p5) {
 	return _in(0x00000000, 0x0a345efe, entity, _fv(pitch), _fv(roll), _fv(yaw), rotationOrder, p5);
 };
@@ -1767,14 +2099,23 @@ global.SetEntityVelocity = function (entity, x, y, z) {
 	return _in(0x00000000, 0xff5a1988, entity, _fv(x), _fv(y), _fv(z));
 };
 
+/**
+ * SET_GAME_TYPE
+ */
 global.SetGameType = function (gametypeName) {
 	return _in(0x00000000, 0xf90b7469, _ts(gametypeName));
 };
 
+/**
+ * SET_HTTP_HANDLER
+ */
 global.SetHttpHandler = function (handler) {
 	return _in(0x00000000, 0xf5c6330c, _mfr(handler));
 };
 
+/**
+ * SET_MAP_NAME
+ */
 global.SetMapName = function (mapName) {
 	return _in(0x00000000, 0xb7ba82dc, _ts(mapName));
 };
@@ -1795,6 +2136,9 @@ global.SetPedArmour = function (ped, amount) {
 	return _in(0x00000000, 0x4e3a0cc4, ped, amount);
 };
 
+/**
+ * SET_PED_CAN_RAGDOLL
+ */
 global.SetPedCanRagdoll = function (ped, toggle) {
 	return _in(0x00000000, 0xcf1384c4, ped, toggle);
 };
@@ -2453,6 +2797,10 @@ global.SetPedHeadOverlayColor = function (ped, overlayID, colorType, colorID, se
 	return _in(0x00000000, 0x78935a27, ped, overlayID, colorType, colorID, secondColorID);
 };
 
+/**
+ * SET_PED_INTO_VEHICLE
+ * @param seatIndex See eSeatPosition declared in [`IS_VEHICLE_SEAT_FREE`](#\_0x22AC59A870E6A669). -2 for the first available seat.
+ */
 global.SetPedIntoVehicle = function (ped, vehicle, seatIndex) {
 	return _in(0x00000000, 0x07500c79, ped, vehicle, seatIndex);
 };
@@ -2682,6 +3030,9 @@ global.SetStateBagValue = function (bagName, keyName, valueData, valueLength, re
 	return _in(0x00000000, 0x8d50e33a, _ts(bagName), _ts(keyName), _ts(valueData), valueLength, replicated);
 };
 
+/**
+ * SET_VEHICLE_ALARM
+ */
 global.SetVehicleAlarm = function (vehicle, state) {
 	return _in(0x00000000, 0x24877d84, vehicle, state);
 };
@@ -2759,18 +3110,34 @@ global.SetVehicleDoorsLocked = function (vehicle, doorLockStatus) {
 	return _in(0x00000000, 0x4cdd35d0, vehicle, doorLockStatus);
 };
 
+/**
+ * SET_VEHICLE_NUMBER_PLATE_TEXT
+ * @param vehicle The vehicle to set the plate for
+ * @param plateText The text to set the plate to, 8 chars maximum
+ */
 global.SetVehicleNumberPlateText = function (vehicle, plateText) {
 	return _in(0x00000000, 0x400f9556, vehicle, _ts(plateText));
 };
 
+/**
+ * START_FIND_KVP
+ * @param prefix A prefix match
+ * @return A KVP find handle to use with [FIND_KVP](#\_0xBD7BEBC5) and close with [END_FIND_KVP](#\_0xB3210203)
+ */
 global.StartFindKvp = function (prefix) {
 	return _in(0x00000000, 0xdd379006, _ts(prefix), _r, _ri);
 };
 
+/**
+ * START_RESOURCE
+ */
 global.StartResource = function (resourceName) {
 	return _in(0x00000000, 0x29b440dc, _ts(resourceName), _r);
 };
 
+/**
+ * STOP_RESOURCE
+ */
 global.StopResource = function (resourceName) {
 	return _in(0x00000000, 0x21783161, _ts(resourceName), _r);
 };
@@ -2806,10 +3173,24 @@ global.TaskEnterVehicle = function (ped, vehicle, timeout, seatIndex, speed, fla
 	return _in(0x00000000, 0xb8689b4e, ped, vehicle, timeout, seatIndex, _fv(speed), flag, p6);
 };
 
+/**
+ * TASK_EVERYONE_LEAVE_VEHICLE
+ */
 global.TaskEveryoneLeaveVehicle = function (vehicle) {
 	return _in(0x00000000, 0xc1971f30, vehicle);
 };
 
+/**
+ * TASK_GO_STRAIGHT_TO_COORD
+ * @param ped The ped handle.
+ * @param x The x coordinate.
+ * @param y The y coordinate.
+ * @param z The z coordinate.
+ * @param speed The ped movement speed.
+ * @param timeout \-1 , other values appear to break the ped movement.
+ * @param targetHeading The heading you want the ped to be on x,y,z coord.
+ * @param distanceToSlide The distance from x,y,z where the ped will start sliding.
+ */
 global.TaskGoStraightToCoord = function (ped, x, y, z, speed, timeout, targetHeading, distanceToSlide) {
 	return _in(0x00000000, 0x80a9e7a7, ped, _fv(x), _fv(y), _fv(z), _fv(speed), timeout, _fv(targetHeading), _fv(distanceToSlide));
 };
@@ -2938,6 +3319,9 @@ global.TaskPlayAnimAdvanced = function (ped, animDict, animName, posX, posY, pos
 	return _in(0x00000000, 0x3ddeb0e6, ped, _ts(animDict), _ts(animName), _fv(posX), _fv(posY), _fv(posZ), _fv(rotX), _fv(rotY), _fv(rotZ), _fv(animEnterSpeed), _fv(animExitSpeed), duration, flag, _fv(animTime), p14, p15);
 };
 
+/**
+ * TASK_REACT_AND_FLEE_PED
+ */
 global.TaskReactAndFleePed = function (ped, fleeTarget) {
 	return _in(0x00000000, 0x8a632bd8, ped, fleeTarget);
 };
@@ -2963,10 +3347,17 @@ global.TaskShootAtEntity = function (entity, target, duration, firingPattern) {
 	return _in(0x00000000, 0xac0631c9, entity, target, duration, _ch(firingPattern));
 };
 
+/**
+ * TASK_WARP_PED_INTO_VEHICLE
+ * @param seatIndex See eSeatPosition declared in [`IS_VEHICLE_SEAT_FREE`](#\_0x22AC59A870E6A669).
+ */
 global.TaskWarpPedIntoVehicle = function (ped, vehicle, seatIndex) {
 	return _in(0x00000000, 0x65d4a35d, ped, vehicle, seatIndex);
 };
 
+/**
+ * TEMP_BAN_PLAYER
+ */
 global.TempBanPlayer = function (playerSrc, reason) {
 	return _in(0x00000000, 0x1e35dbba, _ts(playerSrc), _ts(reason));
 };
@@ -2992,6 +3383,9 @@ global.TriggerLatentClientEventInternal = function (eventName, eventTarget, even
 	return _in(0x00000000, 0x70b35890, _ts(eventName), _ts(eventTarget), _ts(eventPayload), payloadLength, bps);
 };
 
+/**
+ * VERIFY_PASSWORD_HASH
+ */
 global.VerifyPasswordHash = function (password, hash) {
 	return _in(0x00000000, 0x2e310acd, _ts(password), _ts(hash), _r);
 };

@@ -146,6 +146,9 @@ declare function CancelEvent(): void;
  */
 declare function ClearPedProp(ped: number, propId: number): void;
 
+/**
+ * CLEAR_PED_SECONDARY_TASK
+ */
 declare function ClearPedSecondaryTask(ped: number): void;
 
 /**
@@ -210,6 +213,10 @@ declare function CreateObjectNoOffset(modelHash: string | number, x: number, y: 
  */
 declare function CreatePed(pedType: number, modelHash: string | number, x: number, y: number, z: number, heading: number, isNetwork: boolean, bScriptHostPed: boolean): number;
 
+/**
+ * CREATE_PED_INSIDE_VEHICLE
+ * @param pedType See [`CREATE_PED`](#\_0xD49F9B0955C367DE)
+ */
 declare function CreatePedInsideVehicle(vehicle: number, pedType: number, modelHash: string | number, seat: number, isNetwork: boolean, bScriptHostPed: boolean): number;
 
 /**
@@ -249,8 +256,15 @@ declare function CreateVehicleServerSetter(modelHash: string | number, _type: st
  */
 declare function DeleteEntity(entity: number): void;
 
+/**
+ * DELETE_FUNCTION_REFERENCE
+ */
 declare function DeleteFunctionReference(referenceIdentity: string): void;
 
+/**
+ * DELETE_RESOURCE_KVP
+ * @param key The key to delete
+ */
 declare function DeleteResourceKvp(key: string): void;
 
 /**
@@ -259,6 +273,9 @@ declare function DeleteResourceKvp(key: string): void;
  */
 declare function DeleteResourceKvpNoSync(key: string): void;
 
+/**
+ * DOES_ENTITY_EXIST
+ */
 declare function DoesEntityExist(entity: number): boolean;
 
 /**
@@ -277,12 +294,26 @@ declare function DoesPlayerOwnSku(playerSrc: string, skuId: number): boolean;
  */
 declare function DoesPlayerOwnSkuExt(playerSrc: string, skuId: number): boolean;
 
+/**
+ * DROP_PLAYER
+ */
 declare function DropPlayer(playerSrc: string, reason: string): void;
 
+/**
+ * DUPLICATE_FUNCTION_REFERENCE
+ */
 declare function DuplicateFunctionReference(referenceIdentity: string): string;
 
+/**
+ * ENABLE_ENHANCED_HOST_SUPPORT
+ */
 declare function EnableEnhancedHostSupport(enabled: boolean): void;
 
+/**
+ * END_FIND_KVP
+ * @param handle The KVP find handle returned from [START_FIND_KVP](#\_0xDD379006)
+ * @return None.
+ */
 declare function EndFindKvp(handle: number): void;
 
 /**
@@ -290,10 +321,21 @@ declare function EndFindKvp(handle: number): void;
  */
 declare function EnsureEntityStateBag(entity: number): void;
 
+/**
+ * EXECUTE_COMMAND
+ */
 declare function ExecuteCommand(commandString: string): void;
 
+/**
+ * FIND_KVP
+ * @param handle The KVP find handle returned from [START_FIND_KVP](#\_0xDD379006)
+ * @return None.
+ */
 declare function FindKvp(handle: number): string;
 
+/**
+ * FLAG_SERVER_AS_PRIVATE
+ */
 declare function FlagServerAsPrivate(private_: boolean): void;
 
 /**
@@ -309,6 +351,10 @@ declare function FlushResourceKvp(): void;
  */
 declare function FreezeEntityPosition(entity: number, toggle: boolean): void;
 
+/**
+ * GET_AIR_DRAG_MULTIPLIER_FOR_PLAYERS_VEHICLE
+ * @param playerSrc The player handle
+ */
 declare function GetAirDragMultiplierForPlayersVehicle(playerSrc: string): number;
 
 /**
@@ -393,6 +439,9 @@ declare function GetEntityCoords(entity: number): number[];
  */
 declare function GetEntityFromStateBagName(bagName: string): number;
 
+/**
+ * GET_ENTITY_HEADING
+ */
 declare function GetEntityHeading(entity: number): number;
 
 /**
@@ -405,6 +454,9 @@ declare function GetEntityHealth(entity: number): number;
  */
 declare function GetEntityMaxHealth(entity: number): number;
 
+/**
+ * GET_ENTITY_MODEL
+ */
 declare function GetEntityModel(entity: number): number;
 
 /**
@@ -429,8 +481,14 @@ enum ePopulationType
  */
 declare function GetEntityPopulationType(entity: number): number;
 
+/**
+ * GET_ENTITY_ROTATION
+ */
 declare function GetEntityRotation(entity: number): number[];
 
+/**
+ * GET_ENTITY_ROTATION_VELOCITY
+ */
 declare function GetEntityRotationVelocity(entity: number): number[];
 
 /**
@@ -441,6 +499,9 @@ declare function GetEntityRotationVelocity(entity: number): number[];
  */
 declare function GetEntityRoutingBucket(entity: number): number;
 
+/**
+ * GET_ENTITY_SCRIPT
+ */
 declare function GetEntityScript(entity: number): string;
 
 /**
@@ -481,6 +542,9 @@ declare function GetEntitySpeed(entity: number): number;
  */
 declare function GetEntityType(entity: number): number;
 
+/**
+ * GET_ENTITY_VELOCITY
+ */
 declare function GetEntityVelocity(entity: number): number[];
 
 /**
@@ -532,20 +596,48 @@ declare function GetGameTimer(): number;
  */
 declare function GetHashKey(model: string): number;
 
+/**
+ * GET_HELI_MAIN_ROTOR_HEALTH
+ * @param vehicle The target vehicle.
+ * @return See the client-side [GET_HELI_MAIN_ROTOR_HEALTH](https://docs.fivem.net/natives/?\_0xE4CB7541F413D2C5) for the return value.
+ */
 declare function GetHeliMainRotorHealth(vehicle: number): number;
 
+/**
+ * GET_HELI_TAIL_ROTOR_HEALTH
+ * @param vehicle The target vehicle.
+ * @return See the client-side [GET_HELI_TAIL_ROTOR_HEALTH](https://docs.fivem.net/natives/?\_0xAE8CE82A4219AC8C) for the return value.
+ */
 declare function GetHeliTailRotorHealth(vehicle: number): number;
 
+/**
+ * GET_HOST_ID
+ */
 declare function GetHostId(): string;
 
+/**
+ * GET_INSTANCE_ID
+ */
 declare function GetInstanceId(): number;
 
+/**
+ * GET_INVOKING_RESOURCE
+ */
 declare function GetInvokingResource(): string;
 
+/**
+ * GET_IS_VEHICLE_ENGINE_RUNNING
+ */
 declare function GetIsVehicleEngineRunning(vehicle: number): boolean;
 
+/**
+ * GET_IS_VEHICLE_PRIMARY_COLOUR_CUSTOM
+ */
 declare function GetIsVehiclePrimaryColourCustom(vehicle: number): boolean;
 
+/**
+ * GET_IS_VEHICLE_SECONDARY_COLOUR_CUSTOM
+ */
 declare function GetIsVehicleSecondaryColourCustom(vehicle: number): boolean;
 
 /**
@@ -555,12 +647,27 @@ declare function GetIsVehicleSecondaryColourCustom(vehicle: number): boolean;
  */
 declare function GetLandingGearState(vehicle: number): number;
 
+/**
+ * GET_LAST_PED_IN_VEHICLE_SEAT
+ * @param vehicle The target vehicle.
+ * @param seatIndex See eSeatPosition declared in [`IS_VEHICLE_SEAT_FREE`](#\_0x22AC59A870E6A669).
+ * @return The last ped in the specified seat of the passed vehicle. Returns 0 if the specified seat was never occupied or the last ped does not exist anymore.
+ */
 declare function GetLastPedInVehicleSeat(vehicle: number, seatIndex: number): number;
 
+/**
+ * GET_NUM_PLAYER_IDENTIFIERS
+ */
 declare function GetNumPlayerIdentifiers(playerSrc: string): number;
 
+/**
+ * GET_NUM_PLAYER_INDICES
+ */
 declare function GetNumPlayerIndices(): number;
 
+/**
+ * GET_NUM_PLAYER_TOKENS
+ */
 declare function GetNumPlayerTokens(playerSrc: string): number;
 
 /**
@@ -571,18 +678,44 @@ declare function GetNumPlayerTokens(playerSrc: string): number;
  */
 declare function GetNumResourceMetadata(resourceName: string, metadataKey: string): number;
 
+/**
+ * GET_NUM_RESOURCES
+ */
 declare function GetNumResources(): number;
 
+/**
+ * GET_PASSWORD_HASH
+ */
 declare function GetPasswordHash(password: string): string;
 
+/**
+ * GET_PED_ARMOUR
+ */
 declare function GetPedArmour(ped: number): number;
 
+/**
+ * GET_PED_CAUSE_OF_DEATH
+ */
 declare function GetPedCauseOfDeath(ped: number): number;
 
+/**
+ * GET_PED_DESIRED_HEADING
+ * @param ped The target ped
+ * @return Returns ped's desired heading.
+ */
 declare function GetPedDesiredHeading(ped: number): number;
 
+/**
+ * GET_PED_IN_VEHICLE_SEAT
+ * @param vehicle The target vehicle.
+ * @param seatIndex See eSeatPosition declared in [`IS_VEHICLE_SEAT_FREE`](#\_0x22AC59A870E6A669).
+ * @return The ped in the specified seat of the passed vehicle. Returns 0 if the specified seat is not occupied.
+ */
 declare function GetPedInVehicleSeat(vehicle: number, seatIndex: number): number;
 
+/**
+ * GET_PED_MAX_HEALTH
+ */
 declare function GetPedMaxHealth(ped: number): number;
 
 /**
@@ -631,6 +764,9 @@ declare function GetPedSpecificTaskType(ped: number, index: number): number;
  */
 declare function GetPlayerCameraRotation(playerSrc: string): number[];
 
+/**
+ * GET_PLAYER_ENDPOINT
+ */
 declare function GetPlayerEndpoint(playerSrc: string): string;
 
 /**
@@ -640,6 +776,9 @@ declare function GetPlayerEndpoint(playerSrc: string): string;
  */
 declare function GetPlayerFakeWantedLevel(playerSrc: string): number;
 
+/**
+ * GET_PLAYER_FROM_INDEX
+ */
 declare function GetPlayerFromIndex(index: number): string;
 
 /**
@@ -649,8 +788,14 @@ declare function GetPlayerFromIndex(index: number): string;
  */
 declare function GetPlayerFromStateBagName(bagName: string): number;
 
+/**
+ * GET_PLAYER_GUID
+ */
 declare function GetPlayerGuid(playerSrc: string): string;
 
+/**
+ * GET_PLAYER_IDENTIFIER
+ */
 declare function GetPlayerIdentifier(playerSrc: string, identifier: number): string;
 
 /**
@@ -661,12 +806,28 @@ declare function GetPlayerIdentifier(playerSrc: string, identifier: number): str
  */
 declare function GetPlayerIdentifierByType(playerSrc: string, identifierType: string): string;
 
+/**
+ * GET_PLAYER_INVINCIBLE
+ * @param playerSrc The player handle
+ * @return A boolean to tell if the player is invincible.
+ */
 declare function GetPlayerInvincible(playerSrc: string): boolean;
 
+/**
+ * GET_PLAYER_LAST_MSG
+ */
 declare function GetPlayerLastMsg(playerSrc: string): number;
 
+/**
+ * GET_PLAYER_MAX_ARMOUR
+ * @param playerSrc The player handle
+ */
 declare function GetPlayerMaxArmour(playerSrc: string): number;
 
+/**
+ * GET_PLAYER_MAX_HEALTH
+ * @param playerSrc The player handle
+ */
 declare function GetPlayerMaxHealth(playerSrc: string): number;
 
 /**
@@ -676,10 +837,19 @@ declare function GetPlayerMaxHealth(playerSrc: string): number;
  */
 declare function GetPlayerMeleeWeaponDamageModifier(playerId: string): number;
 
+/**
+ * GET_PLAYER_NAME
+ */
 declare function GetPlayerName(playerSrc: string): string;
 
+/**
+ * GET_PLAYER_PED
+ */
 declare function GetPlayerPed(playerSrc: string): number;
 
+/**
+ * GET_PLAYER_PING
+ */
 declare function GetPlayerPing(playerSrc: string): number;
 
 /**
@@ -690,6 +860,10 @@ declare function GetPlayerPing(playerSrc: string): number;
  */
 declare function GetPlayerRoutingBucket(playerSrc: string): number;
 
+/**
+ * GET_PLAYER_TEAM
+ * @param playerSrc The player handle
+ */
 declare function GetPlayerTeam(playerSrc: string): number;
 
 /**
@@ -764,6 +938,11 @@ declare function GetPlayerWeaponDefenseModifier_2(playerId: string): number;
  */
 declare function GetRegisteredCommands(): any;
 
+/**
+ * GET_RESOURCE_BY_FIND_INDEX
+ * @param findIndex The index of the resource (starting at 0)
+ * @return The resource name as a `string`
+ */
 declare function GetResourceByFindIndex(findIndex: number): string;
 
 /**
@@ -823,20 +1002,48 @@ declare function GetSelectedPedWeapon(ped: number): number;
  */
 declare function GetStateBagValue(bagName: string, key: string): any;
 
+/**
+ * GET_TRAIN_CARRIAGE_ENGINE
+ * @param train The entity handle.
+ * @return The train engine carriage.
+ */
 declare function GetTrainCarriageEngine(train: number): number;
 
+/**
+ * GET_TRAIN_CARRIAGE_INDEX
+ * @param train The entity handle.
+ * @return The carriage index. -1 returned if invalid result.
+ */
 declare function GetTrainCarriageIndex(train: number): number;
 
+/**
+ * GET_VEHICLE_BODY_HEALTH
+ */
 declare function GetVehicleBodyHealth(vehicle: number): number;
 
+/**
+ * GET_VEHICLE_COLOURS
+ */
 declare function GetVehicleColours(vehicle: number): [number, number];
 
+/**
+ * GET_VEHICLE_CUSTOM_PRIMARY_COLOUR
+ */
 declare function GetVehicleCustomPrimaryColour(vehicle: number): [number, number, number];
 
+/**
+ * GET_VEHICLE_CUSTOM_SECONDARY_COLOUR
+ */
 declare function GetVehicleCustomSecondaryColour(vehicle: number): [number, number, number];
 
+/**
+ * GET_VEHICLE_DASHBOARD_COLOUR
+ */
 declare function GetVehicleDashboardColour(vehicle: number, color?: number): number;
 
+/**
+ * GET_VEHICLE_DIRT_LEVEL
+ */
 declare function GetVehicleDirtLevel(vehicle: number): number;
 
 /**
@@ -859,6 +1066,10 @@ declare function GetVehicleDirtLevel(vehicle: number): number;
  */
 declare function GetVehicleDoorLockStatus(vehicle: number): number;
 
+/**
+ * GET_VEHICLE_DOOR_STATUS
+ * @return A number from 0 to 7.
+ */
 declare function GetVehicleDoorStatus(vehicle: number): number;
 
 /**
@@ -866,8 +1077,14 @@ declare function GetVehicleDoorStatus(vehicle: number): number;
  */
 declare function GetVehicleDoorsLockedForPlayer(vehicle: number): number;
 
+/**
+ * GET_VEHICLE_ENGINE_HEALTH
+ */
 declare function GetVehicleEngineHealth(vehicle: number): number;
 
+/**
+ * GET_VEHICLE_EXTRA_COLOURS
+ */
 declare function GetVehicleExtraColours(vehicle: number): [number, number];
 
 /**
@@ -877,8 +1094,14 @@ declare function GetVehicleExtraColours(vehicle: number): [number, number];
  */
 declare function GetVehicleFlightNozzlePosition(vehicle: number): number;
 
+/**
+ * GET_VEHICLE_HANDBRAKE
+ */
 declare function GetVehicleHandbrake(vehicle: number): boolean;
 
+/**
+ * GET_VEHICLE_HEADLIGHTS_COLOUR
+ */
 declare function GetVehicleHeadlightsColour(vehicle: number): number;
 
 /**
@@ -888,10 +1111,19 @@ declare function GetVehicleHeadlightsColour(vehicle: number): number;
  */
 declare function GetVehicleHomingLockonState(vehicle: number): number;
 
+/**
+ * GET_VEHICLE_INTERIOR_COLOUR
+ */
 declare function GetVehicleInteriorColour(vehicle: number, color?: number): number;
 
+/**
+ * GET_VEHICLE_LIGHTS_STATE
+ */
 declare function GetVehicleLightsState(vehicle: number): [boolean, any /* actually bool */, any /* actually bool */];
 
+/**
+ * GET_VEHICLE_LIVERY
+ */
 declare function GetVehicleLivery(vehicle: number): number;
 
 /**
@@ -901,8 +1133,14 @@ declare function GetVehicleLivery(vehicle: number): number;
  */
 declare function GetVehicleLockOnTarget(vehicle: number): number;
 
+/**
+ * GET_VEHICLE_NUMBER_PLATE_TEXT
+ */
 declare function GetVehicleNumberPlateText(vehicle: number): string;
 
+/**
+ * GET_VEHICLE_NUMBER_PLATE_TEXT_INDEX
+ */
 declare function GetVehicleNumberPlateTextIndex(vehicle: number): number;
 
 /**
@@ -913,12 +1151,24 @@ declare function GetVehicleNumberPlateTextIndex(vehicle: number): number;
  */
 declare function GetVehiclePedIsIn(ped: number, lastVehicle: boolean): number;
 
+/**
+ * GET_VEHICLE_PETROL_TANK_HEALTH
+ */
 declare function GetVehiclePetrolTankHealth(vehicle: number): number;
 
+/**
+ * GET_VEHICLE_RADIO_STATION_INDEX
+ */
 declare function GetVehicleRadioStationIndex(vehicle: number): number;
 
+/**
+ * GET_VEHICLE_ROOF_LIVERY
+ */
 declare function GetVehicleRoofLivery(vehicle: number): number;
 
+/**
+ * GET_VEHICLE_STEERING_ANGLE
+ */
 declare function GetVehicleSteeringAngle(vehicle: number): number;
 
 /**
@@ -937,22 +1187,49 @@ declare function GetVehicleSteeringAngle(vehicle: number): number;
  */
 declare function GetVehicleType(vehicle: number): string;
 
+/**
+ * GET_VEHICLE_TYRE_SMOKE_COLOR
+ */
 declare function GetVehicleTyreSmokeColor(vehicle: number): [number, number, number];
 
+/**
+ * GET_VEHICLE_WHEEL_TYPE
+ */
 declare function GetVehicleWheelType(vehicle: number): number;
 
+/**
+ * GET_VEHICLE_WINDOW_TINT
+ */
 declare function GetVehicleWindowTint(vehicle: number): number;
 
+/**
+ * GIVE_WEAPON_COMPONENT_TO_PED
+ */
 declare function GiveWeaponComponentToPed(ped: number, weaponHash: string | number, componentHash: string | number): void;
 
+/**
+ * GIVE_WEAPON_TO_PED
+ */
 declare function GiveWeaponToPed(ped: number, weaponHash: string | number, ammoCount: number, isHidden: boolean, bForceInHand: boolean): void;
 
+/**
+ * HAS_ENTITY_BEEN_MARKED_AS_NO_LONGER_NEEDED
+ */
 declare function HasEntityBeenMarkedAsNoLongerNeeded(vehicle: number): boolean;
 
+/**
+ * HAS_VEHICLE_BEEN_OWNED_BY_PLAYER
+ */
 declare function HasVehicleBeenOwnedByPlayer(vehicle: number): boolean;
 
+/**
+ * INVOKE_FUNCTION_REFERENCE
+ */
 declare function InvokeFunctionReference(referenceIdentity: string, argsSerialized: string, argsLength: number, retvalLength?: number): [string, number];
 
+/**
+ * IS_ACE_ALLOWED
+ */
 declare function IsAceAllowed(object: string): boolean;
 
 /**
@@ -973,6 +1250,9 @@ declare function IsEntityVisible(entity: number): boolean;
  */
 declare function IsPedAPlayer(ped: number): boolean;
 
+/**
+ * IS_PLAYER_ACE_ALLOWED
+ */
 declare function IsPlayerAceAllowed(playerSrc: string, object: string): boolean;
 
 /**
@@ -998,16 +1278,36 @@ declare function IsPlayerCommerceInfoLoadedExt(playerSrc: string): boolean;
  */
 declare function IsPlayerEvadingWantedLevel(playerSrc: string): boolean;
 
+/**
+ * IS_PLAYER_USING_SUPER_JUMP
+ * @param playerSrc The player handle
+ * @return A boolean.
+ */
 declare function IsPlayerUsingSuperJump(playerSrc: string): boolean;
 
+/**
+ * IS_PRINCIPAL_ACE_ALLOWED
+ */
 declare function IsPrincipalAceAllowed(principal: string, object: string): boolean;
 
+/**
+ * IS_VEHICLE_ENGINE_STARTING
+ */
 declare function IsVehicleEngineStarting(vehicle: number): boolean;
 
+/**
+ * IS_VEHICLE_EXTRA_TURNED_ON
+ */
 declare function IsVehicleExtraTurnedOn(vehicle: number, extraId: number): boolean;
 
+/**
+ * IS_VEHICLE_SIREN_ON
+ */
 declare function IsVehicleSirenOn(vehicle: number): boolean;
 
+/**
+ * IS_VEHICLE_TYRE_BURST
+ */
 declare function IsVehicleTyreBurst(vehicle: number, wheelID: number, completely: boolean): boolean;
 
 /**
@@ -1052,6 +1352,9 @@ declare function MumbleIsPlayerMuted(playerSrc: number): boolean;
  */
 declare function MumbleSetPlayerMuted(playerSrc: number, toggle: boolean): void;
 
+/**
+ * NETWORK_GET_ENTITY_FROM_NETWORK_ID
+ */
 declare function NetworkGetEntityFromNetworkId(netId: number): number;
 
 /**
@@ -1068,12 +1371,25 @@ declare function NetworkGetEntityOwner(entity: number): number;
  */
 declare function NetworkGetFirstEntityOwner(entity: number): number;
 
+/**
+ * NETWORK_GET_NETWORK_ID_FROM_ENTITY
+ */
 declare function NetworkGetNetworkIdFromEntity(entity: number): number;
 
+/**
+ * NETWORK_GET_VOICE_PROXIMITY_OVERRIDE
+ * @param playerSrc The player handle
+ */
 declare function NetworkGetVoiceProximityOverride(playerSrc: string): number[];
 
+/**
+ * PERFORM_HTTP_REQUEST_INTERNAL
+ */
 declare function PerformHttpRequestInternal(requestData: string, requestDataLength: number): number;
 
+/**
+ * PERFORM_HTTP_REQUEST_INTERNAL_EX
+ */
 declare function PerformHttpRequestInternalEx(requestData: any): number;
 
 /**
@@ -1170,6 +1486,9 @@ declare function RemoveBlip(blip: number): void;
  */
 declare function RemoveStateBagChangeHandler(cookie: number): void;
 
+/**
+ * REMOVE_WEAPON_COMPONENT_FROM_PED
+ */
 declare function RemoveWeaponComponentFromPed(ped: number, weaponHash: string | number, componentHash: string | number): void;
 
 /**
@@ -1228,6 +1547,9 @@ declare function ScheduleResourceTick(resourceName: string): void;
  */
 declare function SetBlipSprite(blip: number, spriteId: number): void;
 
+/**
+ * SET_CONVAR
+ */
 declare function SetConvar(varName: string, value: string): void;
 
 /**
@@ -1237,8 +1559,14 @@ declare function SetConvar(varName: string, value: string): void;
  */
 declare function SetConvarReplicated(varName: string, value: string): void;
 
+/**
+ * SET_CONVAR_SERVER_INFO
+ */
 declare function SetConvarServerInfo(varName: string, value: string): void;
 
+/**
+ * SET_CURRENT_PED_WEAPON
+ */
 declare function SetCurrentPedWeapon(ped: number, weaponHash: string | number, bForceInHand: boolean): void;
 
 /**
@@ -1269,6 +1597,10 @@ declare function SetEntityDistanceCullingRadius(entity: number, radius: number):
  */
 declare function SetEntityHeading(entity: number, heading: number): void;
 
+/**
+ * SET_ENTITY_ROTATION
+ * @param rotationOrder The order yaw pitch roll are applied, see [`GET_ENTITY_ROTATION`](#\_0xAFBD61CC738D9EB9).
+ */
 declare function SetEntityRotation(entity: number, pitch: number, roll: number, yaw: number, rotationOrder: number, p5: boolean): void;
 
 /**
@@ -1284,10 +1616,19 @@ declare function SetEntityRoutingBucket(entity: number, bucket: number): void;
  */
 declare function SetEntityVelocity(entity: number, x: number, y: number, z: number): void;
 
+/**
+ * SET_GAME_TYPE
+ */
 declare function SetGameType(gametypeName: string): void;
 
+/**
+ * SET_HTTP_HANDLER
+ */
 declare function SetHttpHandler(handler: Function): void;
 
+/**
+ * SET_MAP_NAME
+ */
 declare function SetMapName(mapName: string): void;
 
 /**
@@ -1302,6 +1643,9 @@ declare function SetPedAmmo(ped: number, weaponHash: string | number, ammo: numb
  */
 declare function SetPedArmour(ped: number, amount: number): void;
 
+/**
+ * SET_PED_CAN_RAGDOLL
+ */
 declare function SetPedCanRagdoll(ped: number, toggle: boolean): void;
 
 /**
@@ -1940,6 +2284,10 @@ declare function SetPedHeadOverlay(ped: number, overlayID: number, index: number
  */
 declare function SetPedHeadOverlayColor(ped: number, overlayID: number, colorType: number, colorID: number, secondColorID: number): void;
 
+/**
+ * SET_PED_INTO_VEHICLE
+ * @param seatIndex See eSeatPosition declared in [`IS_VEHICLE_SEAT_FREE`](#\_0x22AC59A870E6A669). -2 for the first available seat.
+ */
 declare function SetPedIntoVehicle(ped: number, vehicle: number, seatIndex: number): void;
 
 /**
@@ -2125,6 +2473,9 @@ declare function SetRoutingBucketPopulationEnabled(bucketId: number, mode: boole
  */
 declare function SetStateBagValue(bagName: string, keyName: string, valueData: string, valueLength: number, replicated: boolean): void;
 
+/**
+ * SET_VEHICLE_ALARM
+ */
 declare function SetVehicleAlarm(vehicle: number, state: boolean): void;
 
 /**
@@ -2184,12 +2535,28 @@ declare function SetVehicleDoorBroken(vehicle: number, doorIndex: number, delete
  */
 declare function SetVehicleDoorsLocked(vehicle: number, doorLockStatus: number): void;
 
+/**
+ * SET_VEHICLE_NUMBER_PLATE_TEXT
+ * @param vehicle The vehicle to set the plate for
+ * @param plateText The text to set the plate to, 8 chars maximum
+ */
 declare function SetVehicleNumberPlateText(vehicle: number, plateText: string): void;
 
+/**
+ * START_FIND_KVP
+ * @param prefix A prefix match
+ * @return A KVP find handle to use with [FIND_KVP](#\_0xBD7BEBC5) and close with [END_FIND_KVP](#\_0xB3210203)
+ */
 declare function StartFindKvp(prefix: string): number;
 
+/**
+ * START_RESOURCE
+ */
 declare function StartResource(resourceName: string): boolean;
 
+/**
+ * STOP_RESOURCE
+ */
 declare function StopResource(resourceName: string): boolean;
 
 /**
@@ -2217,8 +2584,22 @@ declare function TaskDriveBy(driverPed: number, targetPed: number, targetVehicle
  */
 declare function TaskEnterVehicle(ped: number, vehicle: number, timeout: number, seatIndex: number, speed: number, flag: number, p6: number): void;
 
+/**
+ * TASK_EVERYONE_LEAVE_VEHICLE
+ */
 declare function TaskEveryoneLeaveVehicle(vehicle: number): void;
 
+/**
+ * TASK_GO_STRAIGHT_TO_COORD
+ * @param ped The ped handle.
+ * @param x The x coordinate.
+ * @param y The y coordinate.
+ * @param z The z coordinate.
+ * @param speed The ped movement speed.
+ * @param timeout \-1 , other values appear to break the ped movement.
+ * @param targetHeading The heading you want the ped to be on x,y,z coord.
+ * @param distanceToSlide The distance from x,y,z where the ped will start sliding.
+ */
 declare function TaskGoStraightToCoord(ped: number, x: number, y: number, z: number, speed: number, timeout: number, targetHeading: number, distanceToSlide: number): void;
 
 /**
@@ -2331,6 +2712,9 @@ declare function TaskPlayAnim(ped: number, animDictionary: string, animationName
  */
 declare function TaskPlayAnimAdvanced(ped: number, animDict: string, animName: string, posX: number, posY: number, posZ: number, rotX: number, rotY: number, rotZ: number, animEnterSpeed: number, animExitSpeed: number, duration: number, flag: number, animTime: number, p14: number, p15: number): void;
 
+/**
+ * TASK_REACT_AND_FLEE_PED
+ */
 declare function TaskReactAndFleePed(ped: number, fleeTarget: number): void;
 
 /**
@@ -2350,8 +2734,15 @@ declare function TaskShootAtCoord(ped: number, x: number, y: number, z: number, 
  */
 declare function TaskShootAtEntity(entity: number, target: number, duration: number, firingPattern: string | number): void;
 
+/**
+ * TASK_WARP_PED_INTO_VEHICLE
+ * @param seatIndex See eSeatPosition declared in [`IS_VEHICLE_SEAT_FREE`](#\_0x22AC59A870E6A669).
+ */
 declare function TaskWarpPedIntoVehicle(ped: number, vehicle: number, seatIndex: number): void;
 
+/**
+ * TEMP_BAN_PLAYER
+ */
 declare function TempBanPlayer(playerSrc: string, reason: string): void;
 
 /**
@@ -2369,6 +2760,9 @@ declare function TriggerEventInternal(eventName: string, eventPayload: string, p
  */
 declare function TriggerLatentClientEventInternal(eventName: string, eventTarget: string, eventPayload: string, payloadLength: number, bps: number): void;
 
+/**
+ * VERIFY_PASSWORD_HASH
+ */
 declare function VerifyPasswordHash(password: string, hash: string): boolean;
 
 /**

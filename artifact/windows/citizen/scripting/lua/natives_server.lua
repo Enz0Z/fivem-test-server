@@ -185,6 +185,7 @@ function Global.ClearPedProp(ped, propId)
 	return _in(0x2d23d743, ped, propId)
 end
 
+--- CLEAR_PED_SECONDARY_TASK
 function Global.ClearPedSecondaryTask(ped)
 	return _in(0xa635f451, ped)
 end
@@ -251,6 +252,8 @@ function Global.CreatePed(pedType, modelHash, x, y, z, heading, isNetwork, bScri
 	return _in(0x389ef71, pedType, _ch(modelHash), x, y, z, heading, isNetwork, bScriptHostPed, _ri)
 end
 
+--- CREATE_PED_INSIDE_VEHICLE
+-- @param pedType See [`CREATE_PED`](#\_0xD49F9B0955C367DE)
 function Global.CreatePedInsideVehicle(vehicle, pedType, modelHash, seat, isNetwork, bScriptHostPed)
 	return _in(0x3000f092, vehicle, pedType, _ch(modelHash), seat, isNetwork, bScriptHostPed, _ri)
 end
@@ -292,10 +295,13 @@ function Global.DeleteEntity(entity)
 	return _in(0xfaa3d236, entity)
 end
 
+--- DELETE_FUNCTION_REFERENCE
 function Global.DeleteFunctionReference(referenceIdentity)
 	return _in(0x1e86f206, _ts(referenceIdentity))
 end
 
+--- DELETE_RESOURCE_KVP
+-- @param key The key to delete
 function Global.DeleteResourceKvp(key)
 	return _in(0x7389b5df, _ts(key))
 end
@@ -306,6 +312,7 @@ function Global.DeleteResourceKvpNoSync(key)
 	return _in(0x4152c90, _ts(key))
 end
 
+--- DOES_ENTITY_EXIST
 function Global.DoesEntityExist(entity)
 	return _in(0x3ac90869, entity, _r)
 end
@@ -326,18 +333,24 @@ function Global.DoesPlayerOwnSkuExt(playerSrc, skuId)
 	return _in(0xdef0480b, _ts(playerSrc), skuId, _r)
 end
 
+--- DROP_PLAYER
 function Global.DropPlayer(playerSrc, reason)
 	return _in(0xba0613e1, _ts(playerSrc), _ts(reason))
 end
 
+--- DUPLICATE_FUNCTION_REFERENCE
 function Global.DuplicateFunctionReference(referenceIdentity)
 	return _in(0xf4e2079d, _ts(referenceIdentity), _s)
 end
 
+--- ENABLE_ENHANCED_HOST_SUPPORT
 function Global.EnableEnhancedHostSupport(enabled)
 	return _in(0xf97b1c93, enabled)
 end
 
+--- END_FIND_KVP
+-- @param handle The KVP find handle returned from [START_FIND_KVP](#\_0xDD379006)
+-- @return None.
 function Global.EndFindKvp(handle)
 	return _in(0xb3210203, handle)
 end
@@ -347,14 +360,19 @@ function Global.EnsureEntityStateBag(entity)
 	return _in(0x3bb78f05, entity)
 end
 
+--- EXECUTE_COMMAND
 function Global.ExecuteCommand(commandString)
 	return _in(0x561c060b, _ts(commandString))
 end
 
+--- FIND_KVP
+-- @param handle The KVP find handle returned from [START_FIND_KVP](#\_0xDD379006)
+-- @return None.
 function Global.FindKvp(handle)
 	return _in(0xbd7bebc5, handle, _s)
 end
 
+--- FLAG_SERVER_AS_PRIVATE
 function Global.FlagServerAsPrivate(private_)
 	return _in(0x13b6855d, private_)
 end
@@ -372,6 +390,8 @@ function Global.FreezeEntityPosition(entity, toggle)
 	return _in(0x65c16d57, entity, toggle)
 end
 
+--- GET_AIR_DRAG_MULTIPLIER_FOR_PLAYERS_VEHICLE
+-- @param playerSrc The player handle
 function Global.GetAirDragMultiplierForPlayersVehicle(playerSrc)
 	return _in(0x62fc38d0, _ts(playerSrc), _rf)
 end
@@ -460,6 +480,7 @@ function Global.GetEntityFromStateBagName(bagName)
 	return _in(0x4bdf1867, _ts(bagName), _ri)
 end
 
+--- GET_ENTITY_HEADING
 function Global.GetEntityHeading(entity)
 	return _in(0x972cc383, entity, _rf)
 end
@@ -474,6 +495,7 @@ function Global.GetEntityMaxHealth(entity)
 	return _in(0xc7ae6aa1, entity, _ri)
 end
 
+--- GET_ENTITY_MODEL
 function Global.GetEntityModel(entity)
 	return _in(0xdafcb3ec, entity, _ri)
 end
@@ -500,10 +522,12 @@ function Global.GetEntityPopulationType(entity)
 	return _in(0xfc30ddff, entity, _ri)
 end
 
+--- GET_ENTITY_ROTATION
 function Global.GetEntityRotation(entity)
 	return _in(0x8ff45b04, entity, _rv)
 end
 
+--- GET_ENTITY_ROTATION_VELOCITY
 function Global.GetEntityRotationVelocity(entity)
 	return _in(0x9bf8a73f, entity, _rv)
 end
@@ -516,6 +540,7 @@ function Global.GetEntityRoutingBucket(entity)
 	return _in(0xed4b0486, entity, _ri)
 end
 
+--- GET_ENTITY_SCRIPT
 function Global.GetEntityScript(entity)
 	return _in(0xb7f70784, entity, _s)
 end
@@ -558,6 +583,7 @@ function Global.GetEntityType(entity)
 	return _in(0xb1bd08d, entity, _ri)
 end
 
+--- GET_ENTITY_VELOCITY
 function Global.GetEntityVelocity(entity)
 	return _in(0xc14c9b6b, entity, _rv)
 end
@@ -611,34 +637,46 @@ function Global.GetHashKey(model)
 	return _in(0x98eff6f1, _ts(model), _ri)
 end
 
+--- GET_HELI_MAIN_ROTOR_HEALTH
+-- @param vehicle The target vehicle.
+-- @return See the client-side [GET_HELI_MAIN_ROTOR_HEALTH](https://docs.fivem.net/natives/?\_0xE4CB7541F413D2C5) for the return value.
 function Global.GetHeliMainRotorHealth(vehicle)
 	return _in(0xf01e2aab, vehicle, _rf)
 end
 
+--- GET_HELI_TAIL_ROTOR_HEALTH
+-- @param vehicle The target vehicle.
+-- @return See the client-side [GET_HELI_TAIL_ROTOR_HEALTH](https://docs.fivem.net/natives/?\_0xAE8CE82A4219AC8C) for the return value.
 function Global.GetHeliTailRotorHealth(vehicle)
 	return _in(0xa41bc13d, vehicle, _rf)
 end
 
+--- GET_HOST_ID
 function Global.GetHostId()
 	return _in(0x5f70f5a3, _s)
 end
 
+--- GET_INSTANCE_ID
 function Global.GetInstanceId()
 	return _in(0x9f1c4383, _ri)
 end
 
+--- GET_INVOKING_RESOURCE
 function Global.GetInvokingResource()
 	return _in(0x4d52fe5b, _s)
 end
 
+--- GET_IS_VEHICLE_ENGINE_RUNNING
 function Global.GetIsVehicleEngineRunning(vehicle)
 	return _in(0x7dc6d022, vehicle, _r)
 end
 
+--- GET_IS_VEHICLE_PRIMARY_COLOUR_CUSTOM
 function Global.GetIsVehiclePrimaryColourCustom(vehicle)
 	return _in(0xd7ec8760, vehicle, _r)
 end
 
+--- GET_IS_VEHICLE_SECONDARY_COLOUR_CUSTOM
 function Global.GetIsVehicleSecondaryColourCustom(vehicle)
 	return _in(0x288ad228, vehicle, _r)
 end
@@ -650,18 +688,25 @@ function Global.GetLandingGearState(vehicle)
 	return _in(0xa6f02670, vehicle, _ri)
 end
 
+--- GET_LAST_PED_IN_VEHICLE_SEAT
+-- @param vehicle The target vehicle.
+-- @param seatIndex See eSeatPosition declared in [`IS_VEHICLE_SEAT_FREE`](#\_0x22AC59A870E6A669).
+-- @return The last ped in the specified seat of the passed vehicle. Returns 0 if the specified seat was never occupied or the last ped does not exist anymore.
 function Global.GetLastPedInVehicleSeat(vehicle, seatIndex)
 	return _in(0xf7c6792d, vehicle, seatIndex, _ri)
 end
 
+--- GET_NUM_PLAYER_IDENTIFIERS
 function Global.GetNumPlayerIdentifiers(playerSrc)
 	return _in(0xff7f66ab, _ts(playerSrc), _ri)
 end
 
+--- GET_NUM_PLAYER_INDICES
 function Global.GetNumPlayerIndices()
 	return _in(0x63d13184, _ri)
 end
 
+--- GET_NUM_PLAYER_TOKENS
 function Global.GetNumPlayerTokens(playerSrc)
 	return _in(0x619e4a3d, _ts(playerSrc), _ri)
 end
@@ -674,30 +719,42 @@ function Global.GetNumResourceMetadata(resourceName, metadataKey)
 	return _in(0x776e864, _ts(resourceName), _ts(metadataKey), _ri)
 end
 
+--- GET_NUM_RESOURCES
 function Global.GetNumResources()
 	return _in(0x863f27b, _ri)
 end
 
+--- GET_PASSWORD_HASH
 function Global.GetPasswordHash(password)
 	return _in(0x23473ea4, _ts(password), _s)
 end
 
+--- GET_PED_ARMOUR
 function Global.GetPedArmour(ped)
 	return _in(0x2ce311a7, ped, _ri)
 end
 
+--- GET_PED_CAUSE_OF_DEATH
 function Global.GetPedCauseOfDeath(ped)
 	return _in(0x63458c27, ped, _ri)
 end
 
+--- GET_PED_DESIRED_HEADING
+-- @param ped The target ped
+-- @return Returns ped's desired heading.
 function Global.GetPedDesiredHeading(ped)
 	return _in(0xc182f76e, ped, _rf)
 end
 
+--- GET_PED_IN_VEHICLE_SEAT
+-- @param vehicle The target vehicle.
+-- @param seatIndex See eSeatPosition declared in [`IS_VEHICLE_SEAT_FREE`](#\_0x22AC59A870E6A669).
+-- @return The ped in the specified seat of the passed vehicle. Returns 0 if the specified seat is not occupied.
 function Global.GetPedInVehicleSeat(vehicle, seatIndex)
 	return _in(0x388fde9a, vehicle, seatIndex, _ri)
 end
 
+--- GET_PED_MAX_HEALTH
 function Global.GetPedMaxHealth(ped)
 	return _in(0xa45b6c8d, ped, _ri)
 end
@@ -748,6 +805,7 @@ function Global.GetPlayerCameraRotation(playerSrc)
 	return _in(0x433c765d, _ts(playerSrc), _rv)
 end
 
+--- GET_PLAYER_ENDPOINT
 function Global.GetPlayerEndpoint(playerSrc)
 	return _in(0xfee404f9, _ts(playerSrc), _s)
 end
@@ -759,6 +817,7 @@ function Global.GetPlayerFakeWantedLevel(playerSrc)
 	return _in(0x98d244, _ts(playerSrc), _ri)
 end
 
+--- GET_PLAYER_FROM_INDEX
 function Global.GetPlayerFromIndex(index)
 	return _in(0xc8a9ce08, index, _s)
 end
@@ -770,10 +829,12 @@ function Global.GetPlayerFromStateBagName(bagName)
 	return _in(0xa56135e0, _ts(bagName), _ri)
 end
 
+--- GET_PLAYER_GUID
 function Global.GetPlayerGuid(playerSrc)
 	return _in(0xe52d9680, _ts(playerSrc), _s)
 end
 
+--- GET_PLAYER_IDENTIFIER
 function Global.GetPlayerIdentifier(playerSrc, identifier)
 	return _in(0x7302dbcf, _ts(playerSrc), identifier, _s)
 end
@@ -786,18 +847,26 @@ function Global.GetPlayerIdentifierByType(playerSrc, identifierType)
 	return _in(0xa61c8fc6, _ts(playerSrc), _ts(identifierType), _s)
 end
 
+--- GET_PLAYER_INVINCIBLE
+-- @param playerSrc The player handle
+-- @return A boolean to tell if the player is invincible.
 function Global.GetPlayerInvincible(playerSrc)
 	return _in(0x680c90ee, _ts(playerSrc), _r)
 end
 
+--- GET_PLAYER_LAST_MSG
 function Global.GetPlayerLastMsg(playerSrc)
 	return _in(0x427e8e6a, _ts(playerSrc), _ri)
 end
 
+--- GET_PLAYER_MAX_ARMOUR
+-- @param playerSrc The player handle
 function Global.GetPlayerMaxArmour(playerSrc)
 	return _in(0x2a50657, _ts(playerSrc), _ri)
 end
 
+--- GET_PLAYER_MAX_HEALTH
+-- @param playerSrc The player handle
 function Global.GetPlayerMaxHealth(playerSrc)
 	return _in(0x8154e470, _ts(playerSrc), _ri)
 end
@@ -809,14 +878,17 @@ function Global.GetPlayerMeleeWeaponDamageModifier(playerId)
 	return _in(0x8689a825, _ts(playerId), _rf)
 end
 
+--- GET_PLAYER_NAME
 function Global.GetPlayerName(playerSrc)
 	return _in(0x406b4b20, _ts(playerSrc), _s)
 end
 
+--- GET_PLAYER_PED
 function Global.GetPlayerPed(playerSrc)
 	return _in(0x6e31e993, _ts(playerSrc), _ri)
 end
 
+--- GET_PLAYER_PING
 function Global.GetPlayerPing(playerSrc)
 	return _in(0xff1290d4, _ts(playerSrc), _ri)
 end
@@ -829,6 +901,8 @@ function Global.GetPlayerRoutingBucket(playerSrc)
 	return _in(0x52441c34, _ts(playerSrc), _ri)
 end
 
+--- GET_PLAYER_TEAM
+-- @param playerSrc The player handle
 function Global.GetPlayerTeam(playerSrc)
 	return _in(0x9873e404, _ts(playerSrc), _ri)
 end
@@ -905,6 +979,9 @@ function Global.GetRegisteredCommands()
 	return _in(0xd4bef069, _ro)
 end
 
+--- GET_RESOURCE_BY_FIND_INDEX
+-- @param findIndex The index of the resource (starting at 0)
+-- @return The resource name as a `string`
 function Global.GetResourceByFindIndex(findIndex)
 	return _in(0x387246b7, findIndex, _s)
 end
@@ -966,34 +1043,46 @@ function Global.GetStateBagValue(bagName, key)
 	return _in(0x637f4c75, _ts(bagName), _ts(key), _ro)
 end
 
+--- GET_TRAIN_CARRIAGE_ENGINE
+-- @param train The entity handle.
+-- @return The train engine carriage.
 function Global.GetTrainCarriageEngine(train)
 	return _in(0x95070fa, train, _ri)
 end
 
+--- GET_TRAIN_CARRIAGE_INDEX
+-- @param train The entity handle.
+-- @return The carriage index. -1 returned if invalid result.
 function Global.GetTrainCarriageIndex(train)
 	return _in(0x4b8285cf, train, _ri)
 end
 
+--- GET_VEHICLE_BODY_HEALTH
 function Global.GetVehicleBodyHealth(vehicle)
 	return _in(0x2b2fcc28, vehicle, _rf)
 end
 
+--- GET_VEHICLE_COLOURS
 function Global.GetVehicleColours(vehicle)
 	return _in(0x40d82d88, vehicle, _i, _i)
 end
 
+--- GET_VEHICLE_CUSTOM_PRIMARY_COLOUR
 function Global.GetVehicleCustomPrimaryColour(vehicle)
 	return _in(0x1c2b9fef, vehicle, _i, _i, _i)
 end
 
+--- GET_VEHICLE_CUSTOM_SECONDARY_COLOUR
 function Global.GetVehicleCustomSecondaryColour(vehicle)
 	return _in(0x3ff247a2, vehicle, _i, _i, _i)
 end
 
+--- GET_VEHICLE_DASHBOARD_COLOUR
 function Global.GetVehicleDashboardColour(vehicle, color)
 	return _in(0xa0dbd08d, vehicle, _ii(color) --[[ may be optional ]])
 end
 
+--- GET_VEHICLE_DIRT_LEVEL
 function Global.GetVehicleDirtLevel(vehicle)
 	return _in(0xfd15c065, vehicle, _rf)
 end
@@ -1018,6 +1107,8 @@ function Global.GetVehicleDoorLockStatus(vehicle)
 	return _in(0xd72cef2, vehicle, _ri)
 end
 
+--- GET_VEHICLE_DOOR_STATUS
+-- @return A number from 0 to 7.
 function Global.GetVehicleDoorStatus(vehicle)
 	return _in(0x6e35c49c, vehicle, _ri)
 end
@@ -1027,10 +1118,12 @@ function Global.GetVehicleDoorsLockedForPlayer(vehicle)
 	return _in(0x1dc50247, vehicle, _ri)
 end
 
+--- GET_VEHICLE_ENGINE_HEALTH
 function Global.GetVehicleEngineHealth(vehicle)
 	return _in(0x8880038a, vehicle, _rf)
 end
 
+--- GET_VEHICLE_EXTRA_COLOURS
 function Global.GetVehicleExtraColours(vehicle)
 	return _in(0x80e4659b, vehicle, _i, _i)
 end
@@ -1042,10 +1135,12 @@ function Global.GetVehicleFlightNozzlePosition(vehicle)
 	return _in(0xad40ad55, vehicle, _rf)
 end
 
+--- GET_VEHICLE_HANDBRAKE
 function Global.GetVehicleHandbrake(vehicle)
 	return _in(0x483b013c, vehicle, _r)
 end
 
+--- GET_VEHICLE_HEADLIGHTS_COLOUR
 function Global.GetVehicleHeadlightsColour(vehicle)
 	return _in(0xd7147656, vehicle, _ri)
 end
@@ -1057,14 +1152,17 @@ function Global.GetVehicleHomingLockonState(vehicle)
 	return _in(0xfbde9fd8, vehicle, _ri)
 end
 
+--- GET_VEHICLE_INTERIOR_COLOUR
 function Global.GetVehicleInteriorColour(vehicle, color)
 	return _in(0xccff3b6e, vehicle, _ii(color) --[[ may be optional ]])
 end
 
+--- GET_VEHICLE_LIGHTS_STATE
 function Global.GetVehicleLightsState(vehicle)
 	return _in(0x7c278621, vehicle, _i --[[ actually bool ]], _i --[[ actually bool ]], _r)
 end
 
+--- GET_VEHICLE_LIVERY
 function Global.GetVehicleLivery(vehicle)
 	return _in(0xec82a51d, vehicle, _ri)
 end
@@ -1076,10 +1174,12 @@ function Global.GetVehicleLockOnTarget(vehicle)
 	return _in(0x4a557117, vehicle, _ri)
 end
 
+--- GET_VEHICLE_NUMBER_PLATE_TEXT
 function Global.GetVehicleNumberPlateText(vehicle)
 	return _in(0xe8522d58, vehicle, _s)
 end
 
+--- GET_VEHICLE_NUMBER_PLATE_TEXT_INDEX
 function Global.GetVehicleNumberPlateTextIndex(vehicle)
 	return _in(0x499747b6, vehicle, _ri)
 end
@@ -1092,18 +1192,22 @@ function Global.GetVehiclePedIsIn(ped, lastVehicle)
 	return _in(0xafe92319, ped, lastVehicle, _ri)
 end
 
+--- GET_VEHICLE_PETROL_TANK_HEALTH
 function Global.GetVehiclePetrolTankHealth(vehicle)
 	return _in(0xe41595ce, vehicle, _rf)
 end
 
+--- GET_VEHICLE_RADIO_STATION_INDEX
 function Global.GetVehicleRadioStationIndex(vehicle)
 	return _in(0x57037960, vehicle, _ri)
 end
 
+--- GET_VEHICLE_ROOF_LIVERY
 function Global.GetVehicleRoofLivery(vehicle)
 	return _in(0x872cf42, vehicle, _ri)
 end
 
+--- GET_VEHICLE_STEERING_ANGLE
 function Global.GetVehicleSteeringAngle(vehicle)
 	return _in(0x1382fcea, vehicle, _rf)
 end
@@ -1124,38 +1228,47 @@ function Global.GetVehicleType(vehicle)
 	return _in(0xa273060e, vehicle, _s)
 end
 
+--- GET_VEHICLE_TYRE_SMOKE_COLOR
 function Global.GetVehicleTyreSmokeColor(vehicle)
 	return _in(0x75280015, vehicle, _i, _i, _i)
 end
 
+--- GET_VEHICLE_WHEEL_TYPE
 function Global.GetVehicleWheelType(vehicle)
 	return _in(0xda58d7ae, vehicle, _ri)
 end
 
+--- GET_VEHICLE_WINDOW_TINT
 function Global.GetVehicleWindowTint(vehicle)
 	return _in(0x13d53892, vehicle, _ri)
 end
 
+--- GIVE_WEAPON_COMPONENT_TO_PED
 function Global.GiveWeaponComponentToPed(ped, weaponHash, componentHash)
 	return _in(0x3e1e286d, ped, _ch(weaponHash), _ch(componentHash))
 end
 
+--- GIVE_WEAPON_TO_PED
 function Global.GiveWeaponToPed(ped, weaponHash, ammoCount, isHidden, bForceInHand)
 	return _in(0xc4d88a85, ped, _ch(weaponHash), ammoCount, isHidden, bForceInHand)
 end
 
+--- HAS_ENTITY_BEEN_MARKED_AS_NO_LONGER_NEEDED
 function Global.HasEntityBeenMarkedAsNoLongerNeeded(vehicle)
 	return _in(0x9c9a3be0, vehicle, _r)
 end
 
+--- HAS_VEHICLE_BEEN_OWNED_BY_PLAYER
 function Global.HasVehicleBeenOwnedByPlayer(vehicle)
 	return _in(0xe4e83a5b, vehicle, _r)
 end
 
+--- INVOKE_FUNCTION_REFERENCE
 function Global.InvokeFunctionReference(referenceIdentity, argsSerialized, argsLength, retvalLength)
 	return _in(0xe3551879, _ts(referenceIdentity), _ts(argsSerialized), argsLength, _ii(retvalLength) --[[ may be optional ]], _s)
 end
 
+--- IS_ACE_ALLOWED
 function Global.IsAceAllowed(object)
 	return _in(0x7ebb9929, _ts(object), _r)
 end
@@ -1178,6 +1291,7 @@ function Global.IsPedAPlayer(ped)
 	return _in(0x404794ca, ped, _r)
 end
 
+--- IS_PLAYER_ACE_ALLOWED
 function Global.IsPlayerAceAllowed(playerSrc, object)
 	return _in(0xdedae23d, _ts(playerSrc), _ts(object), _r)
 end
@@ -1205,26 +1319,34 @@ function Global.IsPlayerEvadingWantedLevel(playerSrc)
 	return _in(0x89a3881a, _ts(playerSrc), _r)
 end
 
+--- IS_PLAYER_USING_SUPER_JUMP
+-- @param playerSrc The player handle
+-- @return A boolean.
 function Global.IsPlayerUsingSuperJump(playerSrc)
 	return _in(0xc7d2c20c, _ts(playerSrc), _r)
 end
 
+--- IS_PRINCIPAL_ACE_ALLOWED
 function Global.IsPrincipalAceAllowed(principal, object)
 	return _in(0x37cf52ce, _ts(principal), _ts(object), _r)
 end
 
+--- IS_VEHICLE_ENGINE_STARTING
 function Global.IsVehicleEngineStarting(vehicle)
 	return _in(0xbb340d04, vehicle, _r)
 end
 
+--- IS_VEHICLE_EXTRA_TURNED_ON
 function Global.IsVehicleExtraTurnedOn(vehicle, extraId)
 	return _in(0x42098b5, vehicle, extraId, _r)
 end
 
+--- IS_VEHICLE_SIREN_ON
 function Global.IsVehicleSirenOn(vehicle)
 	return _in(0x25eb5873, vehicle, _r)
 end
 
+--- IS_VEHICLE_TYRE_BURST
 function Global.IsVehicleTyreBurst(vehicle, wheelID, completely)
 	return _in(0x48c80210, vehicle, wheelID, completely, _r)
 end
@@ -1271,6 +1393,7 @@ function Global.MumbleSetPlayerMuted(playerSrc, toggle)
 	return _in(0xcc6c2eb1, playerSrc, toggle)
 end
 
+--- NETWORK_GET_ENTITY_FROM_NETWORK_ID
 function Global.NetworkGetEntityFromNetworkId(netId)
 	return _in(0x5b912c3f, netId, _ri)
 end
@@ -1289,18 +1412,23 @@ function Global.NetworkGetFirstEntityOwner(entity)
 	return _in(0x1e546224, entity, _ri)
 end
 
+--- NETWORK_GET_NETWORK_ID_FROM_ENTITY
 function Global.NetworkGetNetworkIdFromEntity(entity)
 	return _in(0x9e35dab6, entity, _ri)
 end
 
+--- NETWORK_GET_VOICE_PROXIMITY_OVERRIDE
+-- @param playerSrc The player handle
 function Global.NetworkGetVoiceProximityOverride(playerSrc)
 	return _in(0x7a6462f4, _ts(playerSrc), _rv)
 end
 
+--- PERFORM_HTTP_REQUEST_INTERNAL
 function Global.PerformHttpRequestInternal(requestData, requestDataLength)
 	return _in(0x8e8cc653, _ts(requestData), requestDataLength, _ri)
 end
 
+--- PERFORM_HTTP_REQUEST_INTERNAL_EX
 function Global.PerformHttpRequestInternalEx(requestData)
 	local requestData_bytes, requestData_len = _obj(requestData)
 	return _in(0x6b171e87, requestData_bytes, requestData_len, _ri)
@@ -1400,6 +1528,7 @@ function Global.RemoveStateBagChangeHandler(cookie)
 	return _in(0xd36be661, cookie)
 end
 
+--- REMOVE_WEAPON_COMPONENT_FROM_PED
 function Global.RemoveWeaponComponentFromPed(ped, weaponHash, componentHash)
 	return _in(0x412aa00d, ped, _ch(weaponHash), _ch(componentHash))
 end
@@ -1460,6 +1589,7 @@ function Global.SetBlipSprite(blip, spriteId)
 	return _in(0x8dbbb0b9, blip, spriteId)
 end
 
+--- SET_CONVAR
 function Global.SetConvar(varName, value)
 	return _in(0x341b16d2, _ts(varName), _ts(value))
 end
@@ -1471,10 +1601,12 @@ function Global.SetConvarReplicated(varName, value)
 	return _in(0xf292858c, _ts(varName), _ts(value))
 end
 
+--- SET_CONVAR_SERVER_INFO
 function Global.SetConvarServerInfo(varName, value)
 	return _in(0x9338d547, _ts(varName), _ts(value))
 end
 
+--- SET_CURRENT_PED_WEAPON
 function Global.SetCurrentPedWeapon(ped, weaponHash, bForceInHand)
 	return _in(0xb8278882, ped, _ch(weaponHash), bForceInHand)
 end
@@ -1507,6 +1639,8 @@ function Global.SetEntityHeading(entity, heading)
 	return _in(0xe0ff064d, entity, heading)
 end
 
+--- SET_ENTITY_ROTATION
+-- @param rotationOrder The order yaw pitch roll are applied, see [`GET_ENTITY_ROTATION`](#\_0xAFBD61CC738D9EB9).
 function Global.SetEntityRotation(entity, pitch, roll, yaw, rotationOrder, p5)
 	return _in(0xa345efe, entity, pitch, roll, yaw, rotationOrder, p5)
 end
@@ -1524,14 +1658,17 @@ function Global.SetEntityVelocity(entity, x, y, z)
 	return _in(0xff5a1988, entity, x, y, z)
 end
 
+--- SET_GAME_TYPE
 function Global.SetGameType(gametypeName)
 	return _in(0xf90b7469, _ts(gametypeName))
 end
 
+--- SET_HTTP_HANDLER
 function Global.SetHttpHandler(handler)
 	return _in(0xf5c6330c, _mfr(handler))
 end
 
+--- SET_MAP_NAME
 function Global.SetMapName(mapName)
 	return _in(0xb7ba82dc, _ts(mapName))
 end
@@ -1548,6 +1685,7 @@ function Global.SetPedArmour(ped, amount)
 	return _in(0x4e3a0cc4, ped, amount)
 end
 
+--- SET_PED_CAN_RAGDOLL
 function Global.SetPedCanRagdoll(ped, toggle)
 	return _in(0xcf1384c4, ped, toggle)
 end
@@ -2188,6 +2326,8 @@ function Global.SetPedHeadOverlayColor(ped, overlayID, colorType, colorID, secon
 	return _in(0x78935a27, ped, overlayID, colorType, colorID, secondColorID)
 end
 
+--- SET_PED_INTO_VEHICLE
+-- @param seatIndex See eSeatPosition declared in [`IS_VEHICLE_SEAT_FREE`](#\_0x22AC59A870E6A669). -2 for the first available seat.
 function Global.SetPedIntoVehicle(ped, vehicle, seatIndex)
 	return _in(0x7500c79, ped, vehicle, seatIndex)
 end
@@ -2375,6 +2515,7 @@ function Global.SetStateBagValue(bagName, keyName, valueData, valueLength, repli
 	return _in(0x8d50e33a, _ts(bagName), _ts(keyName), _ts(valueData), valueLength, replicated)
 end
 
+--- SET_VEHICLE_ALARM
 function Global.SetVehicleAlarm(vehicle, state)
 	return _in(0x24877d84, vehicle, state)
 end
@@ -2436,18 +2577,26 @@ function Global.SetVehicleDoorsLocked(vehicle, doorLockStatus)
 	return _in(0x4cdd35d0, vehicle, doorLockStatus)
 end
 
+--- SET_VEHICLE_NUMBER_PLATE_TEXT
+-- @param vehicle The vehicle to set the plate for
+-- @param plateText The text to set the plate to, 8 chars maximum
 function Global.SetVehicleNumberPlateText(vehicle, plateText)
 	return _in(0x400f9556, vehicle, _ts(plateText))
 end
 
+--- START_FIND_KVP
+-- @param prefix A prefix match
+-- @return A KVP find handle to use with [FIND_KVP](#\_0xBD7BEBC5) and close with [END_FIND_KVP](#\_0xB3210203)
 function Global.StartFindKvp(prefix)
 	return _in(0xdd379006, _ts(prefix), _ri)
 end
 
+--- START_RESOURCE
 function Global.StartResource(resourceName)
 	return _in(0x29b440dc, _ts(resourceName), _r)
 end
 
+--- STOP_RESOURCE
 function Global.StopResource(resourceName)
 	return _in(0x21783161, _ts(resourceName), _r)
 end
@@ -2477,10 +2626,20 @@ function Global.TaskEnterVehicle(ped, vehicle, timeout, seatIndex, speed, flag, 
 	return _in(0xb8689b4e, ped, vehicle, timeout, seatIndex, speed, flag, p6)
 end
 
+--- TASK_EVERYONE_LEAVE_VEHICLE
 function Global.TaskEveryoneLeaveVehicle(vehicle)
 	return _in(0xc1971f30, vehicle)
 end
 
+--- TASK_GO_STRAIGHT_TO_COORD
+-- @param ped The ped handle.
+-- @param x The x coordinate.
+-- @param y The y coordinate.
+-- @param z The z coordinate.
+-- @param speed The ped movement speed.
+-- @param timeout \-1 , other values appear to break the ped movement.
+-- @param targetHeading The heading you want the ped to be on x,y,z coord.
+-- @param distanceToSlide The distance from x,y,z where the ped will start sliding.
 function Global.TaskGoStraightToCoord(ped, x, y, z, speed, timeout, targetHeading, distanceToSlide)
 	return _in(0x80a9e7a7, ped, x, y, z, speed, timeout, targetHeading, distanceToSlide)
 end
@@ -2595,6 +2754,7 @@ function Global.TaskPlayAnimAdvanced(ped, animDict, animName, posX, posY, posZ, 
 	return _in(0x3ddeb0e6, ped, _ts(animDict), _ts(animName), posX, posY, posZ, rotX, rotY, rotZ, animEnterSpeed, animExitSpeed, duration, flag, animTime, p14, p15)
 end
 
+--- TASK_REACT_AND_FLEE_PED
 function Global.TaskReactAndFleePed(ped, fleeTarget)
 	return _in(0x8a632bd8, ped, fleeTarget)
 end
@@ -2616,10 +2776,13 @@ function Global.TaskShootAtEntity(entity, target, duration, firingPattern)
 	return _in(0xac0631c9, entity, target, duration, _ch(firingPattern))
 end
 
+--- TASK_WARP_PED_INTO_VEHICLE
+-- @param seatIndex See eSeatPosition declared in [`IS_VEHICLE_SEAT_FREE`](#\_0x22AC59A870E6A669).
 function Global.TaskWarpPedIntoVehicle(ped, vehicle, seatIndex)
 	return _in(0x65d4a35d, ped, vehicle, seatIndex)
 end
 
+--- TEMP_BAN_PLAYER
 function Global.TempBanPlayer(playerSrc, reason)
 	return _in(0x1e35dbba, _ts(playerSrc), _ts(reason))
 end
@@ -2639,6 +2802,7 @@ function Global.TriggerLatentClientEventInternal(eventName, eventTarget, eventPa
 	return _in(0x70b35890, _ts(eventName), _ts(eventTarget), _ts(eventPayload), payloadLength, bps)
 end
 
+--- VERIFY_PASSWORD_HASH
 function Global.VerifyPasswordHash(password, hash)
 	return _in(0x2e310acd, _ts(password), _ts(hash), _r)
 end
