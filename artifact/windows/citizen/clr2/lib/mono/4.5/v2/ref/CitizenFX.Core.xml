@@ -4,6 +4,50 @@
         <name>CitizenFX.Core</name>
     </assembly>
     <members>
+        <member name="F:CitizenFX.Core.Binding.None">
+            <summary>
+            No one can call this
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Core.Binding.Local">
+            <summary>
+            Server only accepts server calls, client only client calls
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Core.Binding.Remote">
+            <summary>
+            Server only accepts client calls, client only server calls
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Core.Binding.All">
+            <summary>
+            Accept all incoming calls
+            </summary>
+        </member>
+        <member name="T:CitizenFX.Core.TickAttribute">
+            <summary>
+            Schedule this method to run on the first frame when this <see cref="T:CitizenFX.Core.BaseScript"/> is loaded
+            </summary>
+            <remarks>Only works on <see cref="T:CitizenFX.Core.BaseScript"/> inherited class methods</remarks>
+        </member>
+        <member name="T:CitizenFX.Core.CommandAttribute">
+            <summary>
+            Register this method to listen for the given <see cref="P:CitizenFX.Core.CommandAttribute.Command"/> when this <see cref="T:CitizenFX.Core.BaseScript"/> is loaded
+            </summary>
+            <remarks>Only works on <see cref="T:CitizenFX.Core.BaseScript"/> inherited class methods</remarks>
+        </member>
+        <member name="T:CitizenFX.Core.EventHandlerAttribute">
+            <summary>
+            Register this method to listen for the given <see cref="P:CitizenFX.Core.EventHandlerAttribute.Event"/> when this <see cref="T:CitizenFX.Core.BaseScript"/> is loaded
+            </summary>
+            <remarks>Only works on <see cref="T:CitizenFX.Core.BaseScript"/> inherited class methods</remarks>
+        </member>
+        <member name="T:CitizenFX.Core.ExportAttribute">
+            <summary>
+            Register this method to listen for the given <see cref="P:CitizenFX.Core.ExportAttribute.Export"/> when this <see cref="T:CitizenFX.Core.BaseScript"/> is loaded
+            </summary>
+            <remarks>Only works on <see cref="T:CitizenFX.Core.BaseScript"/> inherited class methods</remarks>
+        </member>
         <member name="E:CitizenFX.Core.BaseScript.Tick">
             <summary>
             An event containing callbacks to attempt to schedule on every game tick.
