@@ -1615,6 +1615,13 @@ declare function SetEntityDistanceCullingRadius(entity: number, radius: number):
 declare function SetEntityHeading(entity: number, heading: number): void;
 
 /**
+ * It allows to flag an entity to ignore the request control filter policy.
+ * @param entity The entity handle to ignore the request control filter.
+ * @param ignore Define if the entity ignores the request control filter policy.
+ */
+declare function SetEntityIgnoreRequestControlFilter(entity: number, ignore: boolean): void;
+
+/**
  * SET_ENTITY_ROTATION
  * @param rotationOrder The order yaw pitch roll are applied, see [`GET_ENTITY_ROTATION`](#\_0xAFBD61CC738D9EB9).
  */

@@ -1656,6 +1656,13 @@ function Global.SetEntityHeading(entity, heading)
 	return _in(0xe0ff064d, entity, heading)
 end
 
+--- It allows to flag an entity to ignore the request control filter policy.
+-- @param entity The entity handle to ignore the request control filter.
+-- @param ignore Define if the entity ignores the request control filter policy.
+function Global.SetEntityIgnoreRequestControlFilter(entity, ignore)
+	return _in(0x9f7f8d36, entity, ignore)
+end
+
 --- SET_ENTITY_ROTATION
 -- @param rotationOrder The order yaw pitch roll are applied, see [`GET_ENTITY_ROTATION`](#\_0xAFBD61CC738D9EB9).
 function Global.SetEntityRotation(entity, pitch, roll, yaw, rotationOrder, p5)
