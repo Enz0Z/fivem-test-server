@@ -64,6 +64,50 @@
             <param name="msecs">The amount of time by which to delay scheduling this interval function.</param>
             <returns>An awaitable task.</returns>
         </member>
+        <member name="P:CitizenFX.Core.Scheduler.CurrentTime">
+            <summary>
+            Current time of this scheduler
+            </summary>
+        </member>
+        <member name="P:CitizenFX.Core.Scheduler.MainThread">
+            <summary>
+            Thread onto which all coroutines will run and be put back to
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Core.Scheduler.s_queue">
+            <summary>
+            Current time of the scheduler, set per frame.
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Core.Scheduler.s_nextFrame">
+            <summary>
+            Double buffered array for non-ordered scheduling
+            </summary>
+        </member>
+        <member name="M:CitizenFX.Core.Scheduler.Schedule(System.Action)">
+            <summary>
+            Schedule an action to be run on the next frame
+            </summary>
+            <param name="coroutine">Action to execute</param>
+        </member>
+        <member name="M:CitizenFX.Core.Scheduler.Schedule(System.Action,System.UInt64)">
+            <summary>
+            Schedule an action to be run at the first frame at or after the specified time
+            </summary>
+            <param name="coroutine">Action to execute</param>
+            <param name="time">Time when it should be executed, see <see cref="P:CitizenFX.Core.Scheduler.CurrentTime"/></param>
+        </member>
+        <member name="M:CitizenFX.Core.Scheduler.Update">
+            <summary>
+            Execute all scheduled coroutines
+            </summary>
+        </member>
+        <member name="M:CitizenFX.Core.Scheduler.NextTaskTime">
+            <summary>
+            Time in milliseconds when the next action needs to be activated
+            </summary>
+            <returns>Delay in milliseconds or ~0ul (<see cref="F:System.UInt64.MaxValue"/>) if there's nothing to run</returns>
+        </member>
         <member name="M:CitizenFX.Core.Debug.ShouldWeLogDynFuncError(System.Exception,CitizenFX.Core.DynFunc)">
             <summary>
             Simple logic to determine if the InvalidCastException came from the DynFunc and if so if we should print it or ignore it
