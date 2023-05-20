@@ -48,6 +48,28 @@
             </summary>
             <remarks>Only works on <see cref="T:CitizenFX.Core.BaseScript"/> inherited class methods</remarks>
         </member>
+        <member name="T:CitizenFX.Core.SourceAttribute">
+            <summary>
+            When used in events it'll be filled with the caller (source) of this event
+            </summary>
+            <example>
+            	Shared libraries
+            	<code>[Source] Remote remote</code>
+            </example>
+            <example>
+            	Server libraries
+            	<code>[Source] Player player</code>
+            </example>
+            <example>
+            	Shared libraries
+            	<code>[Source] bool isRemote</code>
+            </example>
+        </member>
+        <member name="T:CitizenFX.Core.EnableOnLoadAttribute">
+            <summary>
+            Explicitly enable or disable <see cref="T:CitizenFX.Core.BaseScript" /> instantiation when this resource is starting.
+            </summary>
+        </member>
         <member name="E:CitizenFX.Core.BaseScript.Tick">
             <summary>
             An event containing callbacks to attempt to schedule on every game tick.
@@ -289,6 +311,22 @@
             </summary>
             <returns>reference to first byte</returns>
         </member>
+        <member name="M:CitizenFX.Core.Events.RegisterEventHandler(System.String,CitizenFX.Core.DynFunc,CitizenFX.Core.Binding)">
+            <summary>
+            Register an event handler
+            </summary>
+            <remarks>Be aware this will keep <paramref name="handler"/>.Target object alive once registered, unless it's of type <see cref="T:CitizenFX.Core.BaseScript"/></remarks>
+            <param name="eventName">name to listen for</param>
+            <param name="handler">delegate to call once triggered</param>
+            <param name="binding">limit calls to certain sources, e.g.: server only, client only</param>
+        </member>
+        <member name="M:CitizenFX.Core.Events.UnregisterEventHandler(System.String,CitizenFX.Core.DynFunc)">
+            <summary>
+            Unregister an event handler
+            </summary>
+            <param name="eventName">name to remove event for</param>
+            <param name="handler">delegate to remove</param>
+        </member>
         <member name="M:CitizenFX.Core.Events.TriggerAllClientsEvent(System.String,System.Object[])">
             <summary>
             Broadcasts an event to all connected players.
@@ -304,21 +342,52 @@
             <param name="bytesPerSecond">Amount of bytes send in 1 second.</param>
             <param name="args">Arguments to pass to the event.</param>
         </member>
+        <member name="M:CitizenFX.Core.EventHandlerSet.Add(CitizenFX.Core.DynFunc,CitizenFX.Core.Binding)">
+            <summary>
+            Register an event handler
+            </summary>
+            <param name="deleg">delegate to call once triggered</param>
+            <param name="binding">limit calls to certain sources, e.g.: server only, client only</param>
+        </member>
+        <member name="M:CitizenFX.Core.EventHandlerSet.Remove(System.Delegate)">
+            <summary>
+            Unregister an event handler
+            </summary>
+            <param name="deleg">delegate to remove</param>
+        </member>
+        <member name="M:CitizenFX.Core.EventHandlerSet.op_Addition(CitizenFX.Core.EventHandlerSet,CitizenFX.Core.DynFunc)">
+            <summary>
+            Register an event handler
+            </summary>
+            <remarks>Will add it as <see cref="F:CitizenFX.Core.Binding.Local"/>, use <see cref="M:CitizenFX.Core.EventHandlerSet.Add(CitizenFX.Core.DynFunc,CitizenFX.Core.Binding)"/> to explicitly set the binding.</remarks>
+            <param name="entry">this event handler set</param>
+            <param name="deleg">delegate to register</param>
+            <returns>itself</returns>
+        </member>
+        <member name="M:CitizenFX.Core.EventHandlerSet.op_Subtraction(CitizenFX.Core.EventHandlerSet,CitizenFX.Core.DynFunc)">
+            <summary>
+            Unregister an event handler
+            </summary>
+            <param name="entry">this event handler set</param>
+            <param name="deleg">delegate to register</param>
+            <returns>itself</returns>
+        </member>
         <member name="M:CitizenFX.Core.EventHandlerSet.op_Addition(CitizenFX.Core.EventHandlerSet,System.Delegate)">
             <summary>
-            Backwards compatibility
+            Register an event handler
             </summary>
-            <param name="entry"></param>
-            <param name="deleg"></param>
-            <returns></returns>
+            <remarks>Will add it as <see cref="F:CitizenFX.Core.Binding.Local"/>, use <see cref="M:CitizenFX.Core.EventHandlerSet.Add(CitizenFX.Core.DynFunc,CitizenFX.Core.Binding)"/> to explicitly set the binding.</remarks>
+            <param name="entry">this event handler set</param>
+            <param name="deleg">delegate to register</param>
+            <returns>itself</returns>
         </member>
         <member name="M:CitizenFX.Core.EventHandlerSet.op_Subtraction(CitizenFX.Core.EventHandlerSet,System.Delegate)">
             <summary>
-            Backwards compatibility
+            Unregister an event handler
             </summary>
-            <param name="entry"></param>
-            <param name="deleg"></param>
-            <returns></returns>
+            <param name="entry">this event handler set</param>
+            <param name="deleg">delegate to register</param>
+            <returns>itself</returns>
         </member>
         <member name="M:CitizenFX.Core.MsgPackDeserializer.DeserializeArray(System.Byte*,System.Int64,System.String)">
             <summary>
