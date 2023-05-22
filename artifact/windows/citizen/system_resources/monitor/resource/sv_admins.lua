@@ -1,10 +1,6 @@
--- =============================================
---    Lua Admin Manager
--- =============================================
--- Checking Environment (sv_main MUST run first)
-if GetConvar('txAdminServerMode', 'false') ~= 'true' then
-    return
-end
+-- Prevent running in monitor mode
+if not TX_SERVER_MODE then return end
+
 if TX_LUACOMHOST == "invalid" or TX_LUACOMTOKEN == "invalid" then
     log('^1API Host or Pipe Token ConVars not found. Do not start this resource if not using txAdmin.')
     return
@@ -14,6 +10,10 @@ if TX_LUACOMTOKEN == "removed" then
     return
 end
 
+
+-- =============================================
+--    Lua Admin Manager
+-- =============================================
 
 -- Variables & Consts
 local failedAuths = {}
@@ -31,7 +31,7 @@ local function handleAuthFail(src, reason)
 end
 
 -- Handle menu auth requests
-RegisterNetEvent('txsv:checkAdminStatus', function()
+RegisterNetEvent('txsv:checkIfAdmin', function()
     local src = source
     local srcString = tostring(source)
     debugPrint('Handling authentication request from player #'..srcString)
@@ -40,7 +40,7 @@ RegisterNetEvent('txsv:checkAdminStatus', function()
     if type(failedAuths[srcString]) == 'number' and failedAuths[srcString] + attemptCooldown > GetGameTimer() then
         return handleAuthFail(source, "too many auth attempts")
     end
-    
+
     -- Prepping http request
     local url = "http://"..TX_LUACOMHOST.."/nui/auth"
     local headers = {
@@ -72,6 +72,7 @@ RegisterNetEvent('txsv:checkAdminStatus', function()
         ))
         TX_ADMINS[srcString] = {
             tag = adminTag,
+            username = resp.username,
             perms = resp.permissions,
             bucket = 0
         }
@@ -107,6 +108,6 @@ AddEventHandler('txAdmin:events:adminsUpdated', function(onlineAdminIDs)
 
     -- Informing clients that they need to reauth
     for id, _ in pairs(refreshAdminIds) do
-        TriggerClientEvent('txAdmin:menu:reAuth', tonumber(id))
+        TriggerClientEvent('txcl:reAuth', tonumber(id))
     end
 end)

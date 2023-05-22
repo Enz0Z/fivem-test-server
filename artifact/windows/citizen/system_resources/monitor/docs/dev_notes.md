@@ -1,73 +1,191 @@
 # TODO:
-- [x] QoL: add redirect post login if invalid session
-- [x] Improve discord embed UX:
-    - [x] embed placeholder
-    - [x] check for the emoji
-    - [x] check for the url fields
-    - [x] discord auth not admin response
-    - [x] bot save: intent message
-    - [x] bot save: could not resolve guild id = was the bot invited?
-    - [x] embed jsons reset buttons
-- [x] add superjump
-- [x] the PR about hiding notifications
-    - [x] remove monitor.disableChatWarnings
-- [x] At the schedule restart input prompt, add a note saying what is the current server time
-- [x] create events for dynamic scheduled restarts
-- [x] create new whitelist events
-    - [x] whitelistPlayer:
-        - action: added/removed
-        - license: xxxxx
-        - playerName: player name
-        - adminName: admin name
-    - [x] whitelistPreApproval:
-        - action: added/removed
-        - identifier: `discord:xxxxxx` / `license:xxxxx`
-        - playerName?: player name
-        - adminName: admin name
-    - [x] whitelistRequest:
-        - action: requested/approved/denied/deniedAll
-        - playerName?: player name, if action != deniedAll
-        - requestId?: Rxxxx, if action != deniedAll
-        - license?: xxxxxx, if action != deniedAll
-        - adminName?: admin name, if action != requested
-- [x] wav for announcements and DMs
-- [x] update status embed as soon as server status changes
+- [x] fix diagnostics data error on pterodactyl
+- [x] new console utility + refactoring
+- [x] change dashboard median player message
+- [x] check why the bot cannot use an announcement channel for announcements (isTextBased() issue?)
+- [x] merge translations
+- [x] whitelist "discord no id" message should tell the user to open discord desktop
+- [x] update most packages
+- [x] ConfigVault.saveProfile should probably throw the error up
+- [x] fix: menu > send announcement does not trigger discord msg nor custom event
+- [x] migrate discord announcements to use embeds
+- [x] improve sv_main join check error handling
+- [x] fix "unknown" in playerlist caused by DropPlayer at playerConnecting events
+- [x] global socket.io connection for playerlist
+- [x] fix(bot): use cache when resolving members when possible
+- [x] merge menu performance PRs
+- [X] Resource: fix spectate (merge changes from taso's pr)
+- [x] Resource: fix noclip game crashes
+- [x] Resource: do all files need to check env with `GetConvar` or can i do it only in `shared.lua`?
+- [x] Resource: add `GetConvarBool` and refactor existing `GetConvar` calls
+- [x] Resource: Refactor the debug vars and debugPrint
+    - [x] move the debug code form `menu/sv_base.lua` to somewhere else
+    - [x] by disabling the server stuff, need to make sure none of the global variables set by it are required in non-menu code
+- [x] Resource: Clean the prints from the client (search with `\Wprint\(`)
+- [x] Resource: Clean the print functions on the server (txPrint?)
+- [x] Web: test all pages I added `checkApiLogoutRefresh`
+- [x] Resource: refactor `/txAdmin-reauth` to return the full cause in the snackbar
+- [x] Resource: reorder `sv_main.lua` and add `local` prefix to most if not all functions
+- [x] Resource: rename menu events to `txsv:xxx` and `txcl:xxx`
+- [x] Resource: full redm compatibility
+    - [x] Player Mode
+        - [x] noclip
+            - [x] controls
+            - [x] bug: after exiting, the mouse doesn't move
+            - [x] fix behavior while seated on vehicle or horse
+            - [x] scaleform/prompt
+        - [x] god mode
+        - [x] super jump
+            - [x] fix stamina bug
+        - [x] normal
+        - [x] particles
+    - [x] Teleport
+        - [x] waypoint
+        - [x] coords
+        - [x] back
+        - [x] copy coords
+    - [x] Vehicle
+        - [x] spawn
+        - [x] fix
+        - [x] delete
+        - [x] boost (doesn't work, disable button)
+    - [x] Heal
+        - [x] self
+        - [x] everyone
+    - [x] Announcements
+    - [x] reset world area (doesn't work, disable button)
+    - [x] player ids
+    - [x] logger (death reasons, explosions, etc)
 
+    - [x] Actions
+        - [x] heal
+        - [x] go to
+        - [x] bring
+        - [x] spectate
+            - [x] copy prompt helper from freecam
+        - [x] freeze
+        - [x] troll: set drunk
+        - [x] troll: set fire
+        - [x] troll: wild attack
+
+- [x] Generalize the sound function in `cl_misc.lua` and replace the other `PlaySoundFrontend`
+- [x] Make Z optional in tp to coords feature
+- [x] Vehicle spawn should accept `[horse, cart, boat]` options, maybe add the buttons
+- [x] Find out why the players page doesn't reflect the player health, maybe it is client side only?
+- [x] Deprecate `cl_misc.lua`: move `playLibrarySound` to `cl_functions`, the rest to `cl_base`
+
+- [x] make `recipes/indexv4.json` dropping version and adding tags
+    - drop author field as well?
+    - remove zap esx pack? last update was 6 months ago
+- [x] add `sv_enforceGameBuild 2699` for fivem recipe
+- [x] add redm cfx default recipe (use `sv_enforceGameBuild 1491`)
+- [x] Check again for any added `print()`
+- [x] Update packages... again
+- [x] add hwid token bans (#446)
+    - [x] save player hwids + ban with hwid + check join using hwid as well
+    - [x] rename `action[].identifiers` to `action[].ids`
+    - [x] add settings page option to configure the required hwid matches
+    - [x] add ban message clarification if its from another license
+    - [x] add an option to wipe all hwids from the database
+- [x] add hwids to player modals
+- [x] add vorp recipe
+    - [x] reorganize folder
+    - [x] `server.cfg`:
+        - set steam_webApiKey "{{steam_webApiKey}}"
+        - clean the lines at the end of server.cfg
+        - server.cfg fix exec line 40 [vorp_official_plugins]
+    - [x] find out where that .replxx_history is coming from
+> beta1 release
+
+- [x] fix system log page font fallback
+- [x] remove debug noclip command
+- [x] fix playerBanned and actionRevoked events playerIds and add playerHwids
+- [x] updated some packages
+- [x] fix adminvault behavior on empty `admins.json` file
+- [x] change `cl_main.lua` RedM detection
+- [x] check/merge redm vehicle boost
+> beta2 release
+
+- [x] bot should check if it has any dangerous permission
+- [x] improve zap/ptero detection
+- [x] flexibilized ad options
+- [x] stats: 
+    - [x] adapt the new runtime specs, separate temp stats from classic stats
+    - [x] add bot enabled / whitelist back into stats
+    - [x] add isPterodactyl to stats
+    - [x] start tracking the ban search duration
+    - [x] jwe
+    - [x] don't forget to reset StatisticsManager's cron func interval
+    - [x] when changing whitelist mode in settings, need to reset the time counter
+- [x] add mongolian translation + merge bg.json
+- [x] last round of testing everything
+
+
+=======================================================================
+
+Perf charts:
+
+https://media.discordapp.net/attachments/1058975904811991080/1078919282924208238/image.png
+https://media.discordapp.net/attachments/589106731376836608/1108806732991430736/image.png
+https://media.discordapp.net/attachments/885648563105837116/1107449123881365565/image.png
+https://media.discordapp.net/attachments/885648563105837116/1107446997369241600/image.png
+https://cdn.discordapp.com/attachments/885648563105837116/1086875664432508968/image.png
+https://media.discordapp.net/attachments/885648563105837116/1080548734292742214/SPOILER_image.png
+https://media.discordapp.net/attachments/885648563105837116/1080493539374420049/image.png
+https://media.discordapp.net/attachments/885648563105837116/1079422080820453397/image.png
+https://media.discordapp.net/attachments/1044112583201927189/1109100201366528110/saS3WOdi.png
+https://media.discordapp.net/attachments/885648563105837116/1079097577288499420/image.png
+https://media.discordapp.net/attachments/885648563105837116/1059850236421492736/image.png
+https://media.discordapp.net/attachments/881583434802294894/1109145714824597575/image.png
+
+=======================================================================
+> FIXME: chat doesn't build, possibly docker image issue
+docker run \
+  -p 40121:40120 \
+  -p 30121:30120 -p 30121:30120/udp \
+  --name fxstest \
+  --volume "E:\\FiveM\\dockerFxserver":/fxserver \
+  -it ubuntu bash
+
+docker exec -it fxstest bash
+apt update
+apt install -y wget xz-utils nano iputils-ping bind9-host mycli
+
+mycli -u root -h 172.17.0.2
+
+cd /fxserver
+wget https://runtime.fivem.net/artifacts/fivem/build_proot_linux/master/6427-843247aae475eb586950a706015e89033e01b3f4/fx.tar.xz
+tar xvf fx.tar.xz
+
+=======================================================================
+
+(function() {
+    var s = document.createElement('script');
+    s.setAttribute('src', 'https://nthitz.github.io/turndownforwhatjs/tdfw.js');
+    document.body.appendChild(s);
+})()
+
+
+=======================================================================
 
 
 ## Optional
 - [ ] bot: fix http agent options for localAddress
 - [ ] bot: add rate limit events to diagnostics page
-- [ ] change dashboard median player message
-    - top 1000: "your server seems to be in top 1000, join and type /server to track your progress"
-    - top 500: "you might be in top 500, join discord and see if you are eligible for the role"
 - [ ] update readme with new features and contributing warning
-- [ ] stats: 
-    - [ ] ????
-    - [ ] jwe
+
 
 
 # Next up:
+- [ ] Add a tracking for % of redm/fivem/libertym servers to txTracker
+- [ ] clean a few of the dead stuff from databus
+- [ ] improve `DiscordBot.resolveMemberRoles()` cache handling
+- [ ] maybe add some debug logging to `AdminVault.checkAdminsFile()`, to find out why so many people are having issues with their logins
+    - maybe even add to the login failed page something like "admin file was reset or modified XXX time ago"
+- [ ] remove old databus.txStatsData stuff
+- [ ] QuantileArrayOutput for time stuff - use q5/q95 to help me define the buckets
 - [ ] xxxxxx
 
-//essa logica não é "GetConvarBool" e sim negativa
-GetConvar\('([^']+)', 'false'\) ~= 'true'
-GetConvarBool('$1')
-
-function GetConvarBool(cvName)
-  return (GetConvar(cvName, 'false') ~= 'true')
-end
-
-criar variáveis globais setadas no shared, pra salvar o trabalho de dar GetConvar em todo arquivo
-
-===================
-### MUI update
-5.10.17 ok
-5.11.0 broken
-To test it, remove the `^`
-rm -rf node_modules/; npm i; npm list @mui/material; npm run dev:menu:game
-https://github.com/mui/material-ui/blob/master/CHANGELOG.md
-===================
 
 
 ### Server resource scanner
@@ -78,7 +196,7 @@ ScanResourceRoot('C:/whatever/resources/', data => {
 
 
 
-
+=======================================================================
 
 
 
@@ -89,11 +207,7 @@ teste:
 
 # TODO: sooner than later
 - [ ] server logger add events/min average
-- [ ] add lru-cache to `DiscordBot.resolveMember()`
-
 - [ ] no duplicated id type in bans? preparing for the new db migration
-- [ ] reorder `sv_main.lua` and add `local` prefix to most if not all functions
-- [ ] mock out insights page (assets + http reqs)
 - [ ] `cfg cyclical 'exec' command detected to file` should be blocking instead of warning. Behare that this is not trivial without also turning missing exec target read error also being error
 - [ ] maybe some sort of lockfile to admins.json file which would disable admin manager?
 
@@ -177,43 +291,10 @@ Whitelist Page/routes:
 
 ## The Big Things before ts+react rewrite:
 - [x] in-core playerlist state tracking
-- [ ] new proxy console util
-- [ ] global socket.io connection for playerlist + async responses
-- [ ] in-core resource state tracking
+- [x] new proxy console util
+- [x] global socket.io connection for playerlist + async responses
 - [ ] new config (prepared for multiserver)
 - [ ] multiserver tx instance (backend only)
-
-
-## Console Rewrite
-- [ ] Rewrite console logger module to be proxied to node:console
-- [ ] Add `[OUTDATED]` as a clog header prefix 
-- [ ] Move verbose to be part of the console (after the functional-ish change)
-- [ ] Remove the GlobalData from a bunch of files which include it just because of verbosity
-- [ ] Upgrade chalk, drop the chalk.keyword thing
-- [ ] Search for `node:console`, as i'm using it everywhere to test stuff
-- [ ] Migrate logger function to use the new logger component
-
-```js
-console.log('aaa', {àa:true});
-const {Console} = require('node:console');
-const ogConsole = new Console({
-    stdout: process.stdout,
-    stderr: process.stderr,
-    colorMode: true,
-});
-
-const chalk = require('chalk');
-const tag = chalk.bold.bgBlue(`[test]`)
-const testLog = (...args) => xxx.log.call(null, tag, ...args)
-
-testLog({àa:true});
-log('adsfsdf')
-
-import consoleFactory from '@utils/console.js';
-const console = consoleFactory(modulename)
-
-process.exit();
-```
 
 
 ## New config
@@ -299,8 +380,6 @@ Up next-ish:
 
 
 ### Randoms:
-- BUG: nui menu triggered announcements are not sent to the discord
-
 -- Why both have the same debug data? https://i.imgur.com/WGawiyr.png
 
 FIXME: sendMenuMessage('setServerCtx', ServerCtx)
@@ -365,11 +444,24 @@ Instance[]:
 - Scheduler
 - PlayerController > PlaylistManager
 - ResourcesManager
-- StatsCollector > StatsManager
+- StatisticsManager
 
 Questions:
 - How to make the database interface (currently in playerController)
 - Should break logger and config in 2 or work top->down?
+
+march/2023 insight:
+- if no `txData/config`
+- move the profile config and data to txdata
+- rename `txData/<profile>` to `txData/<profile>_bkp`
+- at run time:
+    - check if `txData/lock` exists
+    - if it doesn't
+        - save pid + interface + port to lock file
+    - if it does
+        - see if the pid is running
+        - say "you cant run two tx on the same txdata, open <url> to visit the other one"
+
 
 
 ### New UI stuff
@@ -380,9 +472,13 @@ https://auto-animate.formkit.com
 https://tanstack.com/virtual/v3
 
 For the tx ingame menu, replace actions grid with flexbox
-https://youtu.be/3elGSZSWTbM
-around 12:00
+https://youtu.be/3elGSZSWTbM around 12:00
+outro video com template completo, sem  https://youtu.be/YVI-q3idGiM
 https://immerjs.github.io/immer/ maybe?
+
+if tailwind, check https://daisyui.com/docs/themes/
+https://ui.shadcn.com/
+https://huemint.com/website-2/
 
 
 ### Update Event + Rollout strategy
@@ -576,6 +672,10 @@ https://kinark.github.io/Materialize-stepper/
 
 https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
 
+### RedM stuff
+https://github.com/femga/rdr3_discoveries
+https://vespura.com/doc/natives/
+
 
 =======================================
 
@@ -617,7 +717,8 @@ export TXADMIN_DEFAULT_LICENSE="cfxk_xxxxxxxxxxxxxxxxxxxx_xxxxx"
 npx depcheck
 npm-upgrade
 con_miniconChannels script:monitor*
-+setr txAdmin-menuDebug true
+con_miniconChannels script:runcode
++setr txAdmin-debugMode true
 nui_devtoold mpMenu
 
 # hang fxserver (runcode)
