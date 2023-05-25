@@ -70,6 +70,40 @@
             Explicitly enable or disable <see cref="T:CitizenFX.Core.BaseScript" /> instantiation when this resource is starting.
             </summary>
         </member>
+        <member name="M:CitizenFX.Core.BaseScript.Enable">
+            <summary>
+            Enables all ticks, commands, events, and exports
+            </summary>
+        </member>
+        <member name="M:CitizenFX.Core.BaseScript.Disable">
+            <summary>
+            Disables all tick repeats, commands, events, and exports
+            </summary>
+            <remarks>
+            1. This <see cref="T:CitizenFX.Core.BaseScript"/> can't re-enable itself except for callbacks, you may want to hold a reference to it.<br />
+            2. External code/scripts can still call in for commands, but they'll get <see langword="null"/> returned automatically.
+            </remarks>
+        </member>
+        <member name="M:CitizenFX.Core.BaseScript.Disable(System.Boolean)">
+            <summary>
+            Disables all tick repeats, commands, events, and exports
+            </summary>
+            <remarks>
+            1. This <see cref="T:CitizenFX.Core.BaseScript"/> can't re-enable itself, unless <paramref name="deleteAllCallbacks"/> is <see langword="false" /> then callbacks are still able to, you may want to hold a reference to it.<br />
+            2. External code/scripts can still call in for commands, but they'll get <see langword="null"/> returned automatically.
+            </remarks>
+            <param name="deleteAllCallbacks">If enabled will delete all callbacks targeting this <see cref="T:CitizenFX.Core.BaseScript"/> instance</param>
+        </member>
+        <member name="M:CitizenFX.Core.BaseScript.OnEnable">
+            <summary>
+            Called when this script got enabled
+            </summary>
+        </member>
+        <member name="M:CitizenFX.Core.BaseScript.OnDisable">
+            <summary>
+            Called when this script got disabled
+            </summary>
+        </member>
         <member name="E:CitizenFX.Core.BaseScript.Tick">
             <summary>
             An event containing callbacks to attempt to schedule on every game tick.
@@ -85,6 +119,18 @@
             </example>
             <param name="msecs">The amount of time by which to delay scheduling this interval function.</param>
             <returns>An awaitable task.</returns>
+        </member>
+        <member name="M:CitizenFX.Core.BaseScript.RegisterScript(CitizenFX.Core.BaseScript)">
+            <summary>
+            Activates all ticks, events, and exports.
+            </summary>
+            <param name="script">script to activate</param>
+        </member>
+        <member name="M:CitizenFX.Core.BaseScript.UnregisterScript(CitizenFX.Core.BaseScript)">
+            <summary>
+            Deactivates all ticks, events, and exports.
+            </summary>
+            <param name="script">script to deactivate</param>
         </member>
         <member name="P:CitizenFX.Core.Scheduler.CurrentTime">
             <summary>
@@ -174,6 +220,13 @@
             <param name="deleg">delegate to make dynamically invokable</param>
             <returns>dynamically invokable delegate or returns <paramref name="deleg"/> if it's aleady of type <see cref="T:CitizenFX.Core.DynFunc"/></returns>
             <exception cref="T:System.ArgumentNullException">when the given method is non-static and target is null or if given method is null</exception>
+        </member>
+        <member name="M:CitizenFX.Core.Func.GetWrappedMethod(CitizenFX.Core.DynFunc)">
+            <summary>
+            Returns the original method that's been wrapped or its own <see cref="P:System.Delegate.Method"/>
+            </summary>
+            <param name="dynFunc">this reference</param>
+            <returns>The wrapped method or <see cref="P:System.Delegate.Method"/> if it wasn't wrapped</returns>
         </member>
         <member name="T:CitizenFX.Core.CString">
             <summary>
@@ -342,6 +395,11 @@
             <param name="bytesPerSecond">Amount of bytes send in 1 second.</param>
             <param name="args">Arguments to pass to the event.</param>
         </member>
+        <member name="M:CitizenFX.Core.EventHandler.Enable">
+            <summary>
+            Should only be called by <see cref="M:CitizenFX.Core.BaseScript.Enable"/> or any other code that guarantees that it is only called once
+            </summary>
+        </member>
         <member name="M:CitizenFX.Core.EventHandlerSet.Add(CitizenFX.Core.DynFunc,CitizenFX.Core.Binding)">
             <summary>
             Register an event handler
@@ -389,6 +447,16 @@
             <param name="deleg">delegate to register</param>
             <returns>itself</returns>
         </member>
+        <member name="M:CitizenFX.Core.EventHandlerSet.Enable">
+            <summary>
+            Should only be called by <see cref="M:CitizenFX.Core.EventHandler.Enable"/> or any other code that guarantees that it is only called once
+            </summary>
+        </member>
+        <member name="M:CitizenFX.Core.Exports.Enable">
+            <summary>
+            Should only be called by <see cref="M:CitizenFX.Core.BaseScript.Enable"/> or any other code that guarantees that it is only called once
+            </summary>
+        </member>
         <member name="M:CitizenFX.Core.MsgPackDeserializer.DeserializeArray(System.Byte*,System.Int64,System.String)">
             <summary>
             Starts deserialization from an array type
@@ -410,6 +478,35 @@
             <summary>
             Experimental memory stream
             </summary>
+        </member>
+        <member name="M:CitizenFX.Core.ReferenceFunctionManager.Create(CitizenFX.Core.DynFunc)">
+            <summary>
+            Register a delegate to other runtimes and/or our host (reference function)
+            </summary>
+            <param name="method">Delagate to register to the external world</param>
+            <returns>( internalReferenceId, externalReferenceId )</returns>
+            <remarks>Don't alter the returned value</remarks>
+        </member>
+        <member name="M:CitizenFX.Core.ReferenceFunctionManager.Remove(System.Int32)">
+            <summary>
+            Remove reference function by id
+            </summary>
+            <param name="referenceId">Internal reference id of the reference to remove</param>
+        </member>
+        <member name="M:CitizenFX.Core.ReferenceFunctionManager.RemoveAllWithTarget(System.Object)">
+            <summary>
+            Remove all reference functions that are targeting a specific object
+            </summary>
+            <remarks>Slow, may need to be replaced</remarks>
+            <param name="target"></param>
+        </member>
+        <member name="M:CitizenFX.Core.ReferenceFunctionManager.SetDelegate(System.Int32,CitizenFX.Core.DynFunc)">
+            <summary>
+            Set reference function to another delegate
+            </summary>
+            <param name="referenceId">Reference id of the reference to remove</param>
+            <param name="newFunc">New delegate/method to set the reference function to</param>
+            <returns><see langword="true"/> if found and changed, <see langword="false"/> otherwise</returns>
         </member>
         <member name="F:CitizenFX.Core.MathUtil.ZeroTolerance">
             <summary>
