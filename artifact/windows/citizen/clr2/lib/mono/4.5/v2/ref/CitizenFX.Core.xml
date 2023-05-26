@@ -466,6 +466,11 @@
             <param name="netSource">from whom came this?</param>
             <returns>arguments that can be passed into dynamic delegates</returns>
         </member>
+        <member name="M:CitizenFX.Core.MsgPackDeserializer.ReadSingleLE">
+            <summary>
+            Read a <see cref="T:System.Single"/> stored as little endian, used for custom vectors
+            </summary>
+        </member>
         <member name="M:CitizenFX.Core.MsgPackSerializer.SerializeCoTaskMemory(System.Object,System.Boolean)">
             <summary>
             Experimental, uses the CoTask memory instead of a managed byte[]
