@@ -1646,7 +1646,38 @@ declare function SetEntityVelocity(entity: number, x: number, y: number, z: numb
 declare function SetGameType(gametypeName: string): void;
 
 /**
- * SET_HTTP_HANDLER
+ * Sets the handler for HTTP requests made to the executing resource.
+ * Example request URL: `http://localhost:30120/http-test/ping` - this request will be sent to the `http-test` resource with the `/ping` path.
+ * The handler function assumes the following signature:
+ * ```ts
+ * declare function HttpHandler(
+ * request: {
+ * address: string;
+ * headers: Record<string, string>;
+ * method: string;
+ * path: string;
+ * setDataHandler: (handler: (data: string) => void) => void;
+ * setCancelHandler: (handler: () => void) => void;
+ * },
+ * response: {
+ * writeHead: (code: number, headers?: Record<string, string>) => void;
+ * write: (data: string) => void;
+ * send: (data?: string) => void;
+ * }
+ * ): void;
+ * ```
+ * -   **request**: The request object.
+ * -   **address**: The IP address of the request sender.
+ * -   **path**: The path to where the request was sent.
+ * -   **headers**: The headers sent with the request.
+ * -   **method**: The request method.
+ * -   **setDataHandler**: Sets the handler for when a data body is passed with the request.
+ * -   **setCancelHandler**: Sets the handler for when the request is cancelled.
+ * -   **response**: An object to control the response.
+ * -   **writeHead**: Sets the status code & headers of the response. Can be only called once and won't work if called after running other response functions.
+ * -   **write**: Writes to the response body without sending it. Can be called multiple times.
+ * -   **send**: Writes to the response body and then sends it along with the status code & headers, finishing the request.
+ * @param handler The handler function.
  */
 declare function SetHttpHandler(handler: Function): void;
 
