@@ -274,6 +274,13 @@ declare function DeleteResourceKvp(key: string): void;
 declare function DeleteResourceKvpNoSync(key: string): void;
 
 /**
+ * DOES_BOAT_SINK_WHEN_WRECKED
+ * @param vehicle The target vehicle.
+ * @return Returns whether or not the boat sinks when wrecked.
+ */
+declare function DoesBoatSinkWhenWrecked(vehicle: number): boolean;
+
+/**
  * DOES_ENTITY_EXIST
  */
 declare function DoesEntityExist(entity: number): boolean;
@@ -423,6 +430,13 @@ declare function GetCurrentResourceName(): string;
  * @return The attached entity handle. 0 returned if the entity is not attached.
  */
 declare function GetEntityAttachedTo(entity: number): number;
+
+/**
+ * GET_ENTITY_COLLISION_DISABLED
+ * @param entity The target entity.
+ * @return Returns whether or not entity collisions are disabled.
+ */
+declare function GetEntityCollisionDisabled(entity: number): boolean;
 
 /**
  * Gets the current coordinates for a specified entity. This native is used server side when using OneSync.
@@ -756,6 +770,13 @@ declare function GetPedSourceOfDeath(ped: number): number;
 2060+: A value of 531 denotes no script task is assigned or an invalid input was given.
  */
 declare function GetPedSpecificTaskType(ped: number, index: number): number;
+
+/**
+ * GET_PED_STEALTH_MOVEMENT
+ * @param ped The target ped.
+ * @return Whether or not the ped is stealthy.
+ */
+declare function GetPedStealthMovement(ped: number): boolean;
 
 /**
  * Gets the current camera rotation for a specified player. This native is used server side when using OneSync.
@@ -1235,6 +1256,13 @@ declare function GiveWeaponToPed(ped: number, weaponHash: string | number, ammoC
 declare function HasEntityBeenMarkedAsNoLongerNeeded(vehicle: number): boolean;
 
 /**
+ * HAS_VEHICLE_BEEN_DAMAGED_BY_BULLETS
+ * @param vehicle The target vehicle.
+ * @return Returns whether or not the target vehicle has been damaged by bullets.
+ */
+declare function HasVehicleBeenDamagedByBullets(vehicle: number): boolean;
+
+/**
  * HAS_VEHICLE_BEEN_OWNED_BY_PLAYER
  */
 declare function HasVehicleBeenOwnedByPlayer(vehicle: number): boolean;
@@ -1250,10 +1278,31 @@ declare function InvokeFunctionReference(referenceIdentity: string, argsSerializ
 declare function IsAceAllowed(object: string): boolean;
 
 /**
+ * IS_BOAT_ANCHORED_AND_FROZEN
+ * @param vehicle The target vehicle.
+ * @return Returns whether or not the boat is anchored and frozen.
+ */
+declare function IsBoatAnchoredAndFrozen(vehicle: number): boolean;
+
+/**
+ * IS_BOAT_WRECKED
+ * @param vehicle The target vehicle.
+ * @return Returns whether or not the boat is wrecked.
+ */
+declare function IsBoatWrecked(vehicle: number): boolean;
+
+/**
  * Gets whether or not this is the CitizenFX server.
  * @return A boolean value.
  */
 declare function IsDuplicityVersion(): boolean;
+
+/**
+ * A getter for [FREEZE_ENTITY_POSITION](#_0x428CA6DBD1094446).
+ * @param entity The entity to check for
+ * @return Boolean stating if it is frozen or not.
+ */
+declare function IsEntityPositionFrozen(entity: number): boolean;
 
 /**
  * This native checks if the given entity is visible.
@@ -1262,10 +1311,45 @@ declare function IsDuplicityVersion(): boolean;
 declare function IsEntityVisible(entity: number): boolean;
 
 /**
+ * IS_FLASH_LIGHT_ON
+ * @param ped The target ped.
+ * @return Whether or not the ped's flash light is on.
+ */
+declare function IsFlashLightOn(ped: number): boolean;
+
+/**
  * This native checks if the given ped is a player.
  * @return Returns `true` if the ped is a player, `false` otherwise.
  */
 declare function IsPedAPlayer(ped: number): boolean;
+
+/**
+ * IS_PED_HANDCUFFED
+ * @param ped The target ped.
+ * @return Whether or not the ped is handcuffed.
+ */
+declare function IsPedHandcuffed(ped: number): boolean;
+
+/**
+ * IS_PED_RAGDOLL
+ * @param ped The target ped.
+ * @return Whether or not the ped is ragdolling.
+ */
+declare function IsPedRagdoll(ped: number): boolean;
+
+/**
+ * IS_PED_STRAFING
+ * @param ped The target ped.
+ * @return Whether or not the ped is strafing.
+ */
+declare function IsPedStrafing(ped: number): boolean;
+
+/**
+ * IS_PED_USING_ACTION_MODE
+ * @param ped The target ped.
+ * @return Whether or not the ped is using action mode.
+ */
+declare function IsPedUsingActionMode(ped: number): boolean;
 
 /**
  * IS_PLAYER_ACE_ALLOWED
@@ -1326,6 +1410,13 @@ declare function IsVehicleSirenOn(vehicle: number): boolean;
  * IS_VEHICLE_TYRE_BURST
  */
 declare function IsVehicleTyreBurst(vehicle: number, wheelID: number, completely: boolean): boolean;
+
+/**
+ * See the client-side [IS_VEHICLE_WINDOW_INTACT](https://docs.fivem.net/natives/?_0x46E571A0E20D01F1) for a window indexes list.
+ * @param vehicle The target vehicle.
+ * @param windowIndex The window index.
+ */
+declare function IsVehicleWindowIntact(vehicle: number, windowIndex: number): boolean;
 
 /**
  * Requests the commerce data for the specified player, including the owned SKUs. Use `IS_PLAYER_COMMERCE_INFO_LOADED` to check if it has loaded.

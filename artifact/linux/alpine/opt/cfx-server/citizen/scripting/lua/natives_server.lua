@@ -312,6 +312,13 @@ function Global.DeleteResourceKvpNoSync(key)
 	return _in(0x4152c90, _ts(key))
 end
 
+--- DOES_BOAT_SINK_WHEN_WRECKED
+-- @param vehicle The target vehicle.
+-- @return Returns whether or not the boat sinks when wrecked.
+function Global.DoesBoatSinkWhenWrecked(vehicle)
+	return _in(0x43f15989, vehicle, _r)
+end
+
 --- DOES_ENTITY_EXIST
 function Global.DoesEntityExist(entity)
 	return _in(0x3ac90869, entity, _r)
@@ -463,6 +470,13 @@ end
 -- @return The attached entity handle. 0 returned if the entity is not attached.
 function Global.GetEntityAttachedTo(entity)
 	return _in(0xfe1589f9, entity, _ri)
+end
+
+--- GET_ENTITY_COLLISION_DISABLED
+-- @param entity The target entity.
+-- @return Returns whether or not entity collisions are disabled.
+function Global.GetEntityCollisionDisabled(entity)
+	return _in(0xe8c0c629, entity, _r)
 end
 
 --- Gets the current coordinates for a specified entity. This native is used server side when using OneSync.
@@ -796,6 +810,13 @@ end
 -- 		2060+: A value of 531 denotes no script task is assigned or an invalid input was given.
 function Global.GetPedSpecificTaskType(ped, index)
 	return _in(0x7f4563d3, ped, index, _ri)
+end
+
+--- GET_PED_STEALTH_MOVEMENT
+-- @param ped The target ped.
+-- @return Whether or not the ped is stealthy.
+function Global.GetPedStealthMovement(ped)
+	return _in(0x40321b83, ped, _r)
 end
 
 --- Gets the current camera rotation for a specified player. This native is used server side when using OneSync.
@@ -1275,6 +1296,13 @@ function Global.HasEntityBeenMarkedAsNoLongerNeeded(vehicle)
 	return _in(0x9c9a3be0, vehicle, _r)
 end
 
+--- HAS_VEHICLE_BEEN_DAMAGED_BY_BULLETS
+-- @param vehicle The target vehicle.
+-- @return Returns whether or not the target vehicle has been damaged by bullets.
+function Global.HasVehicleBeenDamagedByBullets(vehicle)
+	return _in(0xb8af3137, vehicle, _r)
+end
+
 --- HAS_VEHICLE_BEEN_OWNED_BY_PLAYER
 function Global.HasVehicleBeenOwnedByPlayer(vehicle)
 	return _in(0xe4e83a5b, vehicle, _r)
@@ -1290,10 +1318,31 @@ function Global.IsAceAllowed(object)
 	return _in(0x7ebb9929, _ts(object), _r)
 end
 
+--- IS_BOAT_ANCHORED_AND_FROZEN
+-- @param vehicle The target vehicle.
+-- @return Returns whether or not the boat is anchored and frozen.
+function Global.IsBoatAnchoredAndFrozen(vehicle)
+	return _in(0xd5c39ee6, vehicle, _r)
+end
+
+--- IS_BOAT_WRECKED
+-- @param vehicle The target vehicle.
+-- @return Returns whether or not the boat is wrecked.
+function Global.IsBoatWrecked(vehicle)
+	return _in(0x9049db44, vehicle, _r)
+end
+
 --- Gets whether or not this is the CitizenFX server.
 -- @return A boolean value.
 function Global.IsDuplicityVersion()
 	return _in(0xcf24c52e, _r)
+end
+
+--- A getter for [FREEZE_ENTITY_POSITION](#_0x428CA6DBD1094446).
+-- @param entity The entity to check for
+-- @return Boolean stating if it is frozen or not.
+function Global.IsEntityPositionFrozen(entity)
+	return _in(0xedbe6add, entity, _r)
 end
 
 --- This native checks if the given entity is visible.
@@ -1302,10 +1351,45 @@ function Global.IsEntityVisible(entity)
 	return _in(0x120b4ed5, entity, _r)
 end
 
+--- IS_FLASH_LIGHT_ON
+-- @param ped The target ped.
+-- @return Whether or not the ped's flash light is on.
+function Global.IsFlashLightOn(ped)
+	return _in(0x76876154, ped, _r)
+end
+
 --- This native checks if the given ped is a player.
 -- @return Returns `true` if the ped is a player, `false` otherwise.
 function Global.IsPedAPlayer(ped)
 	return _in(0x404794ca, ped, _r)
+end
+
+--- IS_PED_HANDCUFFED
+-- @param ped The target ped.
+-- @return Whether or not the ped is handcuffed.
+function Global.IsPedHandcuffed(ped)
+	return _in(0x25865633, ped, _r)
+end
+
+--- IS_PED_RAGDOLL
+-- @param ped The target ped.
+-- @return Whether or not the ped is ragdolling.
+function Global.IsPedRagdoll(ped)
+	return _in(0xc833bbe1, ped, _r)
+end
+
+--- IS_PED_STRAFING
+-- @param ped The target ped.
+-- @return Whether or not the ped is strafing.
+function Global.IsPedStrafing(ped)
+	return _in(0xefeed13c, ped, _r)
+end
+
+--- IS_PED_USING_ACTION_MODE
+-- @param ped The target ped.
+-- @return Whether or not the ped is using action mode.
+function Global.IsPedUsingActionMode(ped)
+	return _in(0x5ae7eda2, ped, _r)
 end
 
 --- IS_PLAYER_ACE_ALLOWED
@@ -1366,6 +1450,13 @@ end
 --- IS_VEHICLE_TYRE_BURST
 function Global.IsVehicleTyreBurst(vehicle, wheelID, completely)
 	return _in(0x48c80210, vehicle, wheelID, completely, _r)
+end
+
+--- See the client-side [IS_VEHICLE_WINDOW_INTACT](https://docs.fivem.net/natives/?_0x46E571A0E20D01F1) for a window indexes list.
+-- @param vehicle The target vehicle.
+-- @param windowIndex The window index.
+function Global.IsVehicleWindowIntact(vehicle, windowIndex)
+	return _in(0xac4ef23d, vehicle, windowIndex, _r)
 end
 
 --- Requests the commerce data for the specified player, including the owned SKUs. Use `IS_PLAYER_COMMERCE_INFO_LOADED` to check if it has loaded.

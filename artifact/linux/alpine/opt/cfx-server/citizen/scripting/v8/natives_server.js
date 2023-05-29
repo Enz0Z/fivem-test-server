@@ -367,6 +367,15 @@ global.DeleteResourceKvpNoSync = function (key) {
 };
 
 /**
+ * DOES_BOAT_SINK_WHEN_WRECKED
+ * @param vehicle The target vehicle.
+ * @return Returns whether or not the boat sinks when wrecked.
+ */
+global.DoesBoatSinkWhenWrecked = function (vehicle) {
+	return _in(0x00000000, 0x43f15989, vehicle, _r);
+};
+
+/**
  * DOES_ENTITY_EXIST
  */
 global.DoesEntityExist = function (entity) {
@@ -561,6 +570,15 @@ global.GetCurrentResourceName = function () {
  */
 global.GetEntityAttachedTo = function (entity) {
 	return _in(0x00000000, 0xfe1589f9, entity, _r, _ri);
+};
+
+/**
+ * GET_ENTITY_COLLISION_DISABLED
+ * @param entity The target entity.
+ * @return Returns whether or not entity collisions are disabled.
+ */
+global.GetEntityCollisionDisabled = function (entity) {
+	return _in(0x00000000, 0xe8c0c629, entity, _r);
 };
 
 /**
@@ -982,6 +1000,15 @@ global.GetPedSourceOfDeath = function (ped) {
  */
 global.GetPedSpecificTaskType = function (ped, index) {
 	return _in(0x00000000, 0x7f4563d3, ped, index, _r, _ri);
+};
+
+/**
+ * GET_PED_STEALTH_MOVEMENT
+ * @param ped The target ped.
+ * @return Whether or not the ped is stealthy.
+ */
+global.GetPedStealthMovement = function (ped) {
+	return _in(0x00000000, 0x40321b83, ped, _r);
 };
 
 /**
@@ -1602,6 +1629,15 @@ global.HasEntityBeenMarkedAsNoLongerNeeded = function (vehicle) {
 };
 
 /**
+ * HAS_VEHICLE_BEEN_DAMAGED_BY_BULLETS
+ * @param vehicle The target vehicle.
+ * @return Returns whether or not the target vehicle has been damaged by bullets.
+ */
+global.HasVehicleBeenDamagedByBullets = function (vehicle) {
+	return _in(0x00000000, 0xb8af3137, vehicle, _r);
+};
+
+/**
  * HAS_VEHICLE_BEEN_OWNED_BY_PLAYER
  */
 global.HasVehicleBeenOwnedByPlayer = function (vehicle) {
@@ -1623,11 +1659,38 @@ global.IsAceAllowed = function (object) {
 };
 
 /**
+ * IS_BOAT_ANCHORED_AND_FROZEN
+ * @param vehicle The target vehicle.
+ * @return Returns whether or not the boat is anchored and frozen.
+ */
+global.IsBoatAnchoredAndFrozen = function (vehicle) {
+	return _in(0x00000000, 0xd5c39ee6, vehicle, _r);
+};
+
+/**
+ * IS_BOAT_WRECKED
+ * @param vehicle The target vehicle.
+ * @return Returns whether or not the boat is wrecked.
+ */
+global.IsBoatWrecked = function (vehicle) {
+	return _in(0x00000000, 0x9049db44, vehicle, _r);
+};
+
+/**
  * Gets whether or not this is the CitizenFX server.
  * @return A boolean value.
  */
 global.IsDuplicityVersion = function () {
 	return _in(0x00000000, 0xcf24c52e, _r);
+};
+
+/**
+ * A getter for [FREEZE_ENTITY_POSITION](#_0x428CA6DBD1094446).
+ * @param entity The entity to check for
+ * @return Boolean stating if it is frozen or not.
+ */
+global.IsEntityPositionFrozen = function (entity) {
+	return _in(0x00000000, 0xedbe6add, entity, _r);
 };
 
 /**
@@ -1639,11 +1702,56 @@ global.IsEntityVisible = function (entity) {
 };
 
 /**
+ * IS_FLASH_LIGHT_ON
+ * @param ped The target ped.
+ * @return Whether or not the ped's flash light is on.
+ */
+global.IsFlashLightOn = function (ped) {
+	return _in(0x00000000, 0x76876154, ped, _r);
+};
+
+/**
  * This native checks if the given ped is a player.
  * @return Returns `true` if the ped is a player, `false` otherwise.
  */
 global.IsPedAPlayer = function (ped) {
 	return _in(0x00000000, 0x404794ca, ped, _r);
+};
+
+/**
+ * IS_PED_HANDCUFFED
+ * @param ped The target ped.
+ * @return Whether or not the ped is handcuffed.
+ */
+global.IsPedHandcuffed = function (ped) {
+	return _in(0x00000000, 0x25865633, ped, _r);
+};
+
+/**
+ * IS_PED_RAGDOLL
+ * @param ped The target ped.
+ * @return Whether or not the ped is ragdolling.
+ */
+global.IsPedRagdoll = function (ped) {
+	return _in(0x00000000, 0xc833bbe1, ped, _r);
+};
+
+/**
+ * IS_PED_STRAFING
+ * @param ped The target ped.
+ * @return Whether or not the ped is strafing.
+ */
+global.IsPedStrafing = function (ped) {
+	return _in(0x00000000, 0xefeed13c, ped, _r);
+};
+
+/**
+ * IS_PED_USING_ACTION_MODE
+ * @param ped The target ped.
+ * @return Whether or not the ped is using action mode.
+ */
+global.IsPedUsingActionMode = function (ped) {
+	return _in(0x00000000, 0x5ae7eda2, ped, _r);
 };
 
 /**
@@ -1724,6 +1832,15 @@ global.IsVehicleSirenOn = function (vehicle) {
  */
 global.IsVehicleTyreBurst = function (vehicle, wheelID, completely) {
 	return _in(0x00000000, 0x48c80210, vehicle, wheelID, completely, _r);
+};
+
+/**
+ * See the client-side [IS_VEHICLE_WINDOW_INTACT](https://docs.fivem.net/natives/?_0x46E571A0E20D01F1) for a window indexes list.
+ * @param vehicle The target vehicle.
+ * @param windowIndex The window index.
+ */
+global.IsVehicleWindowIntact = function (vehicle, windowIndex) {
+	return _in(0x00000000, 0xac4ef23d, vehicle, windowIndex, _r);
 };
 
 /**
