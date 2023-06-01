@@ -608,7 +608,11 @@ global.GetEntityHeading = function (entity) {
 };
 
 /**
- * Currently it only works with peds.
+ * Only works for vehicle and peds
+ * @param entity The entity to check the health of
+ * @return If the entity is a vehicle it will return 0-1000
+ * 		If the entity is a ped it will return 0-200
+ * 		If the entity is an object it will return 0
  */
 global.GetEntityHealth = function (entity) {
 	return _in(0x00000000, 0x8e3222b7, entity, _r, _ri);
@@ -2192,6 +2196,7 @@ global.SetEntityCoords = function (entity, xPos, yPos, zPos, alive, deadFlag, ra
 /**
  * It overrides the default distance culling radius of an entity. Set to `0.0` to reset.
  * If you want to interact with an entity outside of your players' scopes set the radius to a huge number.
+ * **WARNING**: Culling natives are deprecated and have known, [unfixable issues](https://forum.cfx.re/t/issue-with-culling-radius-and-server-side-entities/4900677/4)
  * @param entity The entity handle to override the distance culling radius.
  * @param radius The new distance culling radius.
  */
@@ -3074,6 +3079,7 @@ global.SetPlayerControl = function (player, bHasControl, flags) {
 /**
  * Sets the culling radius for the specified player.
  * Set to `0.0` to reset.
+ * **WARNING**: Culling natives are deprecated and have known, [unfixable issues](https://forum.cfx.re/t/issue-with-culling-radius-and-server-side-entities/4900677/4)
  * @param playerSrc The player to set the culling radius for.
  * @param radius The radius.
  */
