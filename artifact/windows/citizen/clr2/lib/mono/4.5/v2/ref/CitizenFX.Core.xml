@@ -70,6 +70,12 @@
             Explicitly enable or disable <see cref="T:CitizenFX.Core.BaseScript" /> instantiation when this resource is starting.
             </summary>
         </member>
+        <member name="E:CitizenFX.Core.BaseScript.Tick">
+            <summary>
+            An event containing callbacks to attempt to schedule on every game tick.
+            A callback will only be rescheduled once the associated task completes.
+            </summary>
+        </member>
         <member name="M:CitizenFX.Core.BaseScript.Enable">
             <summary>
             Enables all ticks, commands, events, and exports
@@ -104,12 +110,6 @@
             Called when this script got disabled
             </summary>
         </member>
-        <member name="E:CitizenFX.Core.BaseScript.Tick">
-            <summary>
-            An event containing callbacks to attempt to schedule on every game tick.
-            A callback will only be rescheduled once the associated task completes.
-            </summary>
-        </member>
         <member name="M:CitizenFX.Core.BaseScript.Delay(System.UInt32)">
             <summary>
             Returns a task that will delay scheduling of the current interval function by the passed amount of time.
@@ -131,6 +131,185 @@
             Deactivates all ticks, events, and exports.
             </summary>
             <param name="script">script to deactivate</param>
+        </member>
+        <member name="M:CitizenFX.Core.CancelerToken.CancelOrThrowIfRequested">
+            <summary>
+            Combination of <see cref="P:CitizenFX.Core.CancelerToken.IsCanceled"/> and <see cref="P:CitizenFX.Core.CancelerToken.ThrowOnCancelation"/> for throwing support
+            </summary>
+            <returns><see langword="true"/> if we need to stop execution of the coroutine otherwise <see langword="false"/></returns>
+            <exception cref="T:CitizenFX.Core.CoroutineCanceledException"></exception>
+        </member>
+        <member name="M:CitizenFX.Core.Coroutine.ContinueWith(System.Action{CitizenFX.Core.Coroutine})">
+            <summary>
+            Adds an action that will be called when this coroutine is done
+            </summary>
+            <param name="action">Action to call when coroutine completes</param>
+        </member>
+        <member name="M:CitizenFX.Core.Coroutine.ContinueWith(System.Action)">
+            <summary>
+            Adds an action that will be called when this coroutine is done
+            </summary>
+            <param name="action">Action to call when coroutine completes</param>
+        </member>
+        <member name="M:CitizenFX.Core.Coroutine.ClearContinueWith">
+            <summary>
+            Removes all continued actions, e.g.: <see cref="M:CitizenFX.Core.Coroutine.ContinueWith(System.Action{CitizenFX.Core.Coroutine})"/> and sets one that writes any exception thrown instead
+            </summary>
+            <remarks>Unsafe. Should only be used when you know the exact state of this coroutine</remarks>
+        </member>
+        <member name="M:CitizenFX.Core.Coroutine.Yield">
+            <summary>
+            Await to stall execution and continue next frame.
+            </summary>
+            <returns>Awaitable <see cref="T:CitizenFX.Core.Coroutine"/></returns>
+        </member>
+        <member name="M:CitizenFX.Core.Coroutine.WaitUntil(CitizenFX.Core.TimePoint)">
+            <summary>
+            Await to stall execution of the current async method and continue after the given time.
+            </summary>
+            <param name="time">Time in milliseconds after we want to continue execution</param>
+            <remarks>Current time can be retrieved by using <see cref="P:CitizenFX.Core.Scheduler.CurrentTime"/></remarks>
+            <returns>Awaitable <see cref="T:CitizenFX.Core.Coroutine"/></returns>
+        </member>
+        <member name="M:CitizenFX.Core.Coroutine.WaitUntil(CitizenFX.Core.TimePoint,CitizenFX.Core.CancelerToken)">
+            <summary>
+            Await to stall execution of the current async method and continue after the given time.
+            </summary>
+            <param name="time">Time in milliseconds after we want to continue execution</param>
+            <param name="cancelerToken">Canceling token, can be used to stop early</param>
+            <remarks>Current time can be retrieved by using <see cref="P:CitizenFX.Core.Scheduler.CurrentTime"/></remarks>
+            <returns>Awaitable <see cref="T:CitizenFX.Core.Coroutine"/></returns>
+        </member>
+        <member name="M:CitizenFX.Core.Coroutine.Wait(System.UInt64)">
+            <summary>
+            Await to stall execution of the current async method and continue after the given delay.
+            </summary>
+            <param name="delay">Delay in milliseconds after we want to continue execution</param>
+            <returns>Awaitable <see cref="T:CitizenFX.Core.Coroutine"/></returns>
+        </member>
+        <member name="M:CitizenFX.Core.Coroutine.Wait(System.UInt64,CitizenFX.Core.CancelerToken)">
+            <summary>
+            Await to stall execution of the current async method and continue after the given delay.
+            </summary>
+            <param name="delay">Delay in milliseconds after we want to continue execution</param>
+            <param name="cancelerToken">Canceling token, can be used to stop early</param>
+            <returns>Awaitable <see cref="T:CitizenFX.Core.Coroutine"/></returns>
+        </member>
+        <member name="M:CitizenFX.Core.Coroutine.Delay(System.UInt64)">
+            <summary>
+            Await to stall execution of the current async method and continue after the given delay.
+            </summary>
+            <param name="delay">Delay in milliseconds after we want to continue execution</param>
+            <returns>Awaitable <see cref="T:CitizenFX.Core.Coroutine"/></returns>
+        </member>
+        <member name="M:CitizenFX.Core.Coroutine.Delay(System.UInt64,CitizenFX.Core.CancelerToken)">
+            <summary>
+            Await to stall execution of the current async method and continue after the given delay.
+            </summary>
+            <param name="delay">Delay in milliseconds after we want to continue execution</param>
+            <param name="cancelerToken">Canceling token, can be used to stop early</param>
+            <returns>Awaitable <see cref="T:CitizenFX.Core.Coroutine"/></returns>
+        </member>
+        <member name="M:CitizenFX.Core.Coroutine.Schedule(System.Func{CitizenFX.Core.Coroutine},System.UInt64,System.UInt64,CitizenFX.Core.CancelerToken)">
+            <summary>
+            Schedules a delegate to be run at a later time
+            </summary>
+            <param name="function">Delegate to run</param>
+            <param name="delay">Delay until the <paramref name="function"/> is executed</param>
+            <param name="iterations">Amount of times we want to run the <paramref name="function"/>. <see cref="F:CitizenFX.Core.Repeat.Infinite"/> or <see cref="F:System.UInt64.MaxValue"/> to infinitely loop.</param>
+            <param name="cancelerToken">Allows the cancellation of the given <paramref name="function"/> before it got executed</param>
+            <returns>Awaitable <see cref="T:CitizenFX.Core.Coroutine"/></returns>
+        </member>
+        <member name="M:CitizenFX.Core.Coroutine.Schedule``1(System.Func{CitizenFX.Core.Coroutine{``0}},System.UInt64,System.UInt64,CitizenFX.Core.CancelerToken)">
+            <inheritdoc cref="M:CitizenFX.Core.Coroutine.Schedule(System.Func{CitizenFX.Core.Coroutine},System.UInt64,System.UInt64,CitizenFX.Core.CancelerToken)"/>
+        </member>
+        <member name="M:CitizenFX.Core.Coroutine.Schedule(System.Func{CitizenFX.Core.Coroutine},CitizenFX.Core.TimePoint,CitizenFX.Core.CancelerToken)">
+            <inheritdoc cref="M:CitizenFX.Core.Coroutine.Schedule(System.Func{CitizenFX.Core.Coroutine},System.UInt64,System.UInt64,CitizenFX.Core.CancelerToken)"/>
+        </member>
+        <member name="M:CitizenFX.Core.Coroutine.Schedule``1(System.Func{CitizenFX.Core.Coroutine{``0}},CitizenFX.Core.TimePoint,CitizenFX.Core.CancelerToken)">
+            <inheritdoc cref="M:CitizenFX.Core.Coroutine.Schedule(System.Func{CitizenFX.Core.Coroutine},System.UInt64,System.UInt64,CitizenFX.Core.CancelerToken)"/>
+        </member>
+        <member name="M:CitizenFX.Core.Coroutine.Schedule(System.Func{CitizenFX.Core.Coroutine})">
+            <inheritdoc cref="M:CitizenFX.Core.Coroutine.Schedule(System.Func{CitizenFX.Core.Coroutine},System.UInt64,System.UInt64,CitizenFX.Core.CancelerToken)"/>
+        </member>
+        <member name="M:CitizenFX.Core.Coroutine.Schedule(System.Func{CitizenFX.Core.Coroutine},System.UInt64,CitizenFX.Core.CancelerToken)">
+            <inheritdoc cref="M:CitizenFX.Core.Coroutine.Schedule(System.Func{CitizenFX.Core.Coroutine},System.UInt64,System.UInt64,CitizenFX.Core.CancelerToken)"/>
+        </member>
+        <member name="M:CitizenFX.Core.Coroutine.Schedule``1(System.Func{CitizenFX.Core.Coroutine{``0}},System.UInt64,CitizenFX.Core.CancelerToken)">
+            <inheritdoc cref="M:CitizenFX.Core.Coroutine.Schedule(System.Func{CitizenFX.Core.Coroutine},System.UInt64,System.UInt64,CitizenFX.Core.CancelerToken)"/>
+        </member>
+        <member name="M:CitizenFX.Core.Coroutine.Schedule(System.Action)">
+            <inheritdoc cref="M:CitizenFX.Core.Coroutine.Schedule(System.Func{CitizenFX.Core.Coroutine},System.UInt64,System.UInt64,CitizenFX.Core.CancelerToken)"/>
+        </member>
+        <member name="M:CitizenFX.Core.Coroutine.Schedule(System.Action,System.UInt64,CitizenFX.Core.CancelerToken)">
+            <inheritdoc cref="M:CitizenFX.Core.Coroutine.Schedule(System.Func{CitizenFX.Core.Coroutine},System.UInt64,System.UInt64,CitizenFX.Core.CancelerToken)"/>
+        </member>
+        <member name="M:CitizenFX.Core.Coroutine.Schedule(System.Action,System.UInt64,System.UInt64,CitizenFX.Core.CancelerToken)">
+            <inheritdoc cref="M:CitizenFX.Core.Coroutine.Schedule(System.Func{CitizenFX.Core.Coroutine},System.UInt64,System.UInt64,CitizenFX.Core.CancelerToken)"/>
+        </member>
+        <member name="M:CitizenFX.Core.Coroutine.Run(System.Func{CitizenFX.Core.Coroutine})">
+            <summary>
+            Runs given function directly and allows the caller to await it.
+            </summary>
+            <param name="function">Function to run</param>
+            <returns>Awaitable <see cref="T:CitizenFX.Core.Coroutine"/></returns>
+        </member>
+        <member name="M:CitizenFX.Core.Coroutine.Run(System.Action)">
+            <inheritdoc cref="M:CitizenFX.Core.Coroutine.Run(System.Func{CitizenFX.Core.Coroutine})"/>
+        </member>
+        <member name="M:CitizenFX.Core.Coroutine.Run``1(System.Func{CitizenFX.Core.Coroutine{``0}})">
+            <summary>
+            Runs given function directly and allows the caller to await it.
+            </summary>
+            <param name="function">Function to run</param>
+            <returns>Awaitable <see cref="T:CitizenFX.Core.Coroutine"/></returns>
+        </member>
+        <member name="M:CitizenFX.Core.Coroutine.RunNextFrame(System.Func{CitizenFX.Core.Coroutine})">
+            <summary>
+            Runs given function next frame and allows the caller to await it.
+            </summary>
+            <param name="function">Function to run</param>
+            <returns>Awaitable <see cref="T:CitizenFX.Core.Coroutine"/></returns>
+        </member>
+        <member name="M:CitizenFX.Core.Coroutine.RunNextFrame(System.Action)">
+            <inheritdoc cref="M:CitizenFX.Core.Coroutine.RunNextFrame(System.Func{CitizenFX.Core.Coroutine})"/>
+        </member>
+        <member name="M:CitizenFX.Core.Coroutine.RunNextFrame``1(System.Func{CitizenFX.Core.Coroutine{``0}})">
+            <summary>
+            Runs given function directly and allows the caller to await it.
+            </summary>
+            <param name="function">Function to run</param>
+            <returns>Awaitable <see cref="T:CitizenFX.Core.Coroutine"/></returns>
+        </member>
+        <member name="M:CitizenFX.Core.Coroutine.WhenAny(CitizenFX.Core.Coroutine[])">
+            <summary>
+            Run all functions and await the first one to complete
+            </summary>
+            <remarks>Will run the coroutines directly</remarks>
+            <param name="coroutines">Coroutines to await</param>
+            <returns>Awaitable <see cref="T:CitizenFX.Core.Coroutine"/></returns>
+        </member>
+        <member name="M:CitizenFX.Core.Coroutine.WhenAny``1(CitizenFX.Core.Coroutine{``0}[])">
+            <summary>
+            Run all functions and await the first one to complete
+            </summary>
+            <remarks>Will run the coroutines directly</remarks>
+            <param name="coroutines">Coroutines to await</param>
+            <returns>Awaitable <see cref="T:CitizenFX.Core.Coroutine"/></returns>
+        </member>
+        <member name="M:CitizenFX.Core.Coroutine.WhenAll(CitizenFX.Core.Coroutine[])">
+            <summary>
+            Run all functions and await all to complete
+            </summary>
+            <param name="coroutines">Coroutines to await</param>
+            <returns>Awaitable <see cref="T:CitizenFX.Core.Coroutine"/></returns>
+        </member>
+        <member name="M:CitizenFX.Core.Coroutine.WhenAll``1(CitizenFX.Core.Coroutine{``0}[])">
+            <summary>
+            Run all functions and await all to complete
+            </summary>
+            <param name="coroutines">Coroutines to await</param>
+            <returns>Awaitable <see cref="T:CitizenFX.Core.Coroutine"/></returns>
         </member>
         <member name="P:CitizenFX.Core.Scheduler.CurrentTime">
             <summary>
@@ -163,7 +342,22 @@
             Schedule an action to be run at the first frame at or after the specified time
             </summary>
             <param name="coroutine">Action to execute</param>
+            <param name="delay">Time when it should be executed, see <see cref="P:CitizenFX.Core.Scheduler.CurrentTime"/></param>
+        </member>
+        <member name="M:CitizenFX.Core.Scheduler.Schedule(System.Action,CitizenFX.Core.TimePoint)">
+            <summary>
+            Schedule an action to be run at the first frame at or after the specified time
+            </summary>
+            <param name="coroutine">Action to execute</param>
             <param name="time">Time when it should be executed, see <see cref="P:CitizenFX.Core.Scheduler.CurrentTime"/></param>
+        </member>
+        <member name="M:CitizenFX.Core.Scheduler.Unschedule(System.Action,CitizenFX.Core.TimePoint)">
+            <summary>
+            Removes scheduled coroutine from the scheduler (except for the next frame list)
+            </summary>
+            <param name="coroutine">Coroutine to remove</param>
+            <param name="time">Max scheduled time we consider searching to</param>
+            <exception cref="T:System.ArgumentNullException"></exception>
         </member>
         <member name="M:CitizenFX.Core.Scheduler.Update">
             <summary>
@@ -175,6 +369,11 @@
             Time in milliseconds when the next action needs to be activated
             </summary>
             <returns>Delay in milliseconds or ~0ul (<see cref="F:System.UInt64.MaxValue"/>) if there's nothing to run</returns>
+        </member>
+        <member name="T:CitizenFX.Core.TimePoint">
+            <summary>
+            Absolute time for scheduling on fixed points in time
+            </summary>
         </member>
         <member name="F:CitizenFX.Core.DynFuncExceptions.None">
             <summary>
