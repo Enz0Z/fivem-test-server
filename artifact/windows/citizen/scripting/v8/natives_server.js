@@ -367,6 +367,15 @@ global.DeleteResourceKvpNoSync = function (key) {
 };
 
 /**
+ * DOES_BOAT_SINK_WHEN_WRECKED
+ * @param vehicle The target vehicle.
+ * @return Returns whether or not the boat sinks when wrecked.
+ */
+global.DoesBoatSinkWhenWrecked = function (vehicle) {
+	return _in(0x00000000, 0x43f15989, vehicle, _r);
+};
+
+/**
  * DOES_ENTITY_EXIST
  */
 global.DoesEntityExist = function (entity) {
@@ -564,6 +573,15 @@ global.GetEntityAttachedTo = function (entity) {
 };
 
 /**
+ * GET_ENTITY_COLLISION_DISABLED
+ * @param entity The target entity.
+ * @return Returns whether or not entity collisions are disabled.
+ */
+global.GetEntityCollisionDisabled = function (entity) {
+	return _in(0x00000000, 0xe8c0c629, entity, _r);
+};
+
+/**
  * Gets the current coordinates for a specified entity. This native is used server side when using OneSync.
  * See [GET_ENTITY_COORDS](#\_0x3FEF770D40960D5A) for client side.
  * @param entity The entity to get the coordinates from.
@@ -590,7 +608,11 @@ global.GetEntityHeading = function (entity) {
 };
 
 /**
- * Currently it only works with peds.
+ * Only works for vehicle and peds
+ * @param entity The entity to check the health of
+ * @return If the entity is a vehicle it will return 0-1000
+ * 		If the entity is a ped it will return 0-200
+ * 		If the entity is an object it will return 0
  */
 global.GetEntityHealth = function (entity) {
 	return _in(0x00000000, 0x8e3222b7, entity, _r, _ri);
@@ -982,6 +1004,15 @@ global.GetPedSourceOfDeath = function (ped) {
  */
 global.GetPedSpecificTaskType = function (ped, index) {
 	return _in(0x00000000, 0x7f4563d3, ped, index, _r, _ri);
+};
+
+/**
+ * GET_PED_STEALTH_MOVEMENT
+ * @param ped The target ped.
+ * @return Whether or not the ped is stealthy.
+ */
+global.GetPedStealthMovement = function (ped) {
+	return _in(0x00000000, 0x40321b83, ped, _r);
 };
 
 /**
@@ -1585,6 +1616,15 @@ global.HasEntityBeenMarkedAsNoLongerNeeded = function (vehicle) {
 };
 
 /**
+ * HAS_VEHICLE_BEEN_DAMAGED_BY_BULLETS
+ * @param vehicle The target vehicle.
+ * @return Returns whether or not the target vehicle has been damaged by bullets.
+ */
+global.HasVehicleBeenDamagedByBullets = function (vehicle) {
+	return _in(0x00000000, 0xb8af3137, vehicle, _r);
+};
+
+/**
  * HAS_VEHICLE_BEEN_OWNED_BY_PLAYER
  */
 global.HasVehicleBeenOwnedByPlayer = function (vehicle) {
@@ -1606,11 +1646,38 @@ global.IsAceAllowed = function (object) {
 };
 
 /**
+ * IS_BOAT_ANCHORED_AND_FROZEN
+ * @param vehicle The target vehicle.
+ * @return Returns whether or not the boat is anchored and frozen.
+ */
+global.IsBoatAnchoredAndFrozen = function (vehicle) {
+	return _in(0x00000000, 0xd5c39ee6, vehicle, _r);
+};
+
+/**
+ * IS_BOAT_WRECKED
+ * @param vehicle The target vehicle.
+ * @return Returns whether or not the boat is wrecked.
+ */
+global.IsBoatWrecked = function (vehicle) {
+	return _in(0x00000000, 0x9049db44, vehicle, _r);
+};
+
+/**
  * Gets whether or not this is the CitizenFX server.
  * @return A boolean value.
  */
 global.IsDuplicityVersion = function () {
 	return _in(0x00000000, 0xcf24c52e, _r);
+};
+
+/**
+ * A getter for [FREEZE_ENTITY_POSITION](#\_0x428CA6DBD1094446).
+ * @param entity The entity to check for
+ * @return Boolean stating if it is frozen or not.
+ */
+global.IsEntityPositionFrozen = function (entity) {
+	return _in(0x00000000, 0xedbe6add, entity, _r);
 };
 
 /**
@@ -1622,11 +1689,56 @@ global.IsEntityVisible = function (entity) {
 };
 
 /**
+ * IS_FLASH_LIGHT_ON
+ * @param ped The target ped.
+ * @return Whether or not the ped's flash light is on.
+ */
+global.IsFlashLightOn = function (ped) {
+	return _in(0x00000000, 0x76876154, ped, _r);
+};
+
+/**
  * This native checks if the given ped is a player.
  * @return Returns `true` if the ped is a player, `false` otherwise.
  */
 global.IsPedAPlayer = function (ped) {
 	return _in(0x00000000, 0x404794ca, ped, _r);
+};
+
+/**
+ * IS_PED_HANDCUFFED
+ * @param ped The target ped.
+ * @return Whether or not the ped is handcuffed.
+ */
+global.IsPedHandcuffed = function (ped) {
+	return _in(0x00000000, 0x25865633, ped, _r);
+};
+
+/**
+ * IS_PED_RAGDOLL
+ * @param ped The target ped.
+ * @return Whether or not the ped is ragdolling.
+ */
+global.IsPedRagdoll = function (ped) {
+	return _in(0x00000000, 0xc833bbe1, ped, _r);
+};
+
+/**
+ * IS_PED_STRAFING
+ * @param ped The target ped.
+ * @return Whether or not the ped is strafing.
+ */
+global.IsPedStrafing = function (ped) {
+	return _in(0x00000000, 0xefeed13c, ped, _r);
+};
+
+/**
+ * IS_PED_USING_ACTION_MODE
+ * @param ped The target ped.
+ * @return Whether or not the ped is using action mode.
+ */
+global.IsPedUsingActionMode = function (ped) {
+	return _in(0x00000000, 0x5ae7eda2, ped, _r);
 };
 
 /**
@@ -1707,6 +1819,15 @@ global.IsVehicleSirenOn = function (vehicle) {
  */
 global.IsVehicleTyreBurst = function (vehicle, wheelID, completely) {
 	return _in(0x00000000, 0x48c80210, vehicle, wheelID, completely, _r);
+};
+
+/**
+ * See the client-side [IS_VEHICLE_WINDOW_INTACT](https://docs.fivem.net/natives/?\_0x46E571A0E20D01F1) for a window indexes list.
+ * @param vehicle The target vehicle.
+ * @param windowIndex The window index.
+ */
+global.IsVehicleWindowIntact = function (vehicle, windowIndex) {
+	return _in(0x00000000, 0xac4ef23d, vehicle, windowIndex, _r);
 };
 
 /**
@@ -2058,6 +2179,7 @@ global.SetEntityCoords = function (entity, xPos, yPos, zPos, alive, deadFlag, ra
 /**
  * It overrides the default distance culling radius of an entity. Set to `0.0` to reset.
  * If you want to interact with an entity outside of your players' scopes set the radius to a huge number.
+ * **WARNING**: Culling natives are deprecated and have known, [unfixable issues](https://forum.cfx.re/t/issue-with-culling-radius-and-server-side-entities/4900677/4)
  * @param entity The entity handle to override the distance culling radius.
  * @param radius The new distance culling radius.
  */
@@ -2072,6 +2194,15 @@ global.SetEntityDistanceCullingRadius = function (entity, radius) {
  */
 global.SetEntityHeading = function (entity, heading) {
 	return _in(0x00000000, 0xe0ff064d, entity, _fv(heading));
+};
+
+/**
+ * It allows to flag an entity to ignore the request control filter policy.
+ * @param entity The entity handle to ignore the request control filter.
+ * @param ignore Define if the entity ignores the request control filter policy.
+ */
+global.SetEntityIgnoreRequestControlFilter = function (entity, ignore) {
+	return _in(0x00000000, 0x9f7f8d36, entity, ignore);
 };
 
 /**
@@ -2107,7 +2238,39 @@ global.SetGameType = function (gametypeName) {
 };
 
 /**
- * SET_HTTP_HANDLER
+ * Sets the handler for HTTP requests made to the executing resource.
+ * Example request URL: `http://localhost:30120/http-test/ping` - this request will be sent to the `http-test` resource with the `/ping` path.
+ * The handler function assumes the following signature:
+ * ```ts
+ * function HttpHandler(
+ * request: {
+ * address: string;
+ * headers: Record<string, string>;
+ * method: string;
+ * path: string;
+ * setDataHandler(handler: (data: string) => void): void;
+ * setDataHandler(handler: (data: ArrayBuffer) => void, binary: 'binary'): void;
+ * setCancelHandler(handler: () => void): void;
+ * },
+ * response: {
+ * writeHead(code: number, headers?: Record<string, string | string[]>): void;
+ * write(data: string): void;
+ * send(data?: string): void;
+ * }
+ * ): void;
+ * ```
+ * *   **request**: The request object.
+ * *   **address**: The IP address of the request sender.
+ * *   **path**: The path to where the request was sent.
+ * *   **headers**: The headers sent with the request.
+ * *   **method**: The request method.
+ * *   **setDataHandler**: Sets the handler for when a data body is passed with the request. Additionally you can pass the `'binary'` argument to receive a `BufferArray` in JavaScript or `System.Byte[]` in C# (has no effect in Lua).
+ * *   **setCancelHandler**: Sets the handler for when the request is cancelled.
+ * *   **response**: An object to control the response.
+ * *   **writeHead**: Sets the status code & headers of the response. Can be only called once and won't work if called after running other response functions.
+ * *   **write**: Writes to the response body without sending it. Can be called multiple times.
+ * *   **send**: Writes to the response body and then sends it along with the status code & headers, finishing the request.
+ * @param handler The handler function.
  */
 global.SetHttpHandler = function (handler) {
 	return _in(0x00000000, 0xf5c6330c, _mfr(handler));
@@ -2900,6 +3063,7 @@ global.SetPlayerControl = function (player, bHasControl, flags) {
 /**
  * Sets the culling radius for the specified player.
  * Set to `0.0` to reset.
+ * **WARNING**: Culling natives are deprecated and have known, [unfixable issues](https://forum.cfx.re/t/issue-with-culling-radius-and-server-side-entities/4900677/4)
  * @param playerSrc The player to set the culling radius for.
  * @param radius The radius.
  */

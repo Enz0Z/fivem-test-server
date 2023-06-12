@@ -7156,6 +7156,12 @@
             This approach is 10x faster than the v1 approach in combination with CString
             </summary>
         </member>
+        <member name="M:CitizenFX.Core.Native.MemoryAccess.Offset(System.IntPtr,System.Int32)">
+            <remarks>
+            Purely used to circumvent <see cref="T:System.IntPtr"/> operator+'s <see langword="internal"/> accessibility in game libraries
+            TODO: make mscorlib IntPtr operator+ public and [SecurityCritical]
+            </remarks>
+        </member>
         <member name="M:CitizenFX.Core.Native.OutString.op_Implicit(CitizenFX.Core.Native.OutString@)~System.String">
             <summary>
             A managed string that holds a conerted copy of the unmanaged ANSI string. If ptr is null, the method returns a null string.
@@ -7621,6 +7627,17 @@
             A boolean value.
             </returns>
         </member>
+        <member name="M:CitizenFX.Shared.Native.Natives.IsEntityPositionFrozen(System.Int32)">
+            <summary>
+            A getter for [FREEZE_ENTITY_POSITION](#\_0x428CA6DBD1094446).
+            </summary>
+            <param name="entity">
+            The entity to check for
+            </param>
+            <returns>
+            Boolean stating if it is frozen or not.
+            </returns>
+        </member>
         <member name="M:CitizenFX.Shared.Native.Natives.IsPrincipalAceAllowed(CitizenFX.Core.CString,CitizenFX.Core.CString)">
             <summary>
             IS_PRINCIPAL_ACE_ALLOWED
@@ -8026,6 +8043,11 @@
         <member name="F:CitizenFX.Shared.Native.Hash.IS_DUPLICITY_VERSION">
             <summary>
             Gets whether or not this is the CitizenFX server.
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Shared.Native.Hash.IS_ENTITY_POSITION_FROZEN">
+            <summary>
+            A getter for [FREEZE_ENTITY_POSITION](#\_0x428CA6DBD1094446).
             </summary>
         </member>
         <member name="F:CitizenFX.Shared.Native.Hash.IS_PRINCIPAL_ACE_ALLOWED">

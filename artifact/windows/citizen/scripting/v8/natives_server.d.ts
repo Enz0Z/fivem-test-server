@@ -274,6 +274,13 @@ declare function DeleteResourceKvp(key: string): void;
 declare function DeleteResourceKvpNoSync(key: string): void;
 
 /**
+ * DOES_BOAT_SINK_WHEN_WRECKED
+ * @param vehicle The target vehicle.
+ * @return Returns whether or not the boat sinks when wrecked.
+ */
+declare function DoesBoatSinkWhenWrecked(vehicle: number): boolean;
+
+/**
  * DOES_ENTITY_EXIST
  */
 declare function DoesEntityExist(entity: number): boolean;
@@ -425,6 +432,13 @@ declare function GetCurrentResourceName(): string;
 declare function GetEntityAttachedTo(entity: number): number;
 
 /**
+ * GET_ENTITY_COLLISION_DISABLED
+ * @param entity The target entity.
+ * @return Returns whether or not entity collisions are disabled.
+ */
+declare function GetEntityCollisionDisabled(entity: number): boolean;
+
+/**
  * Gets the current coordinates for a specified entity. This native is used server side when using OneSync.
  * See [GET_ENTITY_COORDS](#\_0x3FEF770D40960D5A) for client side.
  * @param entity The entity to get the coordinates from.
@@ -445,7 +459,11 @@ declare function GetEntityFromStateBagName(bagName: string): number;
 declare function GetEntityHeading(entity: number): number;
 
 /**
- * Currently it only works with peds.
+ * Only works for vehicle and peds
+ * @param entity The entity to check the health of
+ * @return If the entity is a vehicle it will return 0-1000
+If the entity is a ped it will return 0-200
+If the entity is an object it will return 0
  */
 declare function GetEntityHealth(entity: number): number;
 
@@ -756,6 +774,13 @@ declare function GetPedSourceOfDeath(ped: number): number;
 2060+: A value of 531 denotes no script task is assigned or an invalid input was given.
  */
 declare function GetPedSpecificTaskType(ped: number, index: number): number;
+
+/**
+ * GET_PED_STEALTH_MOVEMENT
+ * @param ped The target ped.
+ * @return Whether or not the ped is stealthy.
+ */
+declare function GetPedStealthMovement(ped: number): boolean;
 
 /**
  * Gets the current camera rotation for a specified player. This native is used server side when using OneSync.
@@ -1218,6 +1243,13 @@ declare function GiveWeaponToPed(ped: number, weaponHash: string | number, ammoC
 declare function HasEntityBeenMarkedAsNoLongerNeeded(vehicle: number): boolean;
 
 /**
+ * HAS_VEHICLE_BEEN_DAMAGED_BY_BULLETS
+ * @param vehicle The target vehicle.
+ * @return Returns whether or not the target vehicle has been damaged by bullets.
+ */
+declare function HasVehicleBeenDamagedByBullets(vehicle: number): boolean;
+
+/**
  * HAS_VEHICLE_BEEN_OWNED_BY_PLAYER
  */
 declare function HasVehicleBeenOwnedByPlayer(vehicle: number): boolean;
@@ -1233,10 +1265,31 @@ declare function InvokeFunctionReference(referenceIdentity: string, argsSerializ
 declare function IsAceAllowed(object: string): boolean;
 
 /**
+ * IS_BOAT_ANCHORED_AND_FROZEN
+ * @param vehicle The target vehicle.
+ * @return Returns whether or not the boat is anchored and frozen.
+ */
+declare function IsBoatAnchoredAndFrozen(vehicle: number): boolean;
+
+/**
+ * IS_BOAT_WRECKED
+ * @param vehicle The target vehicle.
+ * @return Returns whether or not the boat is wrecked.
+ */
+declare function IsBoatWrecked(vehicle: number): boolean;
+
+/**
  * Gets whether or not this is the CitizenFX server.
  * @return A boolean value.
  */
 declare function IsDuplicityVersion(): boolean;
+
+/**
+ * A getter for [FREEZE_ENTITY_POSITION](#\_0x428CA6DBD1094446).
+ * @param entity The entity to check for
+ * @return Boolean stating if it is frozen or not.
+ */
+declare function IsEntityPositionFrozen(entity: number): boolean;
 
 /**
  * This native checks if the given entity is visible.
@@ -1245,10 +1298,45 @@ declare function IsDuplicityVersion(): boolean;
 declare function IsEntityVisible(entity: number): boolean;
 
 /**
+ * IS_FLASH_LIGHT_ON
+ * @param ped The target ped.
+ * @return Whether or not the ped's flash light is on.
+ */
+declare function IsFlashLightOn(ped: number): boolean;
+
+/**
  * This native checks if the given ped is a player.
  * @return Returns `true` if the ped is a player, `false` otherwise.
  */
 declare function IsPedAPlayer(ped: number): boolean;
+
+/**
+ * IS_PED_HANDCUFFED
+ * @param ped The target ped.
+ * @return Whether or not the ped is handcuffed.
+ */
+declare function IsPedHandcuffed(ped: number): boolean;
+
+/**
+ * IS_PED_RAGDOLL
+ * @param ped The target ped.
+ * @return Whether or not the ped is ragdolling.
+ */
+declare function IsPedRagdoll(ped: number): boolean;
+
+/**
+ * IS_PED_STRAFING
+ * @param ped The target ped.
+ * @return Whether or not the ped is strafing.
+ */
+declare function IsPedStrafing(ped: number): boolean;
+
+/**
+ * IS_PED_USING_ACTION_MODE
+ * @param ped The target ped.
+ * @return Whether or not the ped is using action mode.
+ */
+declare function IsPedUsingActionMode(ped: number): boolean;
 
 /**
  * IS_PLAYER_ACE_ALLOWED
@@ -1309,6 +1397,13 @@ declare function IsVehicleSirenOn(vehicle: number): boolean;
  * IS_VEHICLE_TYRE_BURST
  */
 declare function IsVehicleTyreBurst(vehicle: number, wheelID: number, completely: boolean): boolean;
+
+/**
+ * See the client-side [IS_VEHICLE_WINDOW_INTACT](https://docs.fivem.net/natives/?\_0x46E571A0E20D01F1) for a window indexes list.
+ * @param vehicle The target vehicle.
+ * @param windowIndex The window index.
+ */
+declare function IsVehicleWindowIntact(vehicle: number, windowIndex: number): boolean;
 
 /**
  * Requests the commerce data for the specified player, including the owned SKUs. Use `IS_PLAYER_COMMERCE_INFO_LOADED` to check if it has loaded.
@@ -1585,6 +1680,7 @@ declare function SetEntityCoords(entity: number, xPos: number, yPos: number, zPo
 /**
  * It overrides the default distance culling radius of an entity. Set to `0.0` to reset.
  * If you want to interact with an entity outside of your players' scopes set the radius to a huge number.
+ * **WARNING**: Culling natives are deprecated and have known, [unfixable issues](https://forum.cfx.re/t/issue-with-culling-radius-and-server-side-entities/4900677/4)
  * @param entity The entity handle to override the distance culling radius.
  * @param radius The new distance culling radius.
  */
@@ -1596,6 +1692,13 @@ declare function SetEntityDistanceCullingRadius(entity: number, radius: number):
  * @param heading The heading in degrees.
  */
 declare function SetEntityHeading(entity: number, heading: number): void;
+
+/**
+ * It allows to flag an entity to ignore the request control filter policy.
+ * @param entity The entity handle to ignore the request control filter.
+ * @param ignore Define if the entity ignores the request control filter policy.
+ */
+declare function SetEntityIgnoreRequestControlFilter(entity: number, ignore: boolean): void;
 
 /**
  * SET_ENTITY_ROTATION
@@ -1622,7 +1725,39 @@ declare function SetEntityVelocity(entity: number, x: number, y: number, z: numb
 declare function SetGameType(gametypeName: string): void;
 
 /**
- * SET_HTTP_HANDLER
+ * Sets the handler for HTTP requests made to the executing resource.
+ * Example request URL: `http://localhost:30120/http-test/ping` - this request will be sent to the `http-test` resource with the `/ping` path.
+ * The handler function assumes the following signature:
+ * ```ts
+ * function HttpHandler(
+ * request: {
+ * address: string;
+ * headers: Record<string, string>;
+ * method: string;
+ * path: string;
+ * setDataHandler(handler: (data: string) => void): void;
+ * setDataHandler(handler: (data: ArrayBuffer) => void, binary: 'binary'): void;
+ * setCancelHandler(handler: () => void): void;
+ * },
+ * response: {
+ * writeHead(code: number, headers?: Record<string, string | string[]>): void;
+ * write(data: string): void;
+ * send(data?: string): void;
+ * }
+ * ): void;
+ * ```
+ * *   **request**: The request object.
+ * *   **address**: The IP address of the request sender.
+ * *   **path**: The path to where the request was sent.
+ * *   **headers**: The headers sent with the request.
+ * *   **method**: The request method.
+ * *   **setDataHandler**: Sets the handler for when a data body is passed with the request. Additionally you can pass the `'binary'` argument to receive a `BufferArray` in JavaScript or `System.Byte[]` in C# (has no effect in Lua).
+ * *   **setCancelHandler**: Sets the handler for when the request is cancelled.
+ * *   **response**: An object to control the response.
+ * *   **writeHead**: Sets the status code & headers of the response. Can be only called once and won't work if called after running other response functions.
+ * *   **write**: Writes to the response body without sending it. Can be called multiple times.
+ * *   **send**: Writes to the response body and then sends it along with the status code & headers, finishing the request.
+ * @param handler The handler function.
  */
 declare function SetHttpHandler(handler: Function): void;
 
@@ -2371,6 +2506,7 @@ declare function SetPlayerControl(player: string, bHasControl: boolean, flags: n
 /**
  * Sets the culling radius for the specified player.
  * Set to `0.0` to reset.
+ * **WARNING**: Culling natives are deprecated and have known, [unfixable issues](https://forum.cfx.re/t/issue-with-culling-radius-and-server-side-entities/4900677/4)
  * @param playerSrc The player to set the culling radius for.
  * @param radius The radius.
  */

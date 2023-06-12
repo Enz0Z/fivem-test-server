@@ -461,6 +461,17 @@
             The key to delete
             </param>
         </member>
+        <member name="M:CitizenFX.Server.Native.Natives.DoesBoatSinkWhenWrecked(System.Int32)">
+            <summary>
+            DOES_BOAT_SINK_WHEN_WRECKED
+            </summary>
+            <param name="vehicle">
+            The target vehicle.
+            </param>
+            <returns>
+            Returns whether or not the boat sinks when wrecked.
+            </returns>
+        </member>
         <member name="M:CitizenFX.Server.Native.Natives.DoesEntityExist(System.Int32)">
             <summary>
             DOES_ENTITY_EXIST
@@ -666,6 +677,17 @@
             The attached entity handle. 0 returned if the entity is not attached.
             </returns>
         </member>
+        <member name="M:CitizenFX.Server.Native.Natives.GetEntityCollisionDisabled(System.Int32)">
+            <summary>
+            GET_ENTITY_COLLISION_DISABLED
+            </summary>
+            <param name="entity">
+            The target entity.
+            </param>
+            <returns>
+            Returns whether or not entity collisions are disabled.
+            </returns>
+        </member>
         <member name="M:CitizenFX.Server.Native.Natives.GetEntityCoords(System.Int32)">
             <summary>
             Gets the current coordinates for a specified entity. This native is used server side when using OneSync.
@@ -697,8 +719,16 @@
         </member>
         <member name="M:CitizenFX.Server.Native.Natives.GetEntityHealth(System.Int32)">
             <summary>
-            Currently it only works with peds.
+            Only works for vehicle and peds
             </summary>
+            <param name="entity">
+            The entity to check the health of
+            </param>
+            <returns>
+            If the entity is a vehicle it will return 0-1000
+            If the entity is a ped it will return 0-200
+            If the entity is an object it will return 0
+            </returns>
         </member>
         <member name="M:CitizenFX.Server.Native.Natives.GetEntityMaxHealth(System.Int32)">
             <summary>
@@ -1095,6 +1125,17 @@
             The type of the specific task.
             1604: A value of 530 denotes no script task is assigned or an invalid input was given.
             2060+: A value of 531 denotes no script task is assigned or an invalid input was given.
+            </returns>
+        </member>
+        <member name="M:CitizenFX.Server.Native.Natives.GetPedStealthMovement(System.Int32)">
+            <summary>
+            GET_PED_STEALTH_MOVEMENT
+            </summary>
+            <param name="ped">
+            The target ped.
+            </param>
+            <returns>
+            Whether or not the ped is stealthy.
             </returns>
         </member>
         <member name="M:CitizenFX.Server.Native.Natives.GetPlayerCameraRotation(CitizenFX.Core.CString)">
@@ -1704,6 +1745,17 @@
             HAS_ENTITY_BEEN_MARKED_AS_NO_LONGER_NEEDED
             </summary>
         </member>
+        <member name="M:CitizenFX.Server.Native.Natives.HasVehicleBeenDamagedByBullets(System.Int32)">
+            <summary>
+            HAS_VEHICLE_BEEN_DAMAGED_BY_BULLETS
+            </summary>
+            <param name="vehicle">
+            The target vehicle.
+            </param>
+            <returns>
+            Returns whether or not the target vehicle has been damaged by bullets.
+            </returns>
+        </member>
         <member name="M:CitizenFX.Server.Native.Natives.HasVehicleBeenOwnedByPlayer(System.Int32)">
             <summary>
             HAS_VEHICLE_BEEN_OWNED_BY_PLAYER
@@ -1719,12 +1771,45 @@
             IS_ACE_ALLOWED
             </summary>
         </member>
+        <member name="M:CitizenFX.Server.Native.Natives.IsBoatAnchoredAndFrozen(System.Int32)">
+            <summary>
+            IS_BOAT_ANCHORED_AND_FROZEN
+            </summary>
+            <param name="vehicle">
+            The target vehicle.
+            </param>
+            <returns>
+            Returns whether or not the boat is anchored and frozen.
+            </returns>
+        </member>
+        <member name="M:CitizenFX.Server.Native.Natives.IsBoatWrecked(System.Int32)">
+            <summary>
+            IS_BOAT_WRECKED
+            </summary>
+            <param name="vehicle">
+            The target vehicle.
+            </param>
+            <returns>
+            Returns whether or not the boat is wrecked.
+            </returns>
+        </member>
         <member name="M:CitizenFX.Server.Native.Natives.IsDuplicityVersion">
             <summary>
             Gets whether or not this is the CitizenFX server.
             </summary>
             <returns>
             A boolean value.
+            </returns>
+        </member>
+        <member name="M:CitizenFX.Server.Native.Natives.IsEntityPositionFrozen(System.Int32)">
+            <summary>
+            A getter for [FREEZE_ENTITY_POSITION](#\_0x428CA6DBD1094446).
+            </summary>
+            <param name="entity">
+            The entity to check for
+            </param>
+            <returns>
+            Boolean stating if it is frozen or not.
             </returns>
         </member>
         <member name="M:CitizenFX.Server.Native.Natives.IsEntityVisible(System.Int32)">
@@ -1735,12 +1820,67 @@
             Returns `true` if the entity is visible, `false` otherwise.
             </returns>
         </member>
+        <member name="M:CitizenFX.Server.Native.Natives.IsFlashLightOn(System.Int32)">
+            <summary>
+            IS_FLASH_LIGHT_ON
+            </summary>
+            <param name="ped">
+            The target ped.
+            </param>
+            <returns>
+            Whether or not the ped's flash light is on.
+            </returns>
+        </member>
         <member name="M:CitizenFX.Server.Native.Natives.IsPedAPlayer(System.Int32)">
             <summary>
             This native checks if the given ped is a player.
             </summary>
             <returns>
             Returns `true` if the ped is a player, `false` otherwise.
+            </returns>
+        </member>
+        <member name="M:CitizenFX.Server.Native.Natives.IsPedHandcuffed(System.Int32)">
+            <summary>
+            IS_PED_HANDCUFFED
+            </summary>
+            <param name="ped">
+            The target ped.
+            </param>
+            <returns>
+            Whether or not the ped is handcuffed.
+            </returns>
+        </member>
+        <member name="M:CitizenFX.Server.Native.Natives.IsPedRagdoll(System.Int32)">
+            <summary>
+            IS_PED_RAGDOLL
+            </summary>
+            <param name="ped">
+            The target ped.
+            </param>
+            <returns>
+            Whether or not the ped is ragdolling.
+            </returns>
+        </member>
+        <member name="M:CitizenFX.Server.Native.Natives.IsPedStrafing(System.Int32)">
+            <summary>
+            IS_PED_STRAFING
+            </summary>
+            <param name="ped">
+            The target ped.
+            </param>
+            <returns>
+            Whether or not the ped is strafing.
+            </returns>
+        </member>
+        <member name="M:CitizenFX.Server.Native.Natives.IsPedUsingActionMode(System.Int32)">
+            <summary>
+            IS_PED_USING_ACTION_MODE
+            </summary>
+            <param name="ped">
+            The target ped.
+            </param>
+            <returns>
+            Whether or not the ped is using action mode.
             </returns>
         </member>
         <member name="M:CitizenFX.Server.Native.Natives.IsPlayerAceAllowed(CitizenFX.Core.CString,CitizenFX.Core.CString)">
@@ -1819,6 +1959,17 @@
             <summary>
             IS_VEHICLE_TYRE_BURST
             </summary>
+        </member>
+        <member name="M:CitizenFX.Server.Native.Natives.IsVehicleWindowIntact(System.Int32,System.Int32)">
+            <summary>
+            See the client-side [IS_VEHICLE_WINDOW_INTACT](https://docs.fivem.net/natives/?\_0x46E571A0E20D01F1) for a window indexes list.
+            </summary>
+            <param name="vehicle">
+            The target vehicle.
+            </param>
+            <param name="windowIndex">
+            The window index.
+            </param>
         </member>
         <member name="M:CitizenFX.Server.Native.Natives.LoadPlayerCommerceData(CitizenFX.Core.CString)">
             <summary>
@@ -2212,6 +2363,8 @@
             <summary>
             It overrides the default distance culling radius of an entity. Set to `0.0` to reset.
             If you want to interact with an entity outside of your players' scopes set the radius to a huge number.
+            
+            **WARNING**: Culling natives are deprecated and have known, [unfixable issues](https://forum.cfx.re/t/issue-with-culling-radius-and-server-side-entities/4900677/4)
             </summary>
             <param name="entity">
             The entity handle to override the distance culling radius.
@@ -2229,6 +2382,17 @@
             </param>
             <param name="heading">
             The heading in degrees.
+            </param>
+        </member>
+        <member name="M:CitizenFX.Server.Native.Natives.SetEntityIgnoreRequestControlFilter(System.Int32,System.Boolean)">
+            <summary>
+            It allows to flag an entity to ignore the request control filter policy.
+            </summary>
+            <param name="entity">
+            The entity handle to ignore the request control filter.
+            </param>
+            <param name="ignore">
+            Define if the entity ignores the request control filter policy.
             </param>
         </member>
         <member name="M:CitizenFX.Server.Native.Natives.SetEntityRotation(System.Int32,System.Single,System.Single,System.Single,System.Int32,System.Boolean)">
@@ -2264,8 +2428,46 @@
         </member>
         <member name="M:CitizenFX.Server.Native.Natives.SetHttpHandler(System.Delegate)">
             <summary>
-            SET_HTTP_HANDLER
+            Sets the handler for HTTP requests made to the executing resource.
+            
+            Example request URL: `http://localhost:30120/http-test/ping` - this request will be sent to the `http-test` resource with the `/ping` path.
+            
+            The handler function assumes the following signature:
+            
+            ```ts
+            function HttpHandler(
+              request: {
+                address: string;
+                headers: Record&lt;string, string&gt;;
+                method: string;
+                path: string;
+                setDataHandler(handler: (data: string) =&gt; void): void;
+                setDataHandler(handler: (data: ArrayBuffer) =&gt; void, binary: 'binary'): void;
+                setCancelHandler(handler: () =&gt; void): void;
+              },
+              response: {
+                writeHead(code: number, headers?: Record&lt;string, string | string[]&gt;): void;
+                write(data: string): void;
+                send(data?: string): void;
+              }
+            ): void;
+            ```
+            
+            *   **request**: The request object.
+                *   **address**: The IP address of the request sender.
+                *   **path**: The path to where the request was sent.
+                *   **headers**: The headers sent with the request.
+                *   **method**: The request method.
+                *   **setDataHandler**: Sets the handler for when a data body is passed with the request. Additionally you can pass the `'binary'` argument to receive a `BufferArray` in JavaScript or `System.Byte[]` in C# (has no effect in Lua).
+                *   **setCancelHandler**: Sets the handler for when the request is cancelled.
+            *   **response**: An object to control the response.
+                *   **writeHead**: Sets the status code &amp; headers of the response. Can be only called once and won't work if called after running other response functions.
+                *   **write**: Writes to the response body without sending it. Can be called multiple times.
+                *   **send**: Writes to the response body and then sends it along with the status code &amp; headers, finishing the request.
             </summary>
+            <param name="handler">
+            The handler function.
+            </param>
         </member>
         <member name="M:CitizenFX.Server.Native.Natives.SetMapName(CitizenFX.Core.CString)">
             <summary>
@@ -3111,6 +3313,8 @@
             <summary>
             Sets the culling radius for the specified player.
             Set to `0.0` to reset.
+            
+            **WARNING**: Culling natives are deprecated and have known, [unfixable issues](https://forum.cfx.re/t/issue-with-culling-radius-and-server-side-entities/4900677/4)
             </summary>
             <param name="playerSrc">
             The player to set the culling radius for.
@@ -3834,6 +4038,11 @@
             Nonsynchronous [DELETE_RESOURCE_KVP](#\_0x7389B5DF) operation; see [FLUSH_RESOURCE_KVP](#\_0x5240DA5A).
             </summary>
         </member>
+        <member name="F:CitizenFX.Server.Native.Hash.DOES_BOAT_SINK_WHEN_WRECKED">
+            <summary>
+            DOES_BOAT_SINK_WHEN_WRECKED
+            </summary>
+        </member>
         <member name="F:CitizenFX.Server.Native.Hash.DOES_ENTITY_EXIST">
             <summary>
             DOES_ENTITY_EXIST
@@ -3961,6 +4170,11 @@
             Gets the entity that this entity is attached to.
             </summary>
         </member>
+        <member name="F:CitizenFX.Server.Native.Hash.GET_ENTITY_COLLISION_DISABLED">
+            <summary>
+            GET_ENTITY_COLLISION_DISABLED
+            </summary>
+        </member>
         <member name="F:CitizenFX.Server.Native.Hash.GET_ENTITY_COORDS">
             <summary>
             Gets the current coordinates for a specified entity. This native is used server side when using OneSync.
@@ -3980,7 +4194,7 @@
         </member>
         <member name="F:CitizenFX.Server.Native.Hash.GET_ENTITY_HEALTH">
             <summary>
-            Currently it only works with peds.
+            Only works for vehicle and peds
             </summary>
         </member>
         <member name="F:CitizenFX.Server.Native.Hash.GET_ENTITY_MAX_HEALTH">
@@ -4247,6 +4461,11 @@
             <summary>
             Gets the type of a ped's specific task given an index of the CPedTaskSpecificDataNode nodes.
             A ped will typically have a task at index 0, if a ped has multiple tasks at once they will be in the order 0, 1, 2, etc.
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Server.Native.Hash.GET_PED_STEALTH_MOVEMENT">
+            <summary>
+            GET_PED_STEALTH_MOVEMENT
             </summary>
         </member>
         <member name="F:CitizenFX.Server.Native.Hash.GET_PLAYER_CAMERA_ROTATION">
@@ -4641,6 +4860,11 @@
             HAS_ENTITY_BEEN_MARKED_AS_NO_LONGER_NEEDED
             </summary>
         </member>
+        <member name="F:CitizenFX.Server.Native.Hash.HAS_VEHICLE_BEEN_DAMAGED_BY_BULLETS">
+            <summary>
+            HAS_VEHICLE_BEEN_DAMAGED_BY_BULLETS
+            </summary>
+        </member>
         <member name="F:CitizenFX.Server.Native.Hash.HAS_VEHICLE_BEEN_OWNED_BY_PLAYER">
             <summary>
             HAS_VEHICLE_BEEN_OWNED_BY_PLAYER
@@ -4656,9 +4880,24 @@
             IS_ACE_ALLOWED
             </summary>
         </member>
+        <member name="F:CitizenFX.Server.Native.Hash.IS_BOAT_ANCHORED_AND_FROZEN">
+            <summary>
+            IS_BOAT_ANCHORED_AND_FROZEN
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Server.Native.Hash.IS_BOAT_WRECKED">
+            <summary>
+            IS_BOAT_WRECKED
+            </summary>
+        </member>
         <member name="F:CitizenFX.Server.Native.Hash.IS_DUPLICITY_VERSION">
             <summary>
             Gets whether or not this is the CitizenFX server.
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Server.Native.Hash.IS_ENTITY_POSITION_FROZEN">
+            <summary>
+            A getter for [FREEZE_ENTITY_POSITION](#\_0x428CA6DBD1094446).
             </summary>
         </member>
         <member name="F:CitizenFX.Server.Native.Hash.IS_ENTITY_VISIBLE">
@@ -4666,9 +4905,34 @@
             This native checks if the given entity is visible.
             </summary>
         </member>
+        <member name="F:CitizenFX.Server.Native.Hash.IS_FLASH_LIGHT_ON">
+            <summary>
+            IS_FLASH_LIGHT_ON
+            </summary>
+        </member>
         <member name="F:CitizenFX.Server.Native.Hash.IS_PED_A_PLAYER">
             <summary>
             This native checks if the given ped is a player.
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Server.Native.Hash.IS_PED_HANDCUFFED">
+            <summary>
+            IS_PED_HANDCUFFED
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Server.Native.Hash.IS_PED_RAGDOLL">
+            <summary>
+            IS_PED_RAGDOLL
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Server.Native.Hash.IS_PED_STRAFING">
+            <summary>
+            IS_PED_STRAFING
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Server.Native.Hash.IS_PED_USING_ACTION_MODE">
+            <summary>
+            IS_PED_USING_ACTION_MODE
             </summary>
         </member>
         <member name="F:CitizenFX.Server.Native.Hash.IS_PLAYER_ACE_ALLOWED">
@@ -4722,6 +4986,11 @@
         <member name="F:CitizenFX.Server.Native.Hash.IS_VEHICLE_TYRE_BURST">
             <summary>
             IS_VEHICLE_TYRE_BURST
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Server.Native.Hash.IS_VEHICLE_WINDOW_INTACT">
+            <summary>
+            See the client-side [IS_VEHICLE_WINDOW_INTACT](https://docs.fivem.net/natives/?\_0x46E571A0E20D01F1) for a window indexes list.
             </summary>
         </member>
         <member name="F:CitizenFX.Server.Native.Hash.LOAD_PLAYER_COMMERCE_DATA">
@@ -4957,11 +5226,18 @@
             <summary>
             It overrides the default distance culling radius of an entity. Set to `0.0` to reset.
             If you want to interact with an entity outside of your players' scopes set the radius to a huge number.
+            
+            **WARNING**: Culling natives are deprecated and have known, [unfixable issues](https://forum.cfx.re/t/issue-with-culling-radius-and-server-side-entities/4900677/4)
             </summary>
         </member>
         <member name="F:CitizenFX.Server.Native.Hash.SET_ENTITY_HEADING">
             <summary>
             Set the heading of an entity in degrees also known as "Yaw".
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Server.Native.Hash.SET_ENTITY_IGNORE_REQUEST_CONTROL_FILTER">
+            <summary>
+            It allows to flag an entity to ignore the request control filter policy.
             </summary>
         </member>
         <member name="F:CitizenFX.Server.Native.Hash.SET_ENTITY_ROTATION">
@@ -4988,7 +5264,42 @@
         </member>
         <member name="F:CitizenFX.Server.Native.Hash.SET_HTTP_HANDLER">
             <summary>
-            SET_HTTP_HANDLER
+            Sets the handler for HTTP requests made to the executing resource.
+            
+            Example request URL: `http://localhost:30120/http-test/ping` - this request will be sent to the `http-test` resource with the `/ping` path.
+            
+            The handler function assumes the following signature:
+            
+            ```ts
+            function HttpHandler(
+              request: {
+                address: string;
+                headers: Record&lt;string, string&gt;;
+                method: string;
+                path: string;
+                setDataHandler(handler: (data: string) =&gt; void): void;
+                setDataHandler(handler: (data: ArrayBuffer) =&gt; void, binary: 'binary'): void;
+                setCancelHandler(handler: () =&gt; void): void;
+              },
+              response: {
+                writeHead(code: number, headers?: Record&lt;string, string | string[]&gt;): void;
+                write(data: string): void;
+                send(data?: string): void;
+              }
+            ): void;
+            ```
+            
+            *   **request**: The request object.
+                *   **address**: The IP address of the request sender.
+                *   **path**: The path to where the request was sent.
+                *   **headers**: The headers sent with the request.
+                *   **method**: The request method.
+                *   **setDataHandler**: Sets the handler for when a data body is passed with the request. Additionally you can pass the `'binary'` argument to receive a `BufferArray` in JavaScript or `System.Byte[]` in C# (has no effect in Lua).
+                *   **setCancelHandler**: Sets the handler for when the request is cancelled.
+            *   **response**: An object to control the response.
+                *   **writeHead**: Sets the status code &amp; headers of the response. Can be only called once and won't work if called after running other response functions.
+                *   **write**: Writes to the response body without sending it. Can be called multiple times.
+                *   **send**: Writes to the response body and then sends it along with the status code &amp; headers, finishing the request.
             </summary>
         </member>
         <member name="F:CitizenFX.Server.Native.Hash.SET_MAP_NAME">
@@ -5730,6 +6041,8 @@
             <summary>
             Sets the culling radius for the specified player.
             Set to `0.0` to reset.
+            
+            **WARNING**: Culling natives are deprecated and have known, [unfixable issues](https://forum.cfx.re/t/issue-with-culling-radius-and-server-side-entities/4900677/4)
             </summary>
         </member>
         <member name="F:CitizenFX.Server.Native.Hash.SET_PLAYER_INVINCIBLE">
