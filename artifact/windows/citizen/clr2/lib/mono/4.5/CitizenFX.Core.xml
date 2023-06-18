@@ -4579,12 +4579,12 @@
         </member>
         <member name="F:CitizenFX.Core.Vector3.Up">
             <summary>
-            A unit <see cref="T:CitizenFX.Core.Vector3"/> designating up (0, 1, 0).
+            A unit <see cref="T:CitizenFX.Core.Vector3"/> designating up (0, 0, 1).
             </summary>
         </member>
         <member name="F:CitizenFX.Core.Vector3.Down">
             <summary>
-            A unit <see cref="T:CitizenFX.Core.Vector3"/> designating down (0, -1, 0).
+            A unit <see cref="T:CitizenFX.Core.Vector3"/> designating down (0, 0, -1).
             </summary>
         </member>
         <member name="F:CitizenFX.Core.Vector3.Left">
@@ -4599,23 +4599,29 @@
         </member>
         <member name="F:CitizenFX.Core.Vector3.ForwardRH">
             <summary>
-            A unit <see cref="T:CitizenFX.Core.Vector3"/> designating forward in a right-handed coordinate system (0, 0, -1).
+            A unit <see cref="T:CitizenFX.Core.Vector3"/> designating forward in a right-handed coordinate system (0, 1, 0).
             </summary>
         </member>
         <member name="F:CitizenFX.Core.Vector3.ForwardLH">
             <summary>
-            A unit <see cref="T:CitizenFX.Core.Vector3"/> designating forward in a left-handed coordinate system (0, 0, 1).
+            A unit <see cref="T:CitizenFX.Core.Vector3"/> designating forward in a left-handed coordinate system (0, -1, 0).
             </summary>
         </member>
         <member name="F:CitizenFX.Core.Vector3.BackwardRH">
             <summary>
-            A unit <see cref="T:CitizenFX.Core.Vector3"/> designating backward in a right-handed coordinate system (0, 0, 1).
+            A unit <see cref="T:CitizenFX.Core.Vector3"/> designating backward in a right-handed coordinate system (0, -1, 0).
             </summary>
         </member>
         <member name="F:CitizenFX.Core.Vector3.BackwardLH">
             <summary>
-            A unit <see cref="T:CitizenFX.Core.Vector3"/> designating backward in a left-handed coordinate system (0, 0, -1).
+            A unit <see cref="T:CitizenFX.Core.Vector3"/> designating backward in a left-handed coordinate system (0, 1, 0).
             </summary>
+        </member>
+        <member name="F:CitizenFX.Core.Vector3.Forward">
+            <inheritdoc cref="F:CitizenFX.Core.Vector3.ForwardRH"/>
+        </member>
+        <member name="F:CitizenFX.Core.Vector3.Backward">
+            <inheritdoc cref="F:CitizenFX.Core.Vector3.BackwardRH"/>
         </member>
         <member name="F:CitizenFX.Core.Vector3.X">
             <summary>

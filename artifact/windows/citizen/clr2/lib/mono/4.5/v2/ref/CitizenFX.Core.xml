@@ -36,6 +36,21 @@
             </summary>
             <remarks>Only works on <see cref="T:CitizenFX.Core.BaseScript"/> inherited class methods</remarks>
         </member>
+        <member name="T:CitizenFX.Core.KeyMapAttribute">
+            <summary>Does nothing on server side</summary>
+        </member>
+        <member name="M:CitizenFX.Core.KeyMapAttribute.#ctor(System.String,System.String,System.String,System.String)">
+            <inheritdoc cref="T:CitizenFX.Core.KeyMapAttribute"/>
+            <param name="command">The command to execute, and the identifier of the binding</param>
+            <param name="description">A description for in the settings menu</param>
+            <param name="inputMapper">The mapper ID to use for the default binding, e.g. keyboard</param>
+            <param name="inputParameter">The IO parameter ID to use for the default binding, e.g. f3</param>
+        </member>
+        <member name="M:CitizenFX.Core.KeyMapAttribute.#ctor(System.String)">
+            <inheritdoc cref="T:CitizenFX.Core.KeyMapAttribute"/>
+            <remarks>Does not register the key mapping, so it works the same as <see cref="P:CitizenFX.Core.KeyMapAttribute.Command"/></remarks>
+            <param name="commandOnly">The command to execute, and the identifier of the binding</param>
+        </member>
         <member name="T:CitizenFX.Core.EventHandlerAttribute">
             <summary>
             Register this method to listen for the given <see cref="P:CitizenFX.Core.EventHandlerAttribute.Event"/> when this <see cref="T:CitizenFX.Core.BaseScript"/> is loaded
@@ -131,6 +146,14 @@
             Deactivates all ticks, events, and exports.
             </summary>
             <param name="script">script to deactivate</param>
+        </member>
+        <member name="T:CitizenFX.Core.ClientScript">
+            <inheritdoc cref="T:CitizenFX.Core.BaseScript"/>
+            <remarks>Will and can only be activated in client environments</remarks>
+        </member>
+        <member name="T:CitizenFX.Core.ServerScript">
+            <inheritdoc cref="T:CitizenFX.Core.BaseScript"/>
+            <remarks>Will and can only be activated in server environments</remarks>
         </member>
         <member name="M:CitizenFX.Core.CancelerToken.CancelOrThrowIfRequested">
             <summary>
@@ -444,142 +467,6 @@
             <param name="dynFunc">this reference</param>
             <returns>The wrapped method or <see cref="P:System.Delegate.Method"/> if it wasn't wrapped</returns>
         </member>
-        <member name="T:CitizenFX.Core.CString">
-            <summary>
-            A null-terminated byte string. Dedicated to interop with native code, equivalent to a (non-wide) c-string.
-            </summary>
-            <remarks>In general don't use this type where you would normally use <see cref="T:System.String"/> in your .NET code, it needs to do conversion between UTF16 and UTF8 and is therefore slower.
-            This type and its conversions are more performant in regards to interop with native code (C++), and other runtimes, for these cases you may want to use this.</remarks>
-        </member>
-        <member name="M:CitizenFX.Core.CString.Create(System.Byte*)">
-            <summary>
-            CString with a copy of str.
-            </summary>
-            <returns>a null terminated CString or null if parameter str == null</returns>
-        </member>
-        <member name="M:CitizenFX.Core.CString.Create(System.Byte*,System.UInt32)">
-            <summary>
-            CString with a copy of str, limited to given length.
-            </summary>
-            <returns>a null terminated CString or null if parameter str == null</returns>
-        </member>
-        <member name="P:CitizenFX.Core.CString.Length">
-            <summary>
-            Get the length of this string, excluding the null terminator
-            </summary>
-        </member>
-        <member name="P:CitizenFX.Core.CString.LongLength">
-            <summary>
-            Get the length in long form of this string, excluding the null terminator
-            </summary>
-        </member>
-        <member name="P:CitizenFX.Core.CString.Item(System.Int32)">
-            <summary>
-            Get the byte at the provided index
-            </summary>
-            <param name="index">the position we'd like to retrieve the byte from</param>
-            <returns>byte representing an ASCII or UTF8 (biggest bit set) character</returns>
-        </member>
-        <member name="P:CitizenFX.Core.CString.Item(System.UInt32)">
-            <summary>
-            Get the byte at the provided index
-            </summary>
-            <param name="index">the position we'd like to retrieve the byte from</param>
-            <returns>byte representing an ASCII or UTF8 (biggest bit set) character</returns>
-        </member>
-        <member name="M:CitizenFX.Core.CString.SubString(System.Int32)">
-            <summary>
-            Retrieves a substring from this instance. The substring starts at a specified character position.
-            </summary>
-            <param name="startIndex">start character index</param>
-            <returns>CString with the requested part of characters of this string</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex"/> &lt; 0 or &gt;= Length</exception>
-        </member>
-        <member name="M:CitizenFX.Core.CString.SubString(System.UInt32)">
-            <summary>
-            Retrieves a substring from this instance. The substring starts at a specified character position.
-            Unsigned version, requires less checks for the same result.
-            </summary>
-            <param name="startIndex">start character index</param>
-            <returns>CString with the requested part of characters of this string</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex"/> &lt; 0 or &gt;= Length</exception>
-        </member>
-        <member name="M:CitizenFX.Core.CString.Substring(System.Int32,System.Int32)">
-            <summary>
-            Retrieves a substring from this instance. The substring starts at a specified character position and has a specified length.
-            </summary>
-            <param name="startIndex">start character index</param>
-            <param name="length">amount of characters we want in total, can be less. -1 will retrieve all</param>
-            <returns>CString with the requested part of characters of this string</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex"/> &gt;= Length</exception>
-        </member>
-        <member name="M:CitizenFX.Core.CString.Substring(System.UInt32,System.UInt32)">
-            <summary>
-            Retrieves a substring from this instance. The substring starts at a specified character position and has a specified length.
-            Unsigned version, requires less checks for the same result.
-            </summary>
-            <param name="startIndex">start character index</param>
-            <param name="length">amount of characters we want in total, can be less.</param>
-            <returns>CString with the requested part of characters of this string</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex"/> &lt; 0 or &gt;= Length</exception>
-        </member>
-        <member name="M:CitizenFX.Core.CString.ToString">
-            <summary>
-            Converts to a UTF16 string
-            </summary>
-            <returns>UTF16 string</returns>
-        </member>
-        <member name="M:CitizenFX.Core.CString.ToCString(System.String)">
-            <summary>
-            Converts a UTF16 into a UTF8/ASCII string
-            </summary>
-            <param name="str">UTF16 string to convert</param>
-            <returns>UTF8 string</returns>
-        </member>
-        <member name="M:CitizenFX.Core.CString.op_Implicit(System.String)~CitizenFX.Core.CString">
-            <summary>
-            Convert a C# string into a null-terminated c-string
-            </summary>
-            <param name="str">UTF16 encoded string (default C#)</param>
-        </member>
-        <member name="M:CitizenFX.Core.CString.op_Explicit(CitizenFX.Core.CString)~System.String">
-            <summary>
-            Convert a null-terminated c-string into a C# string
-            </summary>
-            <param name="str">null-terminated c-string</param>
-        </member>
-        <member name="M:CitizenFX.Core.CString.CompareASCII(System.String)">
-            <summary>
-            Compares a CString to a C# string only considering ASCII characters (7 bits)
-            any non 7 bit characters on either side will return false
-            </summary>
-            <param name="str">string to compare</param>
-            <returns>true if both sides have equivalent characters in the ASCII character space</returns>
-        </member>
-        <member name="M:CitizenFX.Core.CString.CompareASCII(CitizenFX.Core.CString,System.String)">
-            <summary>
-            Compares a CString to a C# string only considering ASCII characters (7 bits)
-            any non 7 bit characters on either side will return false
-            </summary>
-            <param name="left">CString to compare</param>
-            <param name="right">string to compare</param>
-            <returns>true if both sides have equivalent characters in the ASCII character space</returns>
-        </member>
-        <member name="M:CitizenFX.Core.CString.ToASCII(System.String,System.Byte)">
-            <summary>
-            Converts a C# string to a CString only accepting ASCII characters (7 bits)
-            any non 7 bit character will be become the given <paramref name="invalid"/> value
-            </summary>
-            <param name="str">string to convert</param>
-            <param name="invalid">character to insert in case of a non-7 bit character</param>
-            <returns>CString with only ASCII (7 bit) characters, or null if <paramref name="str"/> == null</returns>
-        </member>
-        <member name="M:CitizenFX.Core.CString.GetPinnableReference">
-            <summary>
-            allows us to directly use `fixed(byte* ptr = cstring)`
-            </summary>
-            <returns>reference to first byte</returns>
-        </member>
         <member name="M:CitizenFX.Core.Events.RegisterEventHandler(System.String,CitizenFX.Core.DynFunc,CitizenFX.Core.Binding)">
             <summary>
             Register an event handler
@@ -728,6 +615,147 @@
             <param name="referenceId">Reference id of the reference to remove</param>
             <param name="newFunc">New delegate/method to set the reference function to</param>
             <returns><see langword="true"/> if found and changed, <see langword="false"/> otherwise</returns>
+        </member>
+        <member name="T:CitizenFX.Core.CString">
+            <summary>
+            A null-terminated byte string. Dedicated to interop with native code, equivalent to a (non-wide) c-string.
+            </summary>
+            <remarks>In general don't use this type where you would normally use <see cref="T:System.String"/> in your .NET code, it needs to do conversion between UTF16 and UTF8 and is therefore slower.
+            This type and its conversions are more performant in regards to interop with native code (C++), and other runtimes, for these cases you may want to use this.</remarks>
+        </member>
+        <member name="P:CitizenFX.Core.CString.Empty">
+            <summary>
+            An empty <see cref="T:CitizenFX.Core.CString"/> equivalent to <see cref="F:System.String.Empty"/>, null terminated for interop.
+            </summary>				
+        </member>
+        <member name="M:CitizenFX.Core.CString.Create(System.Byte*)">
+            <summary>
+            CString with a copy of str.
+            </summary>
+            <returns>a null terminated CString or null if parameter str == null</returns>
+        </member>
+        <member name="M:CitizenFX.Core.CString.Create(System.Byte*,System.UInt32)">
+            <summary>
+            CString with a copy of str, limited to given length.
+            </summary>
+            <returns>a null terminated CString or null if parameter str == null</returns>
+        </member>
+        <member name="P:CitizenFX.Core.CString.Length">
+            <summary>
+            Get the length of this string, excluding the null terminator
+            </summary>
+        </member>
+        <member name="P:CitizenFX.Core.CString.LongLength">
+            <summary>
+            Get the length in long form of this string, excluding the null terminator
+            </summary>
+        </member>
+        <member name="P:CitizenFX.Core.CString.Item(System.Int32)">
+            <summary>
+            Get the byte at the provided index
+            </summary>
+            <param name="index">the position we'd like to retrieve the byte from</param>
+            <returns>byte representing an ASCII or UTF8 (biggest bit set) character</returns>
+        </member>
+        <member name="P:CitizenFX.Core.CString.Item(System.UInt32)">
+            <summary>
+            Get the byte at the provided index
+            </summary>
+            <param name="index">the position we'd like to retrieve the byte from</param>
+            <returns>byte representing an ASCII or UTF8 (biggest bit set) character</returns>
+        </member>
+        <member name="M:CitizenFX.Core.CString.SubString(System.Int32)">
+            <summary>
+            Retrieves a substring from this instance. The substring starts at a specified character position.
+            </summary>
+            <param name="startIndex">start character index</param>
+            <returns>CString with the requested part of characters of this string</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex"/> &lt; 0 or &gt;= Length</exception>
+        </member>
+        <member name="M:CitizenFX.Core.CString.SubString(System.UInt32)">
+            <summary>
+            Retrieves a substring from this instance. The substring starts at a specified character position.
+            Unsigned version, requires less checks for the same result.
+            </summary>
+            <param name="startIndex">start character index</param>
+            <returns>CString with the requested part of characters of this string</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex"/> &lt; 0 or &gt;= Length</exception>
+        </member>
+        <member name="M:CitizenFX.Core.CString.Substring(System.Int32,System.Int32)">
+            <summary>
+            Retrieves a substring from this instance. The substring starts at a specified character position and has a specified length.
+            </summary>
+            <param name="startIndex">start character index</param>
+            <param name="length">amount of characters we want in total, can be less. -1 will retrieve all</param>
+            <returns>CString with the requested part of characters of this string</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex"/> &gt;= Length</exception>
+        </member>
+        <member name="M:CitizenFX.Core.CString.Substring(System.UInt32,System.UInt32)">
+            <summary>
+            Retrieves a substring from this instance. The substring starts at a specified character position and has a specified length.
+            Unsigned version, requires less checks for the same result.
+            </summary>
+            <param name="startIndex">start character index</param>
+            <param name="length">amount of characters we want in total, can be less.</param>
+            <returns>CString with the requested part of characters of this string</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex"/> &lt; 0 or &gt;= Length</exception>
+        </member>
+        <member name="M:CitizenFX.Core.CString.ToString">
+            <summary>
+            Converts to a UTF16 string
+            </summary>
+            <returns>UTF16 string</returns>
+        </member>
+        <member name="M:CitizenFX.Core.CString.ToCString(System.String)">
+            <summary>
+            Converts a UTF16 into a UTF8/ASCII string
+            </summary>
+            <param name="str">UTF16 string to convert</param>
+            <returns>UTF8 string</returns>
+        </member>
+        <member name="M:CitizenFX.Core.CString.op_Implicit(System.String)~CitizenFX.Core.CString">
+            <summary>
+            Convert a C# string into a null-terminated c-string
+            </summary>
+            <param name="str">UTF16 encoded string (default C#)</param>
+        </member>
+        <member name="M:CitizenFX.Core.CString.op_Explicit(CitizenFX.Core.CString)~System.String">
+            <summary>
+            Convert a null-terminated c-string into a C# string
+            </summary>
+            <param name="str">null-terminated c-string</param>
+        </member>
+        <member name="M:CitizenFX.Core.CString.CompareASCII(System.String)">
+            <summary>
+            Compares a CString to a C# string only considering ASCII characters (7 bits)
+            any non 7 bit characters on either side will return false
+            </summary>
+            <param name="str">string to compare</param>
+            <returns>true if both sides have equivalent characters in the ASCII character space</returns>
+        </member>
+        <member name="M:CitizenFX.Core.CString.CompareASCII(CitizenFX.Core.CString,System.String)">
+            <summary>
+            Compares a CString to a C# string only considering ASCII characters (7 bits)
+            any non 7 bit characters on either side will return false
+            </summary>
+            <param name="left">CString to compare</param>
+            <param name="right">string to compare</param>
+            <returns>true if both sides have equivalent characters in the ASCII character space</returns>
+        </member>
+        <member name="M:CitizenFX.Core.CString.ToASCII(System.String,System.Byte)">
+            <summary>
+            Converts a C# string to a CString only accepting ASCII characters (7 bits)
+            any non 7 bit character will be become the given <paramref name="invalid"/> value
+            </summary>
+            <param name="str">string to convert</param>
+            <param name="invalid">character to insert in case of a non-7 bit character</param>
+            <returns>CString with only ASCII (7 bit) characters, or null if <paramref name="str"/> == null</returns>
+        </member>
+        <member name="M:CitizenFX.Core.CString.GetPinnableReference">
+            <summary>
+            allows us to directly use `fixed(byte* ptr = cstring)`
+            </summary>
+            <returns>reference to first byte</returns>
         </member>
         <member name="F:CitizenFX.Core.MathUtil.ZeroTolerance">
             <summary>
@@ -5143,12 +5171,12 @@
         </member>
         <member name="F:CitizenFX.Core.Vector3.Up">
             <summary>
-            A unit <see cref="T:CitizenFX.Core.Vector3"/> designating up (0, 1, 0).
+            A unit <see cref="T:CitizenFX.Core.Vector3"/> designating up (0, 0, 1).
             </summary>
         </member>
         <member name="F:CitizenFX.Core.Vector3.Down">
             <summary>
-            A unit <see cref="T:CitizenFX.Core.Vector3"/> designating down (0, -1, 0).
+            A unit <see cref="T:CitizenFX.Core.Vector3"/> designating down (0, 0, -1).
             </summary>
         </member>
         <member name="F:CitizenFX.Core.Vector3.Left">
@@ -5163,23 +5191,29 @@
         </member>
         <member name="F:CitizenFX.Core.Vector3.ForwardRH">
             <summary>
-            A unit <see cref="T:CitizenFX.Core.Vector3"/> designating forward in a right-handed coordinate system (0, 0, -1).
+            A unit <see cref="T:CitizenFX.Core.Vector3"/> designating forward in a right-handed coordinate system (0, 1, 0).
             </summary>
         </member>
         <member name="F:CitizenFX.Core.Vector3.ForwardLH">
             <summary>
-            A unit <see cref="T:CitizenFX.Core.Vector3"/> designating forward in a left-handed coordinate system (0, 0, 1).
+            A unit <see cref="T:CitizenFX.Core.Vector3"/> designating forward in a left-handed coordinate system (0, -1, 0).
             </summary>
         </member>
         <member name="F:CitizenFX.Core.Vector3.BackwardRH">
             <summary>
-            A unit <see cref="T:CitizenFX.Core.Vector3"/> designating backward in a right-handed coordinate system (0, 0, 1).
+            A unit <see cref="T:CitizenFX.Core.Vector3"/> designating backward in a right-handed coordinate system (0, -1, 0).
             </summary>
         </member>
         <member name="F:CitizenFX.Core.Vector3.BackwardLH">
             <summary>
-            A unit <see cref="T:CitizenFX.Core.Vector3"/> designating backward in a left-handed coordinate system (0, 0, -1).
+            A unit <see cref="T:CitizenFX.Core.Vector3"/> designating backward in a left-handed coordinate system (0, 1, 0).
             </summary>
+        </member>
+        <member name="F:CitizenFX.Core.Vector3.Forward">
+            <inheritdoc cref="F:CitizenFX.Core.Vector3.ForwardRH"/>
+        </member>
+        <member name="F:CitizenFX.Core.Vector3.Backward">
+            <inheritdoc cref="F:CitizenFX.Core.Vector3.BackwardRH"/>
         </member>
         <member name="F:CitizenFX.Core.Vector3.X">
             <summary>
@@ -7162,29 +7196,45 @@
             TODO: make mscorlib IntPtr operator+ public and [SecurityCritical]
             </remarks>
         </member>
-        <member name="M:CitizenFX.Core.Native.OutString.op_Implicit(CitizenFX.Core.Native.OutString@)~System.String">
-            <summary>
-            A managed string that holds a conerted copy of the unmanaged ANSI string. If ptr is null, the method returns a null string.
-            </summary>
-            <param name="str"></param>
-        </member>
-        <member name="M:CitizenFX.Core.Native.OutString.op_Implicit(CitizenFX.Core.Native.OutString@)~CitizenFX.Core.CString">
-            <summary>
-            A managed string that holds a copy of the unmanaged ANSI string. If ptr is null, the method returns a null string.
-            </summary>
-            <param name="str"></param>
-        </member>
-        <member name="M:CitizenFX.Core.Native.OutString.op_Implicit(CitizenFX.Core.Native.OutString@)~System.Byte[]">
-            <summary>
-            A managed byte[] that holds a copy of the unmanaged ANSI string. If ptr is null, the method returns a null string.
-            </summary>
-            <param name="str"></param>
-        </member>
         <member name="P:CitizenFX.Core.UnmanagedTypeInfo`1.Size">
             <summary>
             Get unmanaged type size, this will actually request the size from native, then we cache it
             </summary>
             <returns>unmanaged size of T</returns>
+        </member>
+        <member name="M:CitizenFX.Core.OutString.op_Implicit(CitizenFX.Core.OutString@)~System.String">
+            <summary>
+            A managed string that holds a conerted copy of the unmanaged ANSI string. If ptr is null, the method returns a null string.
+            </summary>
+            <param name="str"></param>
+        </member>
+        <member name="M:CitizenFX.Core.OutString.op_Explicit(CitizenFX.Core.OutString@)~CitizenFX.Core.CString">
+            <summary>
+            A managed string that holds a copy of the unmanaged ANSI string. If ptr is null, the method returns a null string.
+            </summary>
+            <param name="str"></param>
+        </member>
+        <member name="M:CitizenFX.Core.OutString.op_Explicit(CitizenFX.Core.OutString@)~System.Byte[]">
+            <summary>
+            A managed byte[] that holds a copy of the unmanaged ANSI string. If ptr is null, the method returns a null string.
+            </summary>
+            <param name="str"></param>
+        </member>
+        <member name="M:CitizenFX.Core.OutString.SubString(System.UInt32,System.UInt32)">
+            <summary>
+            Retrieves a substring from this string. Starting at the specified <paramref name="startIndex"/> in strides of <see cref="T:System.Byte"/>
+            </summary>
+            <param name="startIndex">Character index to start the new string with</param>
+            <param name="length">Amount of characters requested, after <paramref name="startIndex"/></param>
+            <returns><see cref="T:System.String"/> starting from <paramref name="startIndex"/>, <see cref="F:System.String.Empty"/> if we passed the end, or <see langword="null"/></returns>
+        </member>
+        <member name="M:CitizenFX.Core.OutString.SubCString(System.UInt32,System.UInt32)">
+            <summary>
+            Retrieves a substring from this string. Starting at the specified <paramref name="startIndex"/> in strides of <see cref="T:System.Byte"/>
+            </summary>
+            <param name="startIndex">Character index to start the new string with</param>
+            <param name="length">Amount of characters requested, after <paramref name="startIndex"/></param>
+            <returns><see cref="T:CitizenFX.Core.CString"/> starting from <paramref name="startIndex"/>, <see cref="P:CitizenFX.Core.CString.Empty"/> if we passed the end, or <see langword="null"/></returns>
         </member>
         <member name="M:CitizenFX.Core.Profiler.EnterScope(System.Func{System.String})">
             <param name="scopeName">Will only be evaluated when we're profiling, good for formatting strings</param>
