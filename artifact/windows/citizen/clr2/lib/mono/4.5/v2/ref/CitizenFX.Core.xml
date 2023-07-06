@@ -36,8 +36,16 @@
             </summary>
             <remarks>Only works on <see cref="T:CitizenFX.Core.BaseScript"/> inherited class methods</remarks>
         </member>
+        <member name="P:CitizenFX.Core.CommandAttribute.RemapParameters">
+            <returns></returns>
+            <inheritdoc cref="M:CitizenFX.Core.Func.ConstructCommandRemapped(System.Object,System.Reflection.MethodInfo)"/>
+        </member>
         <member name="T:CitizenFX.Core.KeyMapAttribute">
             <summary>Does nothing on server side</summary>
+        </member>
+        <member name="P:CitizenFX.Core.KeyMapAttribute.RemapParameters">
+            <returns></returns>
+            <inheritdoc cref="M:CitizenFX.Core.Func.ConstructCommandRemapped(System.Object,System.Reflection.MethodInfo)"/>
         </member>
         <member name="M:CitizenFX.Core.KeyMapAttribute.#ctor(System.String,System.String,System.String,System.String)">
             <inheritdoc cref="T:CitizenFX.Core.KeyMapAttribute"/>
@@ -87,8 +95,7 @@
         </member>
         <member name="E:CitizenFX.Core.BaseScript.Tick">
             <summary>
-            An event containing callbacks to attempt to schedule on every game tick.
-            A callback will only be rescheduled once the associated task completes.
+            A method to be scheduled on every game tick, do note that they'll only be rescheduled for the next frame once the method returns.
             </summary>
         </member>
         <member name="M:CitizenFX.Core.BaseScript.Enable">
@@ -270,22 +277,19 @@
         <member name="M:CitizenFX.Core.Coroutine.Schedule(System.Action,System.UInt64,System.UInt64,CitizenFX.Core.CancelerToken)">
             <inheritdoc cref="M:CitizenFX.Core.Coroutine.Schedule(System.Func{CitizenFX.Core.Coroutine},System.UInt64,System.UInt64,CitizenFX.Core.CancelerToken)"/>
         </member>
-        <member name="M:CitizenFX.Core.Coroutine.Run(System.Func{CitizenFX.Core.Coroutine})">
+        <member name="M:CitizenFX.Core.Coroutine.Run(System.Action)">
             <summary>
-            Runs given function directly and allows the caller to await it.
+            Runs given function on the main thread; will be scheduled if we're not on the main thread, otherwise it'll be run directly.
             </summary>
             <param name="function">Function to run</param>
             <returns>Awaitable <see cref="T:CitizenFX.Core.Coroutine"/></returns>
         </member>
-        <member name="M:CitizenFX.Core.Coroutine.Run(System.Action)">
-            <inheritdoc cref="M:CitizenFX.Core.Coroutine.Run(System.Func{CitizenFX.Core.Coroutine})"/>
+        <member name="M:CitizenFX.Core.Coroutine.Run(System.Func{CitizenFX.Core.Coroutine})">
+            <inheritdoc cref="M:CitizenFX.Core.Coroutine.Run(System.Action)"/>
         </member>
         <member name="M:CitizenFX.Core.Coroutine.Run``1(System.Func{CitizenFX.Core.Coroutine{``0}})">
-            <summary>
-            Runs given function directly and allows the caller to await it.
-            </summary>
-            <param name="function">Function to run</param>
-            <returns>Awaitable <see cref="T:CitizenFX.Core.Coroutine"/></returns>
+            <returns>Awaitable <see cref="T:CitizenFX.Core.Coroutine`1"/></returns>
+            <inheritdoc cref="M:CitizenFX.Core.Coroutine.Run(System.Action)"/>
         </member>
         <member name="M:CitizenFX.Core.Coroutine.RunNextFrame(System.Func{CitizenFX.Core.Coroutine})">
             <summary>
@@ -302,7 +306,7 @@
             Runs given function directly and allows the caller to await it.
             </summary>
             <param name="function">Function to run</param>
-            <returns>Awaitable <see cref="T:CitizenFX.Core.Coroutine"/></returns>
+            <returns>Awaitable <see cref="T:CitizenFX.Core.Coroutine`1"/></returns>
         </member>
         <member name="M:CitizenFX.Core.Coroutine.WhenAny(CitizenFX.Core.Coroutine[])">
             <summary>
@@ -459,6 +463,19 @@
             <param name="deleg">delegate to make dynamically invokable</param>
             <returns>dynamically invokable delegate or returns <paramref name="deleg"/> if it's aleady of type <see cref="T:CitizenFX.Core.DynFunc"/></returns>
             <exception cref="T:System.ArgumentNullException">when the given method is non-static and target is null or if given method is null</exception>
+        </member>
+        <member name="M:CitizenFX.Core.Func.ConstructCommandRemapped(System.Object,System.Reflection.MethodInfo)">
+            <summary>
+            If enabled creates a <see cref="T:CitizenFX.Core.DynFunc"/> that remaps input (<see cref="T:System.UInt16"/> source, <see cref="T:System.Object"/>[] arguments, <see cref="T:System.String"/> raw) to known types:<br />
+            <b>source</b>: <see cref="T:System.UInt16"/>, <see cref="T:System.UInt32"/>, <see cref="T:System.Int32"/>, <see cref="T:System.Boolean"/>, <see cref="T:CitizenFX.Core.Remote"/>, or any type constructable from <see cref="T:CitizenFX.Core.Remote"/> including Player types.<br />
+            <b>arguments</b>: <see cref="T:System.Object"/>[] or <see cref="T:System.String"/>[].<br />
+            <b>raw</b>: <see cref="T:System.String"/>
+            </summary>
+            <param name="target">Method's associated instance</param>
+            <param name="method">Method to wrap</param>
+            <returns>Dynamic invocable <see cref="T:CitizenFX.Core.DynFunc"/> with remapping and conversion support.</returns>
+            <exception cref="T:System.ArgumentException">When <see cref="T:CitizenFX.Core.SourceAttribute"/> is used on a non supported type.</exception>
+            <exception cref="T:System.Reflection.TargetParameterCountException">When any requested parameter isn't supported.</exception>
         </member>
         <member name="M:CitizenFX.Core.Func.GetWrappedMethod(CitizenFX.Core.DynFunc)">
             <summary>
@@ -664,7 +681,7 @@
             <param name="index">the position we'd like to retrieve the byte from</param>
             <returns>byte representing an ASCII or UTF8 (biggest bit set) character</returns>
         </member>
-        <member name="M:CitizenFX.Core.CString.SubString(System.Int32)">
+        <member name="M:CitizenFX.Core.CString.Substring(System.Int32)">
             <summary>
             Retrieves a substring from this instance. The substring starts at a specified character position.
             </summary>
@@ -672,7 +689,7 @@
             <returns>CString with the requested part of characters of this string</returns>
             <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex"/> &lt; 0 or &gt;= Length</exception>
         </member>
-        <member name="M:CitizenFX.Core.CString.SubString(System.UInt32)">
+        <member name="M:CitizenFX.Core.CString.Substring(System.UInt32)">
             <summary>
             Retrieves a substring from this instance. The substring starts at a specified character position.
             Unsigned version, requires less checks for the same result.
@@ -700,6 +717,13 @@
             <returns>CString with the requested part of characters of this string</returns>
             <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex"/> &lt; 0 or &gt;= Length</exception>
         </member>
+        <member name="M:CitizenFX.Core.CString.Concat(CitizenFX.Core.CString[])">
+            <summary>
+            Joins/merges all given strings
+            </summary>
+            <param name="strings">Strings to join</param>
+            <returns><see cref="T:CitizenFX.Core.CString"/> containing all given strings concatenated</returns>
+        </member>
         <member name="M:CitizenFX.Core.CString.ToString">
             <summary>
             Converts to a UTF16 string
@@ -724,6 +748,13 @@
             Convert a null-terminated c-string into a C# string
             </summary>
             <param name="str">null-terminated c-string</param>
+        </member>
+        <member name="M:CitizenFX.Core.CString.op_Implicit(CitizenFX.Core.OutString)~CitizenFX.Core.CString">
+            <summary>
+            Copy <see cref="T:CitizenFX.Core.OutString"/> into a null-terminated c-string
+            </summary>
+            <param name="str">OutString to copy</param>
+            <!-- Does put a dependency on OutString -->
         </member>
         <member name="M:CitizenFX.Core.CString.CompareASCII(System.String)">
             <summary>
@@ -7208,17 +7239,17 @@
             </summary>
             <param name="str"></param>
         </member>
-        <member name="M:CitizenFX.Core.OutString.op_Explicit(CitizenFX.Core.OutString@)~CitizenFX.Core.CString">
-            <summary>
-            A managed string that holds a copy of the unmanaged ANSI string. If ptr is null, the method returns a null string.
-            </summary>
-            <param name="str"></param>
-        </member>
         <member name="M:CitizenFX.Core.OutString.op_Explicit(CitizenFX.Core.OutString@)~System.Byte[]">
             <summary>
             A managed byte[] that holds a copy of the unmanaged ANSI string. If ptr is null, the method returns a null string.
             </summary>
             <param name="str"></param>
+        </member>
+        <member name="M:CitizenFX.Core.OutString.ToCString">
+            <summary>
+            Creates a null terminated C-string out of the returned string
+            </summary>
+            <returns>null terminated C-string</returns>
         </member>
         <member name="M:CitizenFX.Core.OutString.SubString(System.UInt32,System.UInt32)">
             <summary>
