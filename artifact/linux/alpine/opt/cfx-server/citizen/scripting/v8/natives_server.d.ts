@@ -141,8 +141,9 @@ declare function CanPlayerStartCommerceSession(playerSrc: string): boolean;
 declare function CancelEvent(): void;
 
 /**
- * List of component/props ID
- * gtaxscripting.blogspot.com/2016/04/gta-v-peds-component-and-props.html
+ * CLEAR_PED_PROP
+ * @param ped The ped handle.
+ * @param propId The prop id you want to clear from the ped. Refer to [SET_PED_PROP_INDEX](#\_0x93376B65A266EB5F).
  */
 declare function ClearPedProp(ped: number, propId: number): void;
 
@@ -1804,26 +1805,43 @@ declare function SetPedCanRagdoll(ped: number, toggle: boolean): void;
 /**
  * This native is used to set component variation on a ped. Components, drawables and textures IDs are related to the ped model.
  * ### MP Freemode list of components
- * **0**: Face\
- * **1**: Mask\
- * **2**: Hair\
- * **3**: Torso\
- * **4**: Leg\
- * **5**: Parachute / bag\
- * **6**: Shoes\
- * **7**: Accessory\
- * **8**: Undershirt\
- * **9**: Kevlar\
- * **10**: Badge\
+ * **0**: Face
+ * **1**: Mask
+ * **2**: Hair
+ * **3**: Torso
+ * **4**: Leg
+ * **5**: Parachute / bag
+ * **6**: Shoes
+ * **7**: Accessory
+ * **8**: Undershirt
+ * **9**: Kevlar
+ * **10**: Badge
  * **11**: Torso 2
- * ### Related and useful natives
- * [GET_NUMBER_OF_PED_DRAWABLE_VARIATIONS](#\_0x27561561732A7842)\
- * [GET_NUMBER_OF_PED_TEXTURE_VARIATIONS](#\_0x8F7156A3142A6BAD)
- * [List of component/props ID](gtaxscripting.blogspot.com/2016/04/gta-v-peds-component-and-props.html) of player_two with examples
+ * List of Component IDs
+ * ```cpp
+ * // Components
+ * enum ePedVarComp
+ * {
+ * PV_COMP_INVALID = 0xFFFFFFFF,
+ * PV_COMP_HEAD = 0, // "HEAD"
+ * PV_COMP_BERD = 1, // "BEARD"
+ * PV_COMP_HAIR = 2, // "HAIR"
+ * PV_COMP_UPPR = 3, // "UPPER"
+ * PV_COMP_LOWR = 4, // "LOWER"
+ * PV_COMP_HAND = 5, // "HAND"
+ * PV_COMP_FEET = 6, // "FEET"
+ * PV_COMP_TEEF = 7, // "TEETH"
+ * PV_COMP_ACCS = 8, // "ACCESSORIES"
+ * PV_COMP_TASK = 9, // "TASK"
+ * PV_COMP_DECL = 10, // "DECL"
+ * PV_COMP_JBIB = 11, // "JBIB"
+ * PV_COMP_MAX = 12,
+ * };
+ * ```
  * @param ped The ped handle.
  * @param componentId The component that you want to set.
- * @param drawableId The drawable id that is going to be set.
- * @param textureId The texture id of the drawable.
+ * @param drawableId The drawable id that is going to be set. Refer to [GET_NUMBER_OF_PED_DRAWABLE_VARIATIONS](#\_0x27561561732A7842).
+ * @param textureId The texture id of the drawable. Refer to [GET_NUMBER_OF_PED_TEXTURE_VARIATIONS](#\_0x8F7156A3142A6BAD).
  * @param paletteId 0 to 3.
  */
 declare function SetPedComponentVariation(ped: number, componentId: number, drawableId: number, textureId: number, paletteId: number): void;
@@ -2446,33 +2464,48 @@ declare function SetPedIntoVehicle(ped: number, vehicle: number, seatIndex: numb
 /**
  * This native is used to set prop variation on a ped. Components, drawables and textures IDs are related to the ped model.
  * ### MP Freemode list of props
- * **0**: Hat\
- * **1**: Glass\
- * **2**: Ear\
- * **6**: Watch\
- * **7**: Bracelet
- * ### Related and useful natives
- * [GET_NUMBER_OF_PED_PROP_DRAWABLE_VARIATIONS](#\_0x5FAF9754E789FB47)\
- * [GET_NUMBER_OF_PED_PROP_TEXTURE_VARIATIONS](#\_0xA6E7F1CEB523E171)
- * [List of component/props ID](https://gtaxscripting.blogspot.com/2016/04/gta-v-peds-component-and-props.html) of player_two with examples
+ * **0**: Hats
+ * **1**: Glasses
+ * **2**: Ears
+ * **6**: Watches
+ * **7**: Bracelets
+ * List of Prop IDs
+ * ```cpp
+ * // Props
+ * enum eAnchorPoints
+ * {
+ * ANCHOR_HEAD = 0, // "p_head"
+ * ANCHOR_EYES = 1, // "p_eyes"
+ * ANCHOR_EARS = 2, // "p_ears"
+ * ANCHOR_MOUTH = 3, // "p_mouth"
+ * ANCHOR_LEFT_HAND = 4, // "p_lhand"
+ * ANCHOR_RIGHT_HAND = 5, // "p_rhand"
+ * ANCHOR_LEFT_WRIST = 6, // "p_lwrist"
+ * ANCHOR_RIGHT_WRIST = 7, // "p_rwrist"
+ * ANCHOR_HIP = 8, // "p_lhip"
+ * ANCHOR_LEFT_FOOT = 9, // "p_lfoot"
+ * ANCHOR_RIGHT_FOOT = 10, // "p_rfoot"
+ * ANCHOR_PH_L_HAND = 11, // "ph_lhand"
+ * ANCHOR_PH_R_HAND = 12, // "ph_rhand"
+ * NUM_ANCHORS = 13,
+ * };
+ * ```
  * @param ped The ped handle.
- * @param componentId The component that you want to set.
- * @param drawableId The drawable id that is going to be set.
- * @param textureId The texture id of the drawable.
+ * @param componentId The component that you want to set. Refer to [SET_PED_COMPONENT_VARIATION](#\_0x262B14F48D29DE80).
+ * @param drawableId The drawable id that is going to be set. Refer to [GET_NUMBER_OF_PED_PROP_DRAWABLE_VARIATIONS](#\_0x5FAF9754E789FB47).
+ * @param textureId The texture id of the drawable. Refer to [GET_NUMBER_OF_PED_PROP_TEXTURE_VARIATIONS](#\_0xA6E7F1CEB523E171).
  * @param attach Attached or not.
  */
 declare function SetPedPropIndex(ped: number, componentId: number, drawableId: number, textureId: number, attach: boolean): void;
 
 /**
  * p1 is always 0 in R* scripts; and a quick disassembly seems to indicate that p1 is unused.
- * List of component/props ID:
- * gtaxscripting.blogspot.com/2016/04/gta-v-peds-component-and-props.html
  */
 declare function SetPedRandomComponentVariation(ped: number, p1: number): void;
 
 /**
- * List of component/props ID
- * gtaxscripting.blogspot.com/2016/04/gta-v-peds-component-and-props.html
+ * SET_PED_RANDOM_PROPS
+ * @param ped The ped handle.
  */
 declare function SetPedRandomProps(ped: number): void;
 
