@@ -325,6 +325,12 @@ function Global.DoesEntityExist(entity)
 	return _in(0x3ac90869, entity, _r)
 end
 
+--- Returns whether or not the player exists
+-- @return True of the player exists, false otherwise
+function Global.DoesPlayerExist(playerSrc)
+	return _in(0x12038599, _ts(playerSrc), _r)
+end
+
 --- Requests whether or not the player owns the specified SKU.
 -- @param playerSrc The player handle
 -- @param skuId The ID of the SKU.

@@ -384,6 +384,14 @@ global.DoesEntityExist = function (entity) {
 };
 
 /**
+ * Returns whether or not the player exists
+ * @return True of the player exists, false otherwise
+ */
+global.DoesPlayerExist = function (playerSrc) {
+	return _in(0x00000000, 0x12038599, _ts(playerSrc), _r);
+};
+
+/**
  * Requests whether or not the player owns the specified SKU.
  * @param playerSrc The player handle
  * @param skuId The ID of the SKU.

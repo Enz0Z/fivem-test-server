@@ -6693,6 +6693,11 @@
             DOES_ENTITY_EXIST
             </summary>
         </member>
+        <member name="F:CitizenFX.Core.Native.Hash.DOES_PLAYER_EXIST">
+            <summary>
+            Returns whether or not the player exists
+            </summary>
+        </member>
         <member name="F:CitizenFX.Core.Native.Hash.DOES_PLAYER_OWN_SKU">
             <summary>
             Requests whether or not the player owns the specified SKU.
@@ -9546,6 +9551,14 @@
             <summary>
             DOES_ENTITY_EXIST
             </summary>
+        </member>
+        <member name="M:CitizenFX.Core.Native.API.DoesPlayerExist(System.String)">
+            <summary>
+            Returns whether or not the player exists
+            </summary>
+            <returns>
+            True of the player exists, false otherwise
+            </returns>
         </member>
         <member name="M:CitizenFX.Core.Native.API.DoesPlayerOwnSku(System.String,System.Int32)">
             <summary>
