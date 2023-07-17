@@ -9557,7 +9557,7 @@
             Returns whether or not the player exists
             </summary>
             <returns>
-            True of the player exists, false otherwise
+            True if the player exists, false otherwise
             </returns>
         </member>
         <member name="M:CitizenFX.Core.Native.API.DoesPlayerOwnSku(System.String,System.Int32)">

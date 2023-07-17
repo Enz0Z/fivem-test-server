@@ -487,7 +487,7 @@
             Returns whether or not the player exists
             </summary>
             <returns>
-            True of the player exists, false otherwise
+            True if the player exists, false otherwise
             </returns>
         </member>
         <member name="M:CitizenFX.Server.Native.Natives.DoesPlayerOwnSku(CitizenFX.Core.CString,System.Int32)">

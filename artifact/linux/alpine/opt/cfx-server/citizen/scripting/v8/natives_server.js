@@ -385,7 +385,7 @@ global.DoesEntityExist = function (entity) {
 
 /**
  * Returns whether or not the player exists
- * @return True of the player exists, false otherwise
+ * @return True if the player exists, false otherwise
  */
 global.DoesPlayerExist = function (playerSrc) {
 	return _in(0x00000000, 0x12038599, _ts(playerSrc), _r);

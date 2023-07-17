@@ -288,7 +288,7 @@ declare function DoesEntityExist(entity: number): boolean;
 
 /**
  * Returns whether or not the player exists
- * @return True of the player exists, false otherwise
+ * @return True if the player exists, false otherwise
  */
 declare function DoesPlayerExist(playerSrc: string): boolean;
 

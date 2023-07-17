@@ -326,7 +326,7 @@ function Global.DoesEntityExist(entity)
 end
 
 --- Returns whether or not the player exists
--- @return True of the player exists, false otherwise
+-- @return True if the player exists, false otherwise
 function Global.DoesPlayerExist(playerSrc)
 	return _in(0x12038599, _ts(playerSrc), _r)
 end
