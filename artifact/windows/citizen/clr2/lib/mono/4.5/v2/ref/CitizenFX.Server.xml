@@ -1269,8 +1269,14 @@
         </member>
         <member name="M:CitizenFX.Server.Native.Natives.GetPlayerPed(CitizenFX.Core.CString)">
             <summary>
-            GET_PLAYER_PED
+            Used to get the player's Ped Entity ID when a valid `playerSrc` is passed.
             </summary>
+            <param name="playerSrc">
+            The player source, passed as a string.
+            </param>
+            <returns>
+            Returns a valid Ped Entity ID if the passed `playerSrc` is valid, `0` if not.
+            </returns>
         </member>
         <member name="M:CitizenFX.Server.Native.Natives.GetPlayerPing(CitizenFX.Core.CString)">
             <summary>
@@ -4590,7 +4596,7 @@
         </member>
         <member name="F:CitizenFX.Server.Native.Hash.GET_PLAYER_PED">
             <summary>
-            GET_PLAYER_PED
+            Used to get the player's Ped Entity ID when a valid `playerSrc` is passed.
             </summary>
         </member>
         <member name="F:CitizenFX.Server.Native.Hash.GET_PLAYER_PING">

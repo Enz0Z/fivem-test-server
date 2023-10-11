@@ -1139,7 +1139,9 @@ global.GetPlayerName = function (playerSrc) {
 };
 
 /**
- * GET_PLAYER_PED
+ * Used to get the player's Ped Entity ID when a valid `playerSrc` is passed.
+ * @param playerSrc The player source, passed as a string.
+ * @return Returns a valid Ped Entity ID if the passed `playerSrc` is valid, `0` if not.
  */
 global.GetPlayerPed = function (playerSrc) {
 	return _in(0x00000000, 0x6e31e993, _ts(playerSrc), _r, _ri);

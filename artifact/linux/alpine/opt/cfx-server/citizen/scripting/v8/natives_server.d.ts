@@ -876,7 +876,9 @@ declare function GetPlayerMeleeWeaponDamageModifier(playerId: string): number;
 declare function GetPlayerName(playerSrc: string): string;
 
 /**
- * GET_PLAYER_PED
+ * Used to get the player's Ped Entity ID when a valid `playerSrc` is passed.
+ * @param playerSrc The player source, passed as a string.
+ * @return Returns a valid Ped Entity ID if the passed `playerSrc` is valid, `0` if not.
  */
 declare function GetPlayerPed(playerSrc: string): number;
 

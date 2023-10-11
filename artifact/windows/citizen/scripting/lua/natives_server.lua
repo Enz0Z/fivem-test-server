@@ -916,7 +916,9 @@ function Global.GetPlayerName(playerSrc)
 	return _in(0x406b4b20, _ts(playerSrc), _s)
 end
 
---- GET_PLAYER_PED
+--- Used to get the player's Ped Entity ID when a valid `playerSrc` is passed.
+-- @param playerSrc The player source, passed as a string.
+-- @return Returns a valid Ped Entity ID if the passed `playerSrc` is valid, `0` if not.
 function Global.GetPlayerPed(playerSrc)
 	return _in(0x6e31e993, _ts(playerSrc), _ri)
 end
