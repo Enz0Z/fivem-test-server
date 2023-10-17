@@ -3,8 +3,8 @@
  * It is recommended to use [SET_BLIP_ROTATION](#\_0xF87683CDF73C3F6E) and [SET_BLIP_COLOUR](#\_0x03D7FB09E75D6B7E) to make the blip not rotate along with the camera.
  * By default, the blip will show as a *regular* blip with the specified color/sprite if it is outside of the minimap view.
  * Example image:
- * ![minimap](https://w.wew.wtf/pdcjig.png)
- * ![big map](https://w.wew.wtf/zgcjcm.png)
+ * ![minimap](https://i.imgur.com/qLbXWcQ.png)
+ * ![big map](https://i.imgur.com/0j7O7Rh.png)
  * (Native name is *likely* to actually be ADD_BLIP_FOR_AREA, but due to the usual reasons this can't be confirmed)
  * @param x The X coordinate of the center of the blip.
  * @param y The Y coordinate of the center of the blip.
