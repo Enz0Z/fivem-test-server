@@ -1659,9 +1659,6 @@ declare function ScanResourceRoot(rootPath: string, callback: Function): void;
 declare function ScheduleResourceTick(resourceName: string): void;
 
 /**
- * <!--
- * _loc1_.map((name, idx) => `| ${idx} | ${name} | ![${name}](https://runtime.fivem.net/blips/${name}.svg) |`).join('\n')
- * -->
  * Sets the displayed sprite for a specific blip.
  * There's a [list of sprites](https://docs.fivem.net/game-references/blips/) on the FiveM documentation site.
  * @param blip The blip to change.
@@ -2386,7 +2383,7 @@ declare function SetPedEyeColor(ped: number, index: number): void;
  * *   **18**: Chin Hole (Chin Bum)
  * *   **19**: Neck Thickness (Thin/Thick)
  * **Note:**
- * You may need to call [`SetPedHeadBlendData`](#0x9414E18B9434C2FE) prior to calling this native in order for it to work.
+ * You may need to call [`SetPedHeadBlendData`](#\_0x9414E18B9434C2FE) prior to calling this native in order for it to work.
  * @param ped The ped entity
  * @param index An integer ranging from 0 to 19
  * @param scale A float ranging from -1.0 to 1.0
@@ -2403,10 +2400,10 @@ declare function SetPedHairColor(ped: number, colorID: number, highlightColorID:
  * **Other information:**
  * IDs start at zero and go Male Non-DLC, Female Non-DLC, Male DLC, and Female DLC.</br>
  * This native function is often called prior to calling natives such as:
- * *   [`SetPedHairColor`](#0xBB43F090)
- * *   [`SetPedHeadOverlayColor`](#0x78935A27)
- * *   [`SetPedHeadOverlay`](#0xD28DBA90)
- * *   [`SetPedFaceFeature`](#0x6C8D4458)
+ * *   [`SetPedHairColor`](#\_0xBB43F090)
+ * *   [`SetPedHeadOverlayColor`](#\_0x78935A27)
+ * *   [`SetPedHeadOverlay`](#\_0xD28DBA90)
+ * *   [`SetPedFaceFeature`](#\_0x6C8D4458)
  * @param ped The ped entity
  * @param shapeFirstID Controls the shape of the first ped's face
  * @param shapeSecondID Controls the shape of the second ped's face
@@ -2440,7 +2437,7 @@ declare function SetPedHeadBlendData(ped: number, shapeFirstID: number, shapeSec
  * 12              Add Body Blemishes    0 - 1, 255
  * ```
  * **Note:**
- * You may need to call [`SetPedHeadBlendData`](#0x9414E18B9434C2FE) prior to calling this native in order for it to work.
+ * You may need to call [`SetPedHeadBlendData`](#\_0x9414E18B9434C2FE) prior to calling this native in order for it to work.
  * @param ped The ped entity
  * @param overlayID The overlay id displayed up above.
  * @param index An integer representing the index (from 0 to `_GET_NUM_OVERLAY_VALUES(overlayID)-1`)
@@ -2454,7 +2451,7 @@ declare function SetPedHeadOverlay(ped: number, overlayID: number, index: number
  * Called after SET_PED_HEAD_OVERLAY().
  * ```
  * **Note:**
- * You may need to call [`SetPedHeadBlendData`](#0x9414E18B9434C2FE) prior to calling this native in order for it to work.
+ * You may need to call [`SetPedHeadBlendData`](#\_0x9414E18B9434C2FE) prior to calling this native in order for it to work.
  * @param ped The ped entity
  * @param overlayID An integer representing the overlay id
  * @param colorType 1 for eyebrows, beards, and chest hair; 2 for blush and lipstick; and 0 otherwise, though not called in those cases.
@@ -2595,11 +2592,12 @@ declare function SetPlayerModel(player: string, model: string | number): void;
 declare function SetPlayerRoutingBucket(playerSrc: string, bucket: number): void;
 
 /**
- * Call SET_PLAYER_WANTED_LEVEL_NOW for immediate effect
- * wantedLevel is an integer value representing 0 to 5 stars even though the game supports the 6th wanted level but no police will appear since no definitions are present for it in the game files
- * disableNoMission-  Disables When Off Mission- appears to always be false
+ * SET_PLAYER_WANTED_LEVEL
+ * @param player the target player
+ * @param wantedLevel the wanted level 1-5
+ * @param delayedResponse false = 0-10sec police spawn response time, true = 10-20sec police spawn response time
  */
-declare function SetPlayerWantedLevel(player: string, wantedLevel: number, disableNoMission: boolean): void;
+declare function SetPlayerWantedLevel(player: string, wantedLevel: number, delayedResponse: boolean): void;
 
 /**
  * A setter for [GET_RESOURCE_KVP_STRING](#_0x5240DA5A).

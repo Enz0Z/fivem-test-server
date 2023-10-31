@@ -2309,10 +2309,6 @@
         </member>
         <member name="M:CitizenFX.Server.Native.Natives.SetBlipSprite(System.Int32,System.Int32)">
             <summary>
-            &lt;!--
-            _loc1_.map((name, idx) =&gt; `| ${idx} | ${name} | ![${name}](https://runtime.fivem.net/blips/${name}.svg) |`).join('\n')
-            --&gt;
-            
             Sets the displayed sprite for a specific blip.
             
             There's a [list of sprites](https://docs.fivem.net/game-references/blips/) on the FiveM documentation site.
@@ -3109,7 +3105,7 @@
             
             **Note:**
             
-            You may need to call [`SetPedHeadBlendData`](#0x9414E18B9434C2FE) prior to calling this native in order for it to work.
+            You may need to call [`SetPedHeadBlendData`](#\_0x9414E18B9434C2FE) prior to calling this native in order for it to work.
             </summary>
             <param name="ped">
             The ped entity
@@ -3136,10 +3132,10 @@
             
             This native function is often called prior to calling natives such as:
             
-            *   [`SetPedHairColor`](#0xBB43F090)
-            *   [`SetPedHeadOverlayColor`](#0x78935A27)
-            *   [`SetPedHeadOverlay`](#0xD28DBA90)
-            *   [`SetPedFaceFeature`](#0x6C8D4458)
+            *   [`SetPedHairColor`](#\_0xBB43F090)
+            *   [`SetPedHeadOverlayColor`](#\_0x78935A27)
+            *   [`SetPedHeadOverlay`](#\_0xD28DBA90)
+            *   [`SetPedFaceFeature`](#\_0x6C8D4458)
             </summary>
             <param name="ped">
             The ped entity
@@ -3197,7 +3193,7 @@
             
             **Note:**
             
-            You may need to call [`SetPedHeadBlendData`](#0x9414E18B9434C2FE) prior to calling this native in order for it to work.
+            You may need to call [`SetPedHeadBlendData`](#\_0x9414E18B9434C2FE) prior to calling this native in order for it to work.
             </summary>
             <param name="ped">
             The ped entity
@@ -3221,7 +3217,7 @@
             
             **Note:**
             
-            You may need to call [`SetPedHeadBlendData`](#0x9414E18B9434C2FE) prior to calling this native in order for it to work.
+            You may need to call [`SetPedHeadBlendData`](#\_0x9414E18B9434C2FE) prior to calling this native in order for it to work.
             </summary>
             <param name="ped">
             The ped entity
@@ -3409,10 +3405,17 @@
         </member>
         <member name="M:CitizenFX.Server.Native.Natives.SetPlayerWantedLevel(CitizenFX.Core.CString,System.Int32,System.Boolean)">
             <summary>
-            Call SET_PLAYER_WANTED_LEVEL_NOW for immediate effect  
-            wantedLevel is an integer value representing 0 to 5 stars even though the game supports the 6th wanted level but no police will appear since no definitions are present for it in the game files  
-            disableNoMission-  Disables When Off Mission- appears to always be false
+            SET_PLAYER_WANTED_LEVEL
             </summary>
+            <param name="player">
+            the target player
+            </param>
+            <param name="wantedLevel">
+            the wanted level 1-5
+            </param>
+            <param name="delayedResponse">
+            false = 0-10sec police spawn response time, true = 10-20sec police spawn response time
+            </param>
         </member>
         <member name="M:CitizenFX.Server.Native.Natives.SetResourceKvp(CitizenFX.Core.CString,CitizenFX.Core.CString)">
             <summary>
@@ -5244,10 +5247,6 @@
         </member>
         <member name="F:CitizenFX.Server.Native.Hash.SET_BLIP_SPRITE">
             <summary>
-            &lt;!--
-            _loc1_.map((name, idx) =&gt; `| ${idx} | ${name} | ![${name}](https://runtime.fivem.net/blips/${name}.svg) |`).join('\n')
-            --&gt;
-            
             Sets the displayed sprite for a specific blip.
             
             There's a [list of sprites](https://docs.fivem.net/game-references/blips/) on the FiveM documentation site.
@@ -5963,7 +5962,7 @@
             
             **Note:**
             
-            You may need to call [`SetPedHeadBlendData`](#0x9414E18B9434C2FE) prior to calling this native in order for it to work.
+            You may need to call [`SetPedHeadBlendData`](#\_0x9414E18B9434C2FE) prior to calling this native in order for it to work.
             </summary>
         </member>
         <member name="F:CitizenFX.Server.Native.Hash._SET_PED_HAIR_COLOR">
@@ -5981,10 +5980,10 @@
             
             This native function is often called prior to calling natives such as:
             
-            *   [`SetPedHairColor`](#0xBB43F090)
-            *   [`SetPedHeadOverlayColor`](#0x78935A27)
-            *   [`SetPedHeadOverlay`](#0xD28DBA90)
-            *   [`SetPedFaceFeature`](#0x6C8D4458)
+            *   [`SetPedHairColor`](#\_0xBB43F090)
+            *   [`SetPedHeadOverlayColor`](#\_0x78935A27)
+            *   [`SetPedHeadOverlay`](#\_0xD28DBA90)
+            *   [`SetPedFaceFeature`](#\_0x6C8D4458)
             </summary>
         </member>
         <member name="F:CitizenFX.Server.Native.Hash.SET_PED_HEAD_OVERLAY">
@@ -6009,7 +6008,7 @@
             
             **Note:**
             
-            You may need to call [`SetPedHeadBlendData`](#0x9414E18B9434C2FE) prior to calling this native in order for it to work.
+            You may need to call [`SetPedHeadBlendData`](#\_0x9414E18B9434C2FE) prior to calling this native in order for it to work.
             </summary>
         </member>
         <member name="F:CitizenFX.Server.Native.Hash._SET_PED_HEAD_OVERLAY_COLOR">
@@ -6021,7 +6020,7 @@
             
             **Note:**
             
-            You may need to call [`SetPedHeadBlendData`](#0x9414E18B9434C2FE) prior to calling this native in order for it to work.
+            You may need to call [`SetPedHeadBlendData`](#\_0x9414E18B9434C2FE) prior to calling this native in order for it to work.
             </summary>
         </member>
         <member name="F:CitizenFX.Server.Native.Hash.SET_PED_INTO_VEHICLE">
@@ -6152,9 +6151,7 @@
         </member>
         <member name="F:CitizenFX.Server.Native.Hash.SET_PLAYER_WANTED_LEVEL">
             <summary>
-            Call SET_PLAYER_WANTED_LEVEL_NOW for immediate effect  
-            wantedLevel is an integer value representing 0 to 5 stars even though the game supports the 6th wanted level but no police will appear since no definitions are present for it in the game files  
-            disableNoMission-  Disables When Off Mission- appears to always be false
+            SET_PLAYER_WANTED_LEVEL
             </summary>
         </member>
         <member name="F:CitizenFX.Server.Native.Hash.SET_RESOURCE_KVP">
