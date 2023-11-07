@@ -7696,9 +7696,9 @@
             NETWORK_GET_NETWORK_ID_FROM_ENTITY
             </summary>
         </member>
-        <member name="F:CitizenFX.Core.Native.Hash.NETWORK_GET_VOICE_PROXIMITY_OVERRIDE">
+        <member name="F:CitizenFX.Core.Native.Hash.NETWORK_GET_VOICE_PROXIMITY_OVERRIDE_FOR_PLAYER">
             <summary>
-            NETWORK_GET_VOICE_PROXIMITY_OVERRIDE
+            NETWORK_GET_VOICE_PROXIMITY_OVERRIDE_FOR_PLAYER
             </summary>
         </member>
         <member name="F:CitizenFX.Core.Native.Hash.PERFORM_HTTP_REQUEST_INTERNAL">
@@ -11125,9 +11125,9 @@
             NETWORK_GET_NETWORK_ID_FROM_ENTITY
             </summary>
         </member>
-        <member name="M:CitizenFX.Core.Native.API.NetworkGetVoiceProximityOverride(System.String)">
+        <member name="M:CitizenFX.Core.Native.API.NetworkGetVoiceProximityOverrideForPlayer(System.String)">
             <summary>
-            NETWORK_GET_VOICE_PROXIMITY_OVERRIDE
+            NETWORK_GET_VOICE_PROXIMITY_OVERRIDE_FOR_PLAYER
             </summary>
             <param name="playerSrc">
             The player handle

@@ -1539,10 +1539,10 @@ function Global.NetworkGetNetworkIdFromEntity(entity)
 	return _in(0x9e35dab6, entity, _ri)
 end
 
---- NETWORK_GET_VOICE_PROXIMITY_OVERRIDE
+--- NETWORK_GET_VOICE_PROXIMITY_OVERRIDE_FOR_PLAYER
 -- @param playerSrc The player handle
-function Global.NetworkGetVoiceProximityOverride(playerSrc)
-	return _in(0x7a6462f4, _ts(playerSrc), _rv)
+function Global.NetworkGetVoiceProximityOverrideForPlayer(playerSrc)
+	return _in(0xffeef513, _ts(playerSrc), _rv)
 end
 
 --- PERFORM_HTTP_REQUEST_INTERNAL

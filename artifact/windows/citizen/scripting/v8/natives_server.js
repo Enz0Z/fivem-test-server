@@ -1929,11 +1929,11 @@ global.NetworkGetNetworkIdFromEntity = function (entity) {
 };
 
 /**
- * NETWORK_GET_VOICE_PROXIMITY_OVERRIDE
+ * NETWORK_GET_VOICE_PROXIMITY_OVERRIDE_FOR_PLAYER
  * @param playerSrc The player handle
  */
-global.NetworkGetVoiceProximityOverride = function (playerSrc) {
-	return _in(0x00000000, 0x7a6462f4, _ts(playerSrc), _r, _rv);
+global.NetworkGetVoiceProximityOverrideForPlayer = function (playerSrc) {
+	return _in(0x00000000, 0xffeef513, _ts(playerSrc), _r, _rv);
 };
 
 /**

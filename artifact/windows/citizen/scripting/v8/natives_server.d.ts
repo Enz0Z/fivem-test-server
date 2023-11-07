@@ -1482,10 +1482,10 @@ declare function NetworkGetFirstEntityOwner(entity: number): number;
 declare function NetworkGetNetworkIdFromEntity(entity: number): number;
 
 /**
- * NETWORK_GET_VOICE_PROXIMITY_OVERRIDE
+ * NETWORK_GET_VOICE_PROXIMITY_OVERRIDE_FOR_PLAYER
  * @param playerSrc The player handle
  */
-declare function NetworkGetVoiceProximityOverride(playerSrc: string): number[];
+declare function NetworkGetVoiceProximityOverrideForPlayer(playerSrc: string): number[];
 
 /**
  * PERFORM_HTTP_REQUEST_INTERNAL
