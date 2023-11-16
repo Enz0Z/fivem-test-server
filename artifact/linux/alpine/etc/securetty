@@ -15,6 +15,7 @@ hvc0
 ttyS0
 ttyS1
 ttyS2
+ttyGS0
 ttyAMA0
 ttyAMA1
 ttyTCU0
