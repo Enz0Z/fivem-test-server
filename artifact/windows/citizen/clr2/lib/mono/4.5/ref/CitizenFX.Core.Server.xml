@@ -6491,6 +6491,13 @@
             <c>true</c> if the specified <see cref="T:System.Object"/> is equal to this instance; otherwise, <c>false</c>.
             </returns>
         </member>
+        <member name="M:CitizenFX.Core.Native.Function.NativeStringResultSanitization(CitizenFX.Core.Native.Hash,CitizenFX.Core.Native.InputArgument[],System.UInt64*,System.Int32,System.UInt64*)">
+            <summary>
+            Sanitization for string result types
+            Loops through all values given by the ScRT and deny any that equals the result value which isn't of the string type
+            </summary>
+            <returns>Result from <see cref="M:CitizenFX.Core.ScriptContext.GetResult(System.Type)"/> or null if sanitized</returns>
+        </member>
         <member name="F:CitizenFX.Core.Native.Hash.ADD_BLIP_FOR_COORD">
             <summary>
             Creates a blip for the specified coordinates. You can use `SET_BLIP_` natives to change the blip.
