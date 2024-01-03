@@ -22,11 +22,9 @@ dialout:x:20:root
 ftp:x:21:
 sshd:x:22:
 input:x:23:
-at:x:25:at
 tape:x:26:root
 video:x:27:root
 netdev:x:28:
-readproc:x:30:
 squid:x:31:squid
 xfs:x:33:xfs
 kvm:x:34:kvm
@@ -46,3 +44,4 @@ utmp:x:406:
 ping:x:999:
 nogroup:x:65533:
 nobody:x:65534:
+klogd:x:101:klogd
