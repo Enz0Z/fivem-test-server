@@ -235,7 +235,7 @@ txaEventHandlers.playerWarned = function(eventData)
         end
         txPrint('Warning '..pName..' with reason: '..eventData.reason)
     else
-        logError('handleWarnEvent: player not found')
+        txPrint('handleWarnEvent: player not found')
     end
 end
 
@@ -394,7 +394,7 @@ RegisterCommand("txaSetDebugMode", txaSetDebugMode, true)
 AddEventHandler('playerConnecting', handleConnections)
 SetHttpHandler(handleHttp)
 
--- Heartbeat functions are separated in case one hangs
+-- HeartBeat functions are separated in case one hangs
 CreateThread(function()
     while true do
         HTTPHeartBeat()
