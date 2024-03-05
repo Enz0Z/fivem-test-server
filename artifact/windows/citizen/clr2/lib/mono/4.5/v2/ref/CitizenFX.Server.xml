@@ -579,7 +579,7 @@
         </member>
         <member name="M:CitizenFX.Server.Native.Natives.FreezeEntityPosition(System.Int32,System.Boolean)">
             <summary>
-            Freezes or unfreezes an entity preventing its coordinates to change by the player if set to `true`. You can still change the entity position using SET_ENTITY_COORDS.
+            Freezes or unfreezes an entity preventing its coordinates to change by the player if set to `true`. You can still change the entity position using [`SET_ENTITY_COORDS`](#\_0x06843DA7060A026B).
             </summary>
             <param name="entity">
             The entity to freeze/unfreeze.
@@ -2414,10 +2414,29 @@
         </member>
         <member name="M:CitizenFX.Server.Native.Natives.SetEntityRotation(System.Int32,System.Single,System.Single,System.Single,System.Int32,System.Boolean)">
             <summary>
-            SET_ENTITY_ROTATION
+            Sets the rotation of a specified entity in the game world.
+            
+            ```
+            NativeDB Introduced: v323
+            ```
             </summary>
+            <param name="entity">
+            The entity to rotate.
+            </param>
+            <param name="pitch">
+            The pitch (X-axis) rotation in degrees.
+            </param>
+            <param name="roll">
+            The roll (Y-axis) rotation in degrees.
+            </param>
+            <param name="yaw">
+            The yaw (Z-axis) rotation in degrees.
+            </param>
             <param name="rotationOrder">
-            The order yaw pitch roll are applied, see [`GET_ENTITY_ROTATION`](#\_0xAFBD61CC738D9EB9).
+            Specifies the order in which yaw, pitch, and roll are applied, see [`GET_ENTITY_ROTATION`](#\_0xAFBD61CC738D9EB9) for the available rotation orders.
+            </param>
+            <param name="bDeadCheck">
+            Usually set to `true`. Determines whether to check if the entity is dead before applying the rotation.
             </param>
         </member>
         <member name="M:CitizenFX.Server.Native.Natives.SetEntityRoutingBucket(System.Int32,System.Int32)">
@@ -3121,6 +3140,8 @@
         <member name="M:CitizenFX.Server.Native.Natives.SetPedHairColor(System.Int32,System.Int32,System.Int32)">
             <summary>
             Used for freemode (online) characters.
+            
+            **This is the server-side RPC native equivalent of the client native [\_SET_PED_HAIR_COLOR](?\_0x4CFFC65454C93A49).**
             </summary>
         </member>
         <member name="M:CitizenFX.Server.Native.Natives.SetPedHeadBlendData(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Single,System.Single,System.Single,System.Boolean)">
@@ -4166,7 +4187,7 @@
         </member>
         <member name="F:CitizenFX.Server.Native.Hash.FREEZE_ENTITY_POSITION">
             <summary>
-            Freezes or unfreezes an entity preventing its coordinates to change by the player if set to `true`. You can still change the entity position using SET_ENTITY_COORDS.
+            Freezes or unfreezes an entity preventing its coordinates to change by the player if set to `true`. You can still change the entity position using [`SET_ENTITY_COORDS`](#\_0x06843DA7060A026B).
             </summary>
         </member>
         <member name="F:CitizenFX.Server.Native.Hash.GET_AIR_DRAG_MULTIPLIER_FOR_PLAYERS_VEHICLE">
@@ -5299,7 +5320,11 @@
         </member>
         <member name="F:CitizenFX.Server.Native.Hash.SET_ENTITY_ROTATION">
             <summary>
-            SET_ENTITY_ROTATION
+            Sets the rotation of a specified entity in the game world.
+            
+            ```
+            NativeDB Introduced: v323
+            ```
             </summary>
         </member>
         <member name="F:CitizenFX.Server.Native.Hash.SET_ENTITY_ROUTING_BUCKET">
@@ -5970,6 +5995,8 @@
         <member name="F:CitizenFX.Server.Native.Hash._SET_PED_HAIR_COLOR">
             <summary>
             Used for freemode (online) characters.
+            
+            **This is the server-side RPC native equivalent of the client native [\_SET_PED_HAIR_COLOR](?\_0x4CFFC65454C93A49).**
             </summary>
         </member>
         <member name="F:CitizenFX.Server.Native.Hash.SET_PED_HEAD_BLEND_DATA">
