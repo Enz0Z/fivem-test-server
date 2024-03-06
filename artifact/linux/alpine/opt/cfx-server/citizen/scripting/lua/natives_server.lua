@@ -397,7 +397,7 @@ function Global.FlushResourceKvp()
 	return _in(0xe27c97a0)
 end
 
---- Freezes or unfreezes an entity preventing its coordinates to change by the player if set to `true`. You can still change the entity position using SET_ENTITY_COORDS.
+--- Freezes or unfreezes an entity preventing its coordinates to change by the player if set to `true`. You can still change the entity position using [`SET_ENTITY_COORDS`](#\_0x06843DA7060A026B).
 -- @param entity The entity to freeze/unfreeze.
 -- @param toggle Freeze or unfreeze entity.
 function Global.FreezeEntityPosition(entity, toggle)
@@ -1767,10 +1767,18 @@ function Global.SetEntityIgnoreRequestControlFilter(entity, ignore)
 	return _in(0x9f7f8d36, entity, ignore)
 end
 
---- SET_ENTITY_ROTATION
--- @param rotationOrder The order yaw pitch roll are applied, see [`GET_ENTITY_ROTATION`](#\_0xAFBD61CC738D9EB9).
-function Global.SetEntityRotation(entity, pitch, roll, yaw, rotationOrder, p5)
-	return _in(0xa345efe, entity, pitch, roll, yaw, rotationOrder, p5)
+--- Sets the rotation of a specified entity in the game world.
+-- ```
+-- NativeDB Introduced: v323
+-- ```
+-- @param entity The entity to rotate.
+-- @param pitch The pitch (X-axis) rotation in degrees.
+-- @param roll The roll (Y-axis) rotation in degrees.
+-- @param yaw The yaw (Z-axis) rotation in degrees.
+-- @param rotationOrder Specifies the order in which yaw, pitch, and roll are applied, see [`GET_ENTITY_ROTATION`](#\_0xAFBD61CC738D9EB9) for the available rotation orders.
+-- @param bDeadCheck Usually set to `true`. Determines whether to check if the entity is dead before applying the rotation.
+function Global.SetEntityRotation(entity, pitch, roll, yaw, rotationOrder, bDeadCheck)
+	return _in(0xa345efe, entity, pitch, roll, yaw, rotationOrder, bDeadCheck)
 end
 
 --- Sets the routing bucket for the specified entity.
@@ -2431,11 +2439,6 @@ end
 -- @param scale A float ranging from -1.0 to 1.0
 function Global.SetPedFaceFeature(ped, index, scale)
 	return _in(0x6c8d4458, ped, index, scale)
-end
-
---- Used for freemode (online) characters.
-function Global.SetPedHairColor(ped, colorID, highlightColorID)
-	return _in(0xbb43f090, ped, colorID, highlightColorID)
 end
 
 --- For more info please refer to [this](https://gtaforums.com/topic/858970-all-gtao-face-ids-pedset-ped-head-blend-data-explained) topic.

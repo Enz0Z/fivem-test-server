@@ -480,7 +480,7 @@ global.FlushResourceKvp = function () {
 };
 
 /**
- * Freezes or unfreezes an entity preventing its coordinates to change by the player if set to `true`. You can still change the entity position using SET_ENTITY_COORDS.
+ * Freezes or unfreezes an entity preventing its coordinates to change by the player if set to `true`. You can still change the entity position using [`SET_ENTITY_COORDS`](#\_0x06843DA7060A026B).
  * @param entity The entity to freeze/unfreeze.
  * @param toggle Freeze or unfreeze entity.
  */
@@ -2233,11 +2233,19 @@ global.SetEntityIgnoreRequestControlFilter = function (entity, ignore) {
 };
 
 /**
- * SET_ENTITY_ROTATION
- * @param rotationOrder The order yaw pitch roll are applied, see [`GET_ENTITY_ROTATION`](#\_0xAFBD61CC738D9EB9).
+ * Sets the rotation of a specified entity in the game world.
+ * ```
+ * NativeDB Introduced: v323
+ * ```
+ * @param entity The entity to rotate.
+ * @param pitch The pitch (X-axis) rotation in degrees.
+ * @param roll The roll (Y-axis) rotation in degrees.
+ * @param yaw The yaw (Z-axis) rotation in degrees.
+ * @param rotationOrder Specifies the order in which yaw, pitch, and roll are applied, see [`GET_ENTITY_ROTATION`](#\_0xAFBD61CC738D9EB9) for the available rotation orders.
+ * @param bDeadCheck Usually set to `true`. Determines whether to check if the entity is dead before applying the rotation.
  */
-global.SetEntityRotation = function (entity, pitch, roll, yaw, rotationOrder, p5) {
-	return _in(0x00000000, 0x0a345efe, entity, _fv(pitch), _fv(roll), _fv(yaw), rotationOrder, p5);
+global.SetEntityRotation = function (entity, pitch, roll, yaw, rotationOrder, bDeadCheck) {
+	return _in(0x00000000, 0x0a345efe, entity, _fv(pitch), _fv(roll), _fv(yaw), rotationOrder, bDeadCheck);
 };
 
 /**
@@ -2924,13 +2932,6 @@ global.SetPedEyeColor = function (ped, index) {
  */
 global.SetPedFaceFeature = function (ped, index, scale) {
 	return _in(0x00000000, 0x6c8d4458, ped, index, _fv(scale));
-};
-
-/**
- * Used for freemode (online) characters.
- */
-global.SetPedHairColor = function (ped, colorID, highlightColorID) {
-	return _in(0x00000000, 0xbb43f090, ped, colorID, highlightColorID);
 };
 
 /**
