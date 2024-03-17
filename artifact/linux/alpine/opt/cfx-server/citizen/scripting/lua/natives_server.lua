@@ -1639,6 +1639,7 @@ function Global.RemoveAllPedWeapons(ped, p1)
 end
 
 --- Removes the blip from your map.
+-- **Note:** This function only works on the script that created the blip, if you wish to remove blips created by other scripts, see [`SET_THIS_SCRIPT_CAN_REMOVE_BLIPS_CREATED_BY_ANY_SCRIPT`](#\_0x86A652570E5F25DD).
 -- @param blip Blip handle to remove.
 function Global.RemoveBlip(blip)
 	return _in(0xd8c3c1cd, _ii(blip) --[[ may be optional ]])

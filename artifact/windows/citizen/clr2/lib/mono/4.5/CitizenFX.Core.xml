@@ -7796,6 +7796,8 @@
         <member name="F:CitizenFX.Core.Native.Hash.REMOVE_BLIP">
             <summary>
             Removes the blip from your map.
+            
+            **Note:** This function only works on the script that created the blip, if you wish to remove blips created by other scripts, see [`SET_THIS_SCRIPT_CAN_REMOVE_BLIPS_CREATED_BY_ANY_SCRIPT`](#\_0x86A652570E5F25DD).
             </summary>
         </member>
         <member name="F:CitizenFX.Core.Native.Hash.REMOVE_STATE_BAG_CHANGE_HANDLER">
@@ -11280,6 +11282,7 @@
         <member name="M:CitizenFX.Core.Native.API.RemoveBlip(System.Int32@)">
             <summary>
             Removes the blip from your map.
+            **Note:** This function only works on the script that created the blip, if you wish to remove blips created by other scripts, see [`SET_THIS_SCRIPT_CAN_REMOVE_BLIPS_CREATED_BY_ANY_SCRIPT`](#\_0x86A652570E5F25DD).
             </summary>
             <param name="blip">
             Blip handle to remove.
