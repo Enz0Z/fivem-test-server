@@ -3139,13 +3139,6 @@
             A float ranging from -1.0 to 1.0
             </param>
         </member>
-        <member name="M:CitizenFX.Server.Native.Natives.SetPedHairColor(System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Used for freemode (online) characters.
-            
-            **This is the server-side RPC native equivalent of the client native [\_SET_PED_HAIR_COLOR](?\_0x4CFFC65454C93A49).**
-            </summary>
-        </member>
         <member name="M:CitizenFX.Server.Native.Natives.SetPedHeadBlendData(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Single,System.Single,System.Single,System.Boolean)">
             <summary>
             For more info please refer to [this](https://gtaforums.com/topic/858970-all-gtao-face-ids-pedset-ped-head-blend-data-explained) topic.
@@ -6010,13 +6003,6 @@
             **Note:**
             
             You may need to call [`SetPedHeadBlendData`](#\_0x9414E18B9434C2FE) prior to calling this native in order for it to work.
-            </summary>
-        </member>
-        <member name="F:CitizenFX.Server.Native.Hash._SET_PED_HAIR_COLOR">
-            <summary>
-            Used for freemode (online) characters.
-            
-            **This is the server-side RPC native equivalent of the client native [\_SET_PED_HAIR_COLOR](?\_0x4CFFC65454C93A49).**
             </summary>
         </member>
         <member name="F:CitizenFX.Server.Native.Hash.SET_PED_HEAD_BLEND_DATA">

@@ -2384,12 +2384,6 @@ declare function SetPedEyeColor(ped: number, index: number): void;
 declare function SetPedFaceFeature(ped: number, index: number, scale: number): void;
 
 /**
- * Used for freemode (online) characters.
- * **This is the server-side RPC native equivalent of the client native [\_SET_PED_HAIR_COLOR](?\_0x4CFFC65454C93A49).**
- */
-declare function SetPedHairColor(ped: number, colorID: number, highlightColorID: number): void;
-
-/**
  * For more info please refer to [this](https://gtaforums.com/topic/858970-all-gtao-face-ids-pedset-ped-head-blend-data-explained) topic.
  * **Other information:**
  * IDs start at zero and go Male Non-DLC, Female Non-DLC, Male DLC, and Female DLC.</br>

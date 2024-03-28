@@ -2919,14 +2919,6 @@ global.SetPedFaceFeature = function (ped, index, scale) {
 };
 
 /**
- * Used for freemode (online) characters.
- * **This is the server-side RPC native equivalent of the client native [\_SET_PED_HAIR_COLOR](?\_0x4CFFC65454C93A49).**
- */
-global.SetPedHairColor = function (ped, colorID, highlightColorID) {
-	return _in(0x00000000, 0xbb43f090, ped, colorID, highlightColorID);
-};
-
-/**
  * For more info please refer to [this](https://gtaforums.com/topic/858970-all-gtao-face-ids-pedset-ped-head-blend-data-explained) topic.
  * **Other information:**
  * IDs start at zero and go Male Non-DLC, Female Non-DLC, Male DLC, and Female DLC.</br>
