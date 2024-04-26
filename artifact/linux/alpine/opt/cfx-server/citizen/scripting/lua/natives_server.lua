@@ -2615,11 +2615,10 @@ function Global.SetPlayerCullingRadius(playerSrc, radius)
 	return _in(0x8a2fbad4, _ts(playerSrc), radius)
 end
 
---- Simply sets you as invincible (Health will not deplete).
--- Use 0x733A643B5B0C53C1 instead if you want Ragdoll enabled, which is equal to:
--- *(DWORD *)(playerPedAddress + 0x188) |= (1 << 9);
-function Global.SetPlayerInvincible(player, toggle)
-	return _in(0xdfb9a2a2, _ts(player), toggle)
+--- Make the player impervious to all forms of damage.
+-- @param player The player index.
+function Global.SetPlayerInvincible(player, bInvincible)
+	return _in(0xdfb9a2a2, _ts(player), bInvincible)
 end
 
 --- Set the model for a specific Player. Note that this will destroy the current Ped for the Player and create a new one, any reference to the old ped will be invalid after calling this.
@@ -2852,10 +2851,65 @@ function Global.TaskGoStraightToCoord(ped, x, y, z, speed, timeout, targetHeadin
 	return _in(0x80a9e7a7, ped, x, y, z, speed, timeout, targetHeading, distanceToSlide)
 end
 
---- example from fm_mission_controller
--- TASK::TASK_GO_TO_COORD_ANY_MEANS(l_649, sub_f7e86(-1, 0), 1.0, 0, 0, 786603, 0xbf800000);
-function Global.TaskGoToCoordAnyMeans(ped, x, y, z, speed, p5, p6, walkingStyle, p8)
-	return _in(0xf91df93b, ped, x, y, z, speed, p5, p6, walkingStyle, p8)
+--- Tells a ped to go to a coord by any means.
+-- ```cpp
+-- enum eDrivingMode {
+-- DF_StopForCars = 1,
+-- DF_StopForPeds = 2,
+-- DF_SwerveAroundAllCars = 4,
+-- DF_SteerAroundStationaryCars	= 8,
+-- DF_SteerAroundPeds = 16,
+-- DF_SteerAroundObjects = 32,
+-- DF_DontSteerAroundPlayerPed = 64,
+-- DF_StopAtLights = 128,
+-- DF_GoOffRoadWhenAvoiding = 256,
+-- DF_DriveIntoOncomingTraffic = 512,
+-- DF_DriveInReverse = 1024,
+-- // If pathfinding fails, cruise randomly instead of going on a straight line
+-- DF_UseWanderFallbackInsteadOfStraightLine = 2048,
+-- DF_AvoidRestrictedAreas = 4096,
+-- // These only work on MISSION_CRUISE
+-- DF_PreventBackgroundPathfinding = 8192,
+-- DF_AdjustCruiseSpeedBasedOnRoadSpeed = 16384,
+-- DF_UseShortCutLinks =  262144,
+-- DF_ChangeLanesAroundObstructions = 524288,
+-- DF_UseSwitchedOffNodes =  2097152,	// cruise tasks ignore this anyway--only used for goto's
+-- DF_PreferNavmeshRoute =  4194304,	// if you're going to be primarily driving off road
+-- // Only works for planes using MISSION_GOTO, will cause them to drive along the ground instead of fly
+-- DF_PlaneTaxiMode =  8388608,
+-- DF_ForceStraightLine = 16777216,
+-- DF_UseStringPullingAtJunctions = 33554432,
+-- DF_AvoidHighways = 536870912,
+-- DF_ForceJoinInRoadDirection = 1073741824,
+-- // Standard driving mode. stops for cars, peds, and lights, goes around stationary obstructions
+-- DRIVINGMODE_STOPFORCARS = 786603, // DF_StopForCars|DF_StopForPeds|DF_SteerAroundObjects|DF_SteerAroundStationaryCars|DF_StopAtLights|DF_UseShortCutLinks|DF_ChangeLanesAroundObstructions,		// Obey lights too
+-- // Like the above, but doesn't steer around anything in its way - will only wait instead.
+-- DRIVINGMODE_STOPFORCARS_STRICT = 262275, // DF_StopForCars|DF_StopForPeds|DF_StopAtLights|DF_UseShortCutLinks, // Doesn't deviate an inch.
+-- // Default "alerted" driving mode. drives around everything, doesn't obey lights
+-- DRIVINGMODE_AVOIDCARS = 786469, // DF_SwerveAroundAllCars|DF_SteerAroundObjects|DF_UseShortCutLinks|DF_ChangeLanesAroundObstructions|DF_StopForCars,
+-- // Very erratic driving. difference between this and AvoidCars is that it doesn't use the brakes at ALL to help with steering
+-- DRIVINGMODE_AVOIDCARS_RECKLESS = 786468, // DF_SwerveAroundAllCars|DF_SteerAroundObjects|DF_UseShortCutLinks|DF_ChangeLanesAroundObstructions,
+-- // Smashes through everything
+-- DRIVINGMODE_PLOUGHTHROUGH = 262144, // DF_UseShortCutLinks
+-- // Drives normally except for the fact that it ignores lights
+-- DRIVINGMODE_STOPFORCARS_IGNORELIGHTS = 786475, // DF_StopForCars|DF_SteerAroundStationaryCars|DF_StopForPeds|DF_SteerAroundObjects|DF_UseShortCutLinks|DF_ChangeLanesAroundObstructions
+-- // Try to swerve around everything, but stop for lights if necessary
+-- DRIVINGMODE_AVOIDCARS_OBEYLIGHTS = 786597, // DF_SwerveAroundAllCars|DF_StopAtLights|DF_SteerAroundObjects|DF_UseShortCutLinks|DF_ChangeLanesAroundObstructions|DF_StopForCars
+-- // Swerve around cars, be careful around peds, and stop for lights
+-- DRIVINGMODE_AVOIDCARS_STOPFORPEDS_OBEYLIGHTS = 786599 // DF_SwerveAroundAllCars|DF_StopAtLights|DF_StopForPeds|DF_SteerAroundObjects|DF_UseShortCutLinks|DF_ChangeLanesAroundObstructions|DF_StopForCars
+-- };
+-- ```
+-- @param ped The `Ped` Handle.
+-- @param x The goto target coordinate.
+-- @param y The goto target coordinate.
+-- @param z The goto target coordinate.
+-- @param fMoveBlendRatio 0.0 = still, 1.0 = walk, 2.0 = run, 3.0 = sprint.
+-- @param vehicle If defined, the pedestrian will only move if said vehicle exists. If you don't want any sort of association, just set it to `0`.
+-- @param bUseLongRangeVehiclePathing Setting to `true` tells the vehicle to use longrange vehicle pathing.
+-- @param drivingFlags See `eDrivingMode` enum.
+-- @param fMaxRangeToShootTargets Determines the maximum distance at which the `Ped` will engage in combat with threatening targets.
+function Global.TaskGoToCoordAnyMeans(ped, x, y, z, fMoveBlendRatio, vehicle, bUseLongRangeVehiclePathing, drivingFlags, fMaxRangeToShootTargets)
+	return _in(0xf91df93b, ped, x, y, z, fMoveBlendRatio, vehicle, bUseLongRangeVehiclePathing, drivingFlags, fMaxRangeToShootTargets)
 end
 
 --- The entity will move towards the target until time is over (duration) or get in target's range (distance). p5 and p6 are unknown, but you could leave p5 = 1073741824 or 100 or even 0 (didn't see any difference but on the decompiled scripts, they use 1073741824 mostly) and p6 = 0
