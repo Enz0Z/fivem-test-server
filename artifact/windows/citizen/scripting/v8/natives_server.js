@@ -565,6 +565,15 @@ global.GetConvarInt = function (varName, default_) {
 };
 
 /**
+ * Returns the hash of weapon the Ped is currently using.
+ * @param ped The target ped.
+ * @return The weapon hash.
+ */
+global.GetCurrentPedWeapon = function (ped) {
+	return _in(0x00000000, 0xb0237302, ped, _r, _ri);
+};
+
+/**
  * Returns the name of the currently executing resource.
  * @return The name of the resource.
  */
@@ -1327,7 +1336,8 @@ global.GetResourceState = function (resourceName) {
 };
 
 /**
- * Returns a hash of selected ped weapon.
+ * An alias of [GET_CURRENT_PED_WEAPON](#\_0xB0237302).
+ * Note, the client-side [GET_SELECTED_PED_WEAPON](#\_0x0A6DB4965674D243) native returns the weapon selected via the HUD (weapon wheel). This data is not available to FXServer.
  * @param ped The target ped.
  * @return The weapon hash.
  */
@@ -1570,6 +1580,7 @@ global.GetVehicleSteeringAngle = function (vehicle) {
 
 /**
  * Returns the type of the passed vehicle.
+ * For client scripts, reference the more detailed [GET_VEHICLE_TYPE_RAW](#\_0xDE73BC10) native.
  * ### Vehicle types
  * *   automobile
  * *   bike

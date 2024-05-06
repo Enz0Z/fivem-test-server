@@ -7735,6 +7735,30 @@
             GET_VEHICLE_STEERING_ANGLE
             </summary>
         </member>
+        <member name="M:CitizenFX.Shared.Native.Natives.GetVehicleType(System.Int32)">
+            <summary>
+            Returns the type of the passed vehicle.
+            
+            For client scripts, reference the more detailed [GET_VEHICLE_TYPE_RAW](#\_0xDE73BC10) native.
+            
+            ### Vehicle types
+            
+            *   automobile
+            *   bike
+            *   boat
+            *   heli
+            *   plane
+            *   submarine
+            *   trailer
+            *   train
+            </summary>
+            <param name="vehicle">
+            The vehicle's entity handle.
+            </param>
+            <returns>
+            If the entity is a vehicle, the vehicle type. If it is not a vehicle, the return value will be null.
+            </returns>
+        </member>
         <member name="M:CitizenFX.Shared.Native.Natives.InvokeFunctionReference(CitizenFX.Core.CString,CitizenFX.Core.CString,System.Int32,System.Int32@)">
             <summary>
             INVOKE_FUNCTION_REFERENCE
@@ -8156,6 +8180,24 @@
         <member name="F:CitizenFX.Shared.Native.Hash.GET_VEHICLE_STEERING_ANGLE">
             <summary>
             GET_VEHICLE_STEERING_ANGLE
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Shared.Native.Hash.GET_VEHICLE_TYPE">
+            <summary>
+            Returns the type of the passed vehicle.
+            
+            For client scripts, reference the more detailed [GET_VEHICLE_TYPE_RAW](#\_0xDE73BC10) native.
+            
+            ### Vehicle types
+            
+            *   automobile
+            *   bike
+            *   boat
+            *   heli
+            *   plane
+            *   submarine
+            *   trailer
+            *   train
             </summary>
         </member>
         <member name="F:CitizenFX.Shared.Native.Hash.INVOKE_FUNCTION_REFERENCE">
