@@ -53,6 +53,7 @@ _ENV = nil
 function Global.AddBlipForArea(x, y, z, width, height)
 	return _in(0x6228f159, x, y, z, width, height, _ri)
 end
+Global.N_0xce5d0e5e315db238 = Global.AddBlipForArea
 
 --- Creates a blip for the specified coordinates. You can use `SET_BLIP_` natives to change the blip.
 -- @param x The X coordinate to create the blip on.
@@ -112,6 +113,8 @@ end
 function Global.AddPedDecorationFromHashes(ped, collection, overlay)
 	return _in(0x70559ac7, ped, _ch(collection), _ch(overlay))
 end
+Global.ApplyPedOverlay = Global.AddPedDecorationFromHashes
+Global.SetPedDecoration = Global.AddPedDecorationFromHashes
 
 --- Adds a handler for changes to a state bag.
 -- The function called expects to match the following signature:
@@ -2450,6 +2453,18 @@ end
 function Global.SetPedFaceFeature(ped, index, scale)
 	return _in(0x6c8d4458, ped, index, scale)
 end
+
+--- Sets the tint index for the hair on the specified ped.
+-- ```
+-- NativeDB Introduced: v323
+-- ```
+-- @param ped The Ped whose hair tint is to be set.
+-- @param colorID The tint index for the primary hair color.
+-- @param highlightColorID The tint index for the hair highlight color.
+function Global.SetPedHairTint(ped, colorID, highlightColorID)
+	return _in(0xa23fe32c, ped, colorID, highlightColorID)
+end
+Global.SetPedHairColor = Global.SetPedHairTint
 
 --- For more info please refer to [this](https://gtaforums.com/topic/858970-all-gtao-face-ids-pedset-ped-head-blend-data-explained) topic.
 -- **Other information:**

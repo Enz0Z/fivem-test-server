@@ -61,6 +61,7 @@ const _ENV = null;
 global.AddBlipForArea = function (x, y, z, width, height) {
 	return _in(0x00000000, 0x6228f159, _fv(x), _fv(y), _fv(z), _fv(width), _fv(height), _r, _ri);
 };
+global.N_0xce5d0e5e315db238 = global.AddBlipForArea;
 
 /**
  * Creates a blip for the specified coordinates. You can use `SET_BLIP_` natives to change the blip.
@@ -128,6 +129,8 @@ global.AddBlipForRadius = function (posX, posY, posZ, radius) {
 global.AddPedDecorationFromHashes = function (ped, collection, overlay) {
 	return _in(0x00000000, 0x70559ac7, ped, _ch(collection), _ch(overlay));
 };
+global.ApplyPedOverlay = global.AddPedDecorationFromHashes;
+global.SetPedDecoration = global.AddPedDecorationFromHashes;
 
 /**
  * Adds a handler for changes to a state bag.
@@ -2945,6 +2948,20 @@ global.SetPedEyeColor = function (ped, index) {
 global.SetPedFaceFeature = function (ped, index, scale) {
 	return _in(0x00000000, 0x6c8d4458, ped, index, _fv(scale));
 };
+
+/**
+ * Sets the tint index for the hair on the specified ped.
+ * ```
+ * NativeDB Introduced: v323
+ * ```
+ * @param ped The Ped whose hair tint is to be set.
+ * @param colorID The tint index for the primary hair color.
+ * @param highlightColorID The tint index for the hair highlight color.
+ */
+global.SetPedHairTint = function (ped, colorID, highlightColorID) {
+	return _in(0x00000000, 0xa23fe32c, ped, colorID, highlightColorID);
+};
+global.SetPedHairColor = global.SetPedHairTint;
 
 /**
  * For more info please refer to [this](https://gtaforums.com/topic/858970-all-gtao-face-ids-pedset-ped-head-blend-data-explained) topic.

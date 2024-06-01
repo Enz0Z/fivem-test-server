@@ -14,6 +14,22 @@
  * @return A handle to the blip.
  */
 declare function AddBlipForArea(x: number, y: number, z: number, width: number, height: number): number;
+/**
+ * Adds a rectangular blip for the specified coordinates/area.
+ * It is recommended to use [SET_BLIP_ROTATION](#\_0xF87683CDF73C3F6E) and [SET_BLIP_COLOUR](#\_0x03D7FB09E75D6B7E) to make the blip not rotate along with the camera.
+ * By default, the blip will show as a *regular* blip with the specified color/sprite if it is outside of the minimap view.
+ * Example image:
+ * ![minimap](https://i.imgur.com/qLbXWcQ.png)
+ * ![big map](https://i.imgur.com/0j7O7Rh.png)
+ * (Native name is *likely* to actually be ADD_BLIP_FOR_AREA, but due to the usual reasons this can't be confirmed)
+ * @param x The X coordinate of the center of the blip.
+ * @param y The Y coordinate of the center of the blip.
+ * @param z The Z coordinate of the center of the blip.
+ * @param width The width of the blip.
+ * @param height The height of the blip.
+ * @return A handle to the blip.
+ */
+declare function N_0xce5d0e5e315db238(x: number, y: number, z: number, width: number, height: number): number;
 
 /**
  * Creates a blip for the specified coordinates. You can use `SET_BLIP_` natives to change the blip.
@@ -73,6 +89,56 @@ declare function AddBlipForRadius(posX: number, posY: number, posZ: number, radi
  * PED::_0x5F5D1665E352A839(PLAYER::PLAYER_PED_ID(), MISC::GET_HASH_KEY("mpbeach_overlays"), MISC::GET_HASH_KEY("fm_hair_fuzz"))
  */
 declare function AddPedDecorationFromHashes(ped: number, collection: string | number, overlay: string | number): void;
+/**
+ * Applies an Item from a PedDecorationCollection to a ped. These include tattoos and shirt decals.
+ * collection - PedDecorationCollection filename hash
+ * overlay - Item name hash
+ * Example:
+ * Entry inside "mpbeach_overlays.xml" -
+ * <Item>
+ * <uvPos x="0.500000" y="0.500000" />
+ * <scale x="0.600000" y="0.500000" />
+ * <rotation value="0.000000" />
+ * <nameHash>FM_Hair_Fuzz</nameHash>
+ * <txdHash>mp_hair_fuzz</txdHash>
+ * <txtHash>mp_hair_fuzz</txtHash>
+ * <zone>ZONE_HEAD</zone>
+ * <type>TYPE_TATTOO</type>
+ * <faction>FM</faction>
+ * <garment>All</garment>
+ * <gender>GENDER_DONTCARE</gender>
+ * <award />
+ * <awardLevel />
+ * </Item>
+ * Code:
+ * PED::_0x5F5D1665E352A839(PLAYER::PLAYER_PED_ID(), MISC::GET_HASH_KEY("mpbeach_overlays"), MISC::GET_HASH_KEY("fm_hair_fuzz"))
+ */
+declare function ApplyPedOverlay(ped: number, collection: string | number, overlay: string | number): void;
+/**
+ * Applies an Item from a PedDecorationCollection to a ped. These include tattoos and shirt decals.
+ * collection - PedDecorationCollection filename hash
+ * overlay - Item name hash
+ * Example:
+ * Entry inside "mpbeach_overlays.xml" -
+ * <Item>
+ * <uvPos x="0.500000" y="0.500000" />
+ * <scale x="0.600000" y="0.500000" />
+ * <rotation value="0.000000" />
+ * <nameHash>FM_Hair_Fuzz</nameHash>
+ * <txdHash>mp_hair_fuzz</txdHash>
+ * <txtHash>mp_hair_fuzz</txtHash>
+ * <zone>ZONE_HEAD</zone>
+ * <type>TYPE_TATTOO</type>
+ * <faction>FM</faction>
+ * <garment>All</garment>
+ * <gender>GENDER_DONTCARE</gender>
+ * <award />
+ * <awardLevel />
+ * </Item>
+ * Code:
+ * PED::_0x5F5D1665E352A839(PLAYER::PLAYER_PED_ID(), MISC::GET_HASH_KEY("mpbeach_overlays"), MISC::GET_HASH_KEY("fm_hair_fuzz"))
+ */
+declare function SetPedDecoration(ped: number, collection: string | number, overlay: string | number): void;
 
 /**
  * Adds a handler for changes to a state bag.
@@ -2408,6 +2474,27 @@ declare function SetPedEyeColor(ped: number, index: number): void;
  * @param scale A float ranging from -1.0 to 1.0
  */
 declare function SetPedFaceFeature(ped: number, index: number, scale: number): void;
+
+/**
+ * Sets the tint index for the hair on the specified ped.
+ * ```
+ * NativeDB Introduced: v323
+ * ```
+ * @param ped The Ped whose hair tint is to be set.
+ * @param colorID The tint index for the primary hair color.
+ * @param highlightColorID The tint index for the hair highlight color.
+ */
+declare function SetPedHairTint(ped: number, colorID: number, highlightColorID: number): void;
+/**
+ * Sets the tint index for the hair on the specified ped.
+ * ```
+ * NativeDB Introduced: v323
+ * ```
+ * @param ped The Ped whose hair tint is to be set.
+ * @param colorID The tint index for the primary hair color.
+ * @param highlightColorID The tint index for the hair highlight color.
+ */
+declare function SetPedHairColor(ped: number, colorID: number, highlightColorID: number): void;
 
 /**
  * For more info please refer to [this](https://gtaforums.com/topic/858970-all-gtao-face-ids-pedset-ped-head-blend-data-explained) topic.

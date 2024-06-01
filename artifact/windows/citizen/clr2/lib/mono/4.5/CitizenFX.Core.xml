@@ -8508,6 +8508,15 @@
             Sets Ped Default Clothes
             </summary>
         </member>
+        <member name="F:CitizenFX.Core.Native.Hash.SET_PED_HAIR_TINT">
+            <summary>
+            Sets the tint index for the hair on the specified ped.
+            
+            ```
+            NativeDB Introduced: v323
+            ```
+            </summary>
+        </member>
         <member name="F:CitizenFX.Core.Native.Hash.SET_PED_HEAD_BLEND_DATA">
             <summary>
             For more info please refer to [this](https://gtaforums.com/topic/858970-all-gtao-face-ids-pedset-ped-head-blend-data-explained) topic.
@@ -9201,6 +9210,35 @@
             A handle to the blip.
             </returns>
         </member>
+        <member name="M:CitizenFX.Core.Native.API.N_0xce5d0e5e315db238(System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Adds a rectangular blip for the specified coordinates/area.
+            It is recommended to use [SET_BLIP_ROTATION](#\_0xF87683CDF73C3F6E) and [SET_BLIP_COLOUR](#\_0x03D7FB09E75D6B7E) to make the blip not rotate along with the camera.
+            By default, the blip will show as a *regular* blip with the specified color/sprite if it is outside of the minimap view.
+            Example image:
+            ![minimap](https://i.imgur.com/qLbXWcQ.png)
+            ![big map](https://i.imgur.com/0j7O7Rh.png)
+            (Native name is *likely* to actually be ADD_BLIP_FOR_AREA, but due to the usual reasons this can't be confirmed)
+            </summary>
+            <param name="x">
+            The X coordinate of the center of the blip.
+            </param>
+            <param name="y">
+            The Y coordinate of the center of the blip.
+            </param>
+            <param name="z">
+            The Z coordinate of the center of the blip.
+            </param>
+            <param name="width">
+            The width of the blip.
+            </param>
+            <param name="height">
+            The height of the blip.
+            </param>
+            <returns>
+            A handle to the blip.
+            </returns>
+        </member>
         <member name="M:CitizenFX.Core.Native.API.AddBlipForCoord(System.Single,System.Single,System.Single)">
             <summary>
             Creates a blip for the specified coordinates. You can use `SET_BLIP_` natives to change the blip.
@@ -9257,6 +9295,58 @@
             </returns>
         </member>
         <member name="M:CitizenFX.Core.Native.API.AddPedDecorationFromHashes(System.Int32,System.UInt32,System.UInt32)">
+            <summary>
+            Applies an Item from a PedDecorationCollection to a ped. These include tattoos and shirt decals.
+            collection - PedDecorationCollection filename hash
+            overlay - Item name hash
+            Example:
+            Entry inside "mpbeach_overlays.xml" -
+            &lt;Item&gt;
+            &lt;uvPos x="0.500000" y="0.500000" /&gt;
+            &lt;scale x="0.600000" y="0.500000" /&gt;
+            &lt;rotation value="0.000000" /&gt;
+            &lt;nameHash&gt;FM_Hair_Fuzz&lt;/nameHash&gt;
+            &lt;txdHash&gt;mp_hair_fuzz&lt;/txdHash&gt;
+            &lt;txtHash&gt;mp_hair_fuzz&lt;/txtHash&gt;
+            &lt;zone&gt;ZONE_HEAD&lt;/zone&gt;
+            &lt;type&gt;TYPE_TATTOO&lt;/type&gt;
+            &lt;faction&gt;FM&lt;/faction&gt;
+            &lt;garment&gt;All&lt;/garment&gt;
+            &lt;gender&gt;GENDER_DONTCARE&lt;/gender&gt;
+            &lt;award /&gt;
+            &lt;awardLevel /&gt;
+            &lt;/Item&gt;
+            Code:
+            PED::_0x5F5D1665E352A839(PLAYER::PLAYER_PED_ID(), MISC::GET_HASH_KEY("mpbeach_overlays"), MISC::GET_HASH_KEY("fm_hair_fuzz"))
+            </summary>
+        </member>
+        <member name="M:CitizenFX.Core.Native.API.ApplyPedOverlay(System.Int32,System.UInt32,System.UInt32)">
+            <summary>
+            Applies an Item from a PedDecorationCollection to a ped. These include tattoos and shirt decals.
+            collection - PedDecorationCollection filename hash
+            overlay - Item name hash
+            Example:
+            Entry inside "mpbeach_overlays.xml" -
+            &lt;Item&gt;
+            &lt;uvPos x="0.500000" y="0.500000" /&gt;
+            &lt;scale x="0.600000" y="0.500000" /&gt;
+            &lt;rotation value="0.000000" /&gt;
+            &lt;nameHash&gt;FM_Hair_Fuzz&lt;/nameHash&gt;
+            &lt;txdHash&gt;mp_hair_fuzz&lt;/txdHash&gt;
+            &lt;txtHash&gt;mp_hair_fuzz&lt;/txtHash&gt;
+            &lt;zone&gt;ZONE_HEAD&lt;/zone&gt;
+            &lt;type&gt;TYPE_TATTOO&lt;/type&gt;
+            &lt;faction&gt;FM&lt;/faction&gt;
+            &lt;garment&gt;All&lt;/garment&gt;
+            &lt;gender&gt;GENDER_DONTCARE&lt;/gender&gt;
+            &lt;award /&gt;
+            &lt;awardLevel /&gt;
+            &lt;/Item&gt;
+            Code:
+            PED::_0x5F5D1665E352A839(PLAYER::PLAYER_PED_ID(), MISC::GET_HASH_KEY("mpbeach_overlays"), MISC::GET_HASH_KEY("fm_hair_fuzz"))
+            </summary>
+        </member>
+        <member name="M:CitizenFX.Core.Native.API.SetPedDecoration(System.Int32,System.UInt32,System.UInt32)">
             <summary>
             Applies an Item from a PedDecorationCollection to a ped. These include tattoos and shirt decals.
             collection - PedDecorationCollection filename hash
@@ -12250,6 +12340,40 @@
             </param>
             <param name="scale">
             A float ranging from -1.0 to 1.0
+            </param>
+        </member>
+        <member name="M:CitizenFX.Core.Native.API.SetPedHairTint(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Sets the tint index for the hair on the specified ped.
+            ```
+            NativeDB Introduced: v323
+            ```
+            </summary>
+            <param name="ped">
+            The Ped whose hair tint is to be set.
+            </param>
+            <param name="colorID">
+            The tint index for the primary hair color.
+            </param>
+            <param name="highlightColorID">
+            The tint index for the hair highlight color.
+            </param>
+        </member>
+        <member name="M:CitizenFX.Core.Native.API.SetPedHairColor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Sets the tint index for the hair on the specified ped.
+            ```
+            NativeDB Introduced: v323
+            ```
+            </summary>
+            <param name="ped">
+            The Ped whose hair tint is to be set.
+            </param>
+            <param name="colorID">
+            The tint index for the primary hair color.
+            </param>
+            <param name="highlightColorID">
+            The tint index for the hair highlight color.
             </param>
         </member>
         <member name="M:CitizenFX.Core.Native.API.SetPedHeadBlendData(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Single,System.Single,System.Single,System.Boolean)">
