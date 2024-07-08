@@ -659,6 +659,7 @@ declare function GetEntityVelocity(entity: number): number[];
  * -   2802
  * -   2944
  * -   3095
+ * -   3258
  * -   RedM
  * -   1311
  * -   1355
