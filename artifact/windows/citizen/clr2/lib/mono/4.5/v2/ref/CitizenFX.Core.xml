@@ -38,14 +38,14 @@
         </member>
         <member name="P:CitizenFX.Core.CommandAttribute.RemapParameters">
             <returns></returns>
-            <inheritdoc cref="M:CitizenFX.MsgPack.MsgPackDeserializer.ConstructCommandDelegateWithSource(System.Object,System.Reflection.MethodInfo)"/>
+            <inheritdoc cref="M:CitizenFX.Core.Func.ConstructCommandRemapped(System.Object,System.Reflection.MethodInfo)"/>
         </member>
         <member name="T:CitizenFX.Core.KeyMapAttribute">
             <summary>Does nothing on server side or RedM</summary>
         </member>
         <member name="P:CitizenFX.Core.KeyMapAttribute.RemapParameters">
             <returns></returns>
-            <inheritdoc cref="M:CitizenFX.MsgPack.MsgPackDeserializer.ConstructCommandDelegateWithSource(System.Object,System.Reflection.MethodInfo)"/>
+            <inheritdoc cref="M:CitizenFX.Core.Func.ConstructCommandRemapped(System.Object,System.Reflection.MethodInfo)"/>
         </member>
         <member name="M:CitizenFX.Core.KeyMapAttribute.#ctor(System.String,System.String,System.String,System.String)">
             <inheritdoc cref="T:CitizenFX.Core.KeyMapAttribute"/>
@@ -479,6 +479,19 @@
             <returns>dynamically invokable delegate or returns <paramref name="deleg"/> if it's aleady of type <see cref="T:CitizenFX.Core.DynFunc"/></returns>
             <exception cref="T:System.ArgumentNullException">when the given method is non-static and target is null or if given method is null</exception>
         </member>
+        <member name="M:CitizenFX.Core.Func.ConstructCommandRemapped(System.Object,System.Reflection.MethodInfo)">
+            <summary>
+            If enabled creates a <see cref="T:CitizenFX.Core.DynFunc"/> that remaps input (<see cref="T:System.UInt16"/> source, <see cref="T:System.Object"/>[] arguments, <see cref="T:System.String"/> raw) to known types:<br />
+            <b>source</b>: <see cref="T:System.UInt16"/>, <see cref="T:System.UInt32"/>, <see cref="T:System.Int32"/>, <see cref="T:System.Boolean"/>, <see cref="T:CitizenFX.Core.Remote"/>, or any type constructable from <see cref="T:CitizenFX.Core.Remote"/> including Player types.<br />
+            <b>arguments</b>: <see cref="T:System.Object"/>[] or <see cref="T:System.String"/>[].<br />
+            <b>raw</b>: <see cref="T:System.String"/>
+            </summary>
+            <param name="target">Method's associated instance</param>
+            <param name="method">Method to wrap</param>
+            <returns>Dynamic invocable <see cref="T:CitizenFX.Core.DynFunc"/> with remapping and conversion support.</returns>
+            <exception cref="T:System.ArgumentException">When <see cref="T:CitizenFX.Core.SourceAttribute"/> is used on a non supported type.</exception>
+            <exception cref="T:System.Reflection.TargetParameterCountException">When any requested parameter isn't supported.</exception>
+        </member>
         <member name="M:CitizenFX.Core.Func.GetWrappedMethod(CitizenFX.Core.DynFunc)">
             <summary>
             Returns the original method that's been wrapped or its own <see cref="P:System.Delegate.Method"/>
@@ -486,7 +499,7 @@
             <param name="dynFunc">this reference</param>
             <returns>The wrapped method or <see cref="P:System.Delegate.Method"/> if it wasn't wrapped</returns>
         </member>
-        <member name="M:CitizenFX.Core.Events.RegisterEventHandler(System.String,CitizenFX.MsgPack.MsgPackFunc,CitizenFX.Core.Binding)">
+        <member name="M:CitizenFX.Core.Events.RegisterEventHandler(System.String,CitizenFX.Core.DynFunc,CitizenFX.Core.Binding)">
             <summary>
             Register an event handler
             </summary>
@@ -495,7 +508,7 @@
             <param name="handler">delegate to call once triggered</param>
             <param name="binding">limit calls to certain sources, e.g.: server only, client only</param>
         </member>
-        <member name="M:CitizenFX.Core.Events.UnregisterEventHandler(System.String,CitizenFX.MsgPack.MsgPackFunc)">
+        <member name="M:CitizenFX.Core.Events.UnregisterEventHandler(System.String,CitizenFX.Core.DynFunc)">
             <summary>
             Unregister an event handler
             </summary>
@@ -522,7 +535,7 @@
             Should only be called by <see cref="M:CitizenFX.Core.BaseScript.Enable"/> or any other code that guarantees that it is only called once
             </summary>
         </member>
-        <member name="M:CitizenFX.Core.EventHandlerSet.Add(CitizenFX.MsgPack.MsgPackFunc,CitizenFX.Core.Binding)">
+        <member name="M:CitizenFX.Core.EventHandlerSet.Add(CitizenFX.Core.DynFunc,CitizenFX.Core.Binding)">
             <summary>
             Register an event handler
             </summary>
@@ -535,16 +548,16 @@
             </summary>
             <param name="deleg">delegate to remove</param>
         </member>
-        <member name="M:CitizenFX.Core.EventHandlerSet.op_Addition(CitizenFX.Core.EventHandlerSet,CitizenFX.MsgPack.MsgPackFunc)">
+        <member name="M:CitizenFX.Core.EventHandlerSet.op_Addition(CitizenFX.Core.EventHandlerSet,CitizenFX.Core.DynFunc)">
             <summary>
             Register an event handler
             </summary>
-            <remarks>Will add it as <see cref="F:CitizenFX.Core.Binding.Local"/>, use <see cref="M:CitizenFX.Core.EventHandlerSet.Add(CitizenFX.MsgPack.MsgPackFunc,CitizenFX.Core.Binding)"/> to explicitly set the binding.</remarks>
+            <remarks>Will add it as <see cref="F:CitizenFX.Core.Binding.Local"/>, use <see cref="M:CitizenFX.Core.EventHandlerSet.Add(CitizenFX.Core.DynFunc,CitizenFX.Core.Binding)"/> to explicitly set the binding.</remarks>
             <param name="entry">this event handler set</param>
             <param name="deleg">delegate to register</param>
             <returns>itself</returns>
         </member>
-        <member name="M:CitizenFX.Core.EventHandlerSet.op_Subtraction(CitizenFX.Core.EventHandlerSet,CitizenFX.MsgPack.MsgPackFunc)">
+        <member name="M:CitizenFX.Core.EventHandlerSet.op_Subtraction(CitizenFX.Core.EventHandlerSet,CitizenFX.Core.DynFunc)">
             <summary>
             Unregister an event handler
             </summary>
@@ -556,7 +569,7 @@
             <summary>
             Register an event handler
             </summary>
-            <remarks>Will add it as <see cref="F:CitizenFX.Core.Binding.Local"/>, use <see cref="M:CitizenFX.Core.EventHandlerSet.Add(CitizenFX.MsgPack.MsgPackFunc,CitizenFX.Core.Binding)"/> to explicitly set the binding.</remarks>
+            <remarks>Will add it as <see cref="F:CitizenFX.Core.Binding.Local"/>, use <see cref="M:CitizenFX.Core.EventHandlerSet.Add(CitizenFX.Core.DynFunc,CitizenFX.Core.Binding)"/> to explicitly set the binding.</remarks>
             <param name="entry">this event handler set</param>
             <param name="deleg">delegate to register</param>
             <returns>itself</returns>
@@ -579,7 +592,34 @@
             Should only be called by <see cref="M:CitizenFX.Core.BaseScript.Enable"/> or any other code that guarantees that it is only called once
             </summary>
         </member>
-        <member name="M:CitizenFX.Core.ReferenceFunctionManager.Create(CitizenFX.MsgPack.MsgPackFunc)">
+        <member name="M:CitizenFX.Core.MsgPackDeserializer.DeserializeArray(System.Byte*,System.Int64,System.String)">
+            <summary>
+            Starts deserialization from an array type
+            </summary>
+            <param name="data">ptr to byte data</param>
+            <param name="size">size of byte data</param>
+            <param name="netSource">from whom came this?</param>
+            <returns>arguments that can be passed into dynamic delegates</returns>
+        </member>
+        <member name="M:CitizenFX.Core.MsgPackDeserializer.ReadSingleLE">
+            <summary>
+            Read a <see cref="T:System.Single"/> stored as little endian, used for custom vectors
+            </summary>
+        </member>
+        <member name="M:CitizenFX.Core.MsgPackSerializer.SerializeCoTaskMemory(System.Object,System.Boolean)">
+            <summary>
+            Experimental, uses the CoTask memory instead of a managed byte[]
+            </summary>
+            <param name="obj"></param>
+            <param name="remote"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CitizenFX.Core.CoTaskMemoryStream">
+            <summary>
+            Experimental memory stream
+            </summary>
+        </member>
+        <member name="M:CitizenFX.Core.ReferenceFunctionManager.Create(CitizenFX.Core.DynFunc)">
             <summary>
             Register a delegate to other runtimes and/or our host (reference function)
             </summary>
@@ -600,7 +640,7 @@
             <remarks>Slow, may need to be replaced</remarks>
             <param name="target"></param>
         </member>
-        <member name="M:CitizenFX.Core.ReferenceFunctionManager.SetDelegate(System.Int32,CitizenFX.MsgPack.MsgPackFunc)">
+        <member name="M:CitizenFX.Core.ReferenceFunctionManager.SetDelegate(System.Int32,CitizenFX.Core.DynFunc)">
             <summary>
             Set reference function to another delegate
             </summary>
@@ -747,10 +787,6 @@
             <param name="left">CString to compare</param>
             <param name="right">string to compare</param>
             <returns>true if both sides have equivalent characters in the ASCII character space</returns>
-        </member>
-        <member name="M:CitizenFX.Core.CString.CompareASCIICaseInsensitive(CitizenFX.Core.CString,System.String)">
-            <inheritdoc cref="M:CitizenFX.Core.CString.CompareASCII(CitizenFX.Core.CString,System.String)"/>
-            <remarks>Case insensitive variant of <see cref="M:CitizenFX.Core.CString.CompareASCII(CitizenFX.Core.CString,System.String)"/></remarks>
         </member>
         <member name="M:CitizenFX.Core.CString.ToASCII(System.String,System.Byte)">
             <summary>
@@ -8373,158 +8409,6 @@
         <member name="M:CitizenFX.Shared.Player.GetCharacter">
             <summary>
             Gets the <see cref="T:CitizenFX.Shared.IPed"/> this player is controling, use Ped.Character on Ped for non-shared access.
-            </summary>
-        </member>
-        <member name="F:CitizenFX.MsgPack.Layout.Default">
-            <summary>
-            Maps all public fields and properties, except those marked with <see cref="T:CitizenFX.MsgPack.IgnoreAttribute"/>
-            </summary>
-        </member>
-        <member name="F:CitizenFX.MsgPack.Layout.Keyed">
-            <summary>
-            Maps all fields and properties marked with <see cref="T:CitizenFX.MsgPack.KeyAttribute"/>.
-            </summary>
-        </member>
-        <member name="F:CitizenFX.MsgPack.Layout.Indexed">
-            <summary>
-            (De)serializes all fields and properties marked with <see cref="T:CitizenFX.MsgPack.IndexAttribute"/> to/from an array.<br />
-            Great to reduce data and increase networking performance.
-            </summary>
-        </member>
-        <member name="T:CitizenFX.MsgPack.Detail.DynamicArray`1">
-            <summary>
-            It's like a <see cref="T:System.Collections.Generic.List`1" /> but allows for moving in an array (i.e.: no copy) and faster deletion by sacrificing ordered-ness
-            </summary>
-            <remarks>Supplied arrays must not be used anywhere else, mind you a copy is not being made</remarks>
-        </member>
-        <member name="M:CitizenFX.MsgPack.Detail.DynamicArray`1.#ctor(`0[])">
-            <inheritdoc cref="T:CitizenFX.MsgPack.Detail.DynamicArray`1"/>
-            <param name="moveArray">array to be used internally</param>
-        </member>
-        <member name="M:CitizenFX.MsgPack.Detail.DynamicArray`1.#ctor(`0[]@)">
-            <inheritdoc cref="M:CitizenFX.MsgPack.Detail.DynamicArray`1.#ctor(`0[])"/>
-        </member>
-        <member name="M:CitizenFX.MsgPack.Formatters.ArrayFormatter.BuildObjectSerializer(System.Type,System.Reflection.MethodInfo,System.Reflection.Emit.TypeBuilder)">
-            <summary>
-            Simply unpacks and calls <paramref name="methodSerialize"/>
-            </summary>
-            <param name="typeArray">Type we're serializing</param>
-            <param name="methodSerialize">Method to call once the object is unpacked</param>
-            <param name="typeBuilder">Building type to add this method to</param>
-            <returns></returns>
-        </member>
-        <member name="M:CitizenFX.MsgPack.Formatters.DictionaryFormatter.BuildObjectSerializer(System.Type,System.Reflection.MethodInfo,System.Reflection.Emit.TypeBuilder)">
-            <summary>
-            Simply unpacks and calls <paramref name="methodSerialize"/>
-            </summary>
-            <param name="typeIDictionary">Type we're serializing</param>
-            <param name="methodSerialize">Method to call once the object is unpacked</param>
-            <param name="typeBuilder">Building type to add this method to</param>
-            <returns></returns>
-        </member>
-        <member name="M:CitizenFX.MsgPack.Formatters.TypeFormatter.BuildObjectSerializer(System.Type,System.Reflection.MethodInfo,System.Reflection.Emit.TypeBuilder)">
-            <summary>
-            Simply unpacks and calls <paramref name="methodSerialize"/>
-            </summary>
-            <param name="type">Type we're serializing</param>
-            <param name="methodSerialize">Method to call once the object is unpacked</param>
-            <param name="typeBuilder">Building type to add this method to</param>
-            <returns></returns>
-        </member>
-        <member name="M:CitizenFX.MsgPack.Formatters.TypeFormatter.BuildSerializeArrayBody(System.Type,System.Reflection.Emit.ILGenerator,System.Reflection.MemberInfo[],System.Reflection.MethodInfo)">
-            <summary>
-            Builds the IL code needed for the array serializing
-            </summary>
-            <param name="type">Type we're building this serializer for</param>
-            <param name="g">ILGenerator for writing the body</param>
-            <param name="members">Filtered and ordered array by <see cref="T:CitizenFX.MsgPack.IndexAttribute"/>, null values are honored by writing <see cref="F:CitizenFX.MsgPack.MsgPackCode.Nil"/></param>
-            <param name="currentSerializer">Method for recursive calls, i.e.: the caller itself</param>
-            <exception cref="T:System.NotSupportedException"></exception>
-            <exception cref="T:System.ArgumentException"></exception>
-        </member>
-        <member name="M:CitizenFX.MsgPack.Formatters.TypeFormatter.BuildSerializeMapBody(System.Type,System.Reflection.Emit.ILGenerator,CitizenFX.MsgPack.Detail.DynamicArray{System.Reflection.MemberInfo},System.Reflection.MethodInfo)">
-            <summary>
-            Builds the IL code needed for the map serializing
-            </summary>
-            <param name="type">Current type we are building a serializer for</param>
-            <param name="g">Method IL generator</param>
-            <param name="members">Filtered by <see cref="T:CitizenFX.MsgPack.KeyAttribute"/>, null values are ignored</param>
-            <param name="currentSerializer">The current method, to prevent direct recursive creation</param>
-            <inheritdoc cref="M:CitizenFX.MsgPack.Formatters.TypeFormatter.BuildSerializeArrayBody(System.Type,System.Reflection.Emit.ILGenerator,System.Reflection.MemberInfo[],System.Reflection.MethodInfo)"/>
-        </member>
-        <member name="M:CitizenFX.MsgPack.Formatters.TypeFormatter.SelectConstructors(System.Type)">
-            <summary>
-            Constructor selection logic only considering single parameter constructors.<br />
-             * signed and unsigned integers favor biggest storage types.<br />
-             * <see cref="T:System.Single"/> and <see cref="T:System.Double"/> favor itself and fall back to the other if not found.<br />
-             * Other types only consider their own type.
-            </summary>
-            <param name="type">type to construct </param>
-            <returns>Constructors and conversion operations, indexed by <see cref="T:CitizenFX.MsgPack.Formatters.TypeFormatter.ConstructorOptions"/> values.</returns>
-        </member>
-        <member name="M:CitizenFX.MsgPack.MsgPackDeserializer.ReadSingleLE">
-            <summary>
-            Read a <see cref="T:System.Single"/> stored as little endian, used for custom vectors
-            </summary>
-        </member>
-        <member name="M:CitizenFX.MsgPack.MsgPackDeserializer.DeserializeAsObject(System.Byte[],System.String)">
-            <summary>
-            Deserialize from given data
-            </summary>
-            <param name="data">MsgPacked byte data</param>
-            <param name="netSource">From whom came this?</param>
-            <returns>(Array of) argument(s) that can be passed into dynamic delegates</returns>
-        </member>
-        <member name="M:CitizenFX.MsgPack.MsgPackDeserializer.DeserializeAsObject(System.Byte*,System.Int64,System.String)">
-            <param name="data">Pointer to MsgPacked byte data</param>
-            <param name="size">Size of MsgPacked byte data</param>
-            <param name="netSource">From whom came this?</param>
-            <inheritdoc cref="M:CitizenFX.MsgPack.MsgPackDeserializer.DeserializeAsObject(System.Byte[],System.String)"/>
-        </member>
-        <member name="M:CitizenFX.MsgPack.MsgPackDeserializer.DeserializeAsObjectArray(System.Byte*,System.Int64,System.String)">
-            <inheritdoc cref="M:CitizenFX.MsgPack.MsgPackDeserializer.DeserializeAsObject(System.Byte*,System.Int64,System.String)"/>
-        </member>
-        <member name="M:CitizenFX.MsgPack.MsgPackDeserializer.CreateDelegate(System.Object,System.Reflection.MethodInfo)">
-            <summary>
-            Creates a new MsgPack invokable function
-            </summary>
-            <param name="target">the instance object, may be null for static methods</param>
-            <param name="method">method to make dynamically invokable</param>
-            <returns>dynamically invokable delegate</returns>
-            <exception cref="T:System.ArgumentNullException">when the given method is non-static and target is null or if given method is null</exception>
-        </member>
-        <member name="M:CitizenFX.MsgPack.MsgPackDeserializer.CreateDelegate(System.Delegate)">
-            <summary>
-            Creates a new MsgPack invokable function or simply returns it
-            </summary>
-            <param name="deleg">delegate to make dynamically invokable</param>
-            <returns>MsgPack invokable delegate or returns <paramref name="deleg"/> if it's aleady of type <see cref="T:CitizenFX.MsgPack.MsgPackFunc"/></returns>
-            <exception cref="T:System.ArgumentNullException">when the given method is non-static and target is null or if given method is null</exception>
-        </member>
-        <member name="M:CitizenFX.MsgPack.MsgPackDeserializer.ConstructCommandDelegateWithSource(System.Object,System.Reflection.MethodInfo)">
-            <summary>
-            If enabled creates a <see cref="T:CitizenFX.MsgPack.MsgPackFunc"/> that remaps input (<see cref="T:System.UInt16"/> source, <see cref="T:System.String"/>[] arguments, <see cref="T:System.String"/> raw) to known types:<br />
-            <b>source</b>: <see cref="T:System.UInt16"/>, <see cref="T:System.UInt32"/>, <see cref="T:System.Int32"/>, <see cref="T:System.Boolean"/>, <see cref="T:CitizenFX.Core.Remote"/>, or any type constructable from <see cref="T:CitizenFX.Core.Remote"/> including Player types.<br />
-            <b>arguments</b>: <see cref="T:System.String"/>[].<br />
-            <b>raw</b>: <see cref="T:System.String"/>
-            </summary>
-            <param name="target">Method's associated instance</param>
-            <param name="method">Method to wrap</param>
-            <returns><see cref="T:CitizenFX.MsgPack.MsgPackFunc"/> with remapping and conversion support.</returns>
-            <exception cref="T:System.ArgumentException">When <see cref="T:CitizenFX.Core.SourceAttribute"/> is used on a non supported type.</exception>
-            <exception cref="T:System.Reflection.TargetParameterCountException">When any requested parameter isn't supported.</exception>
-        </member>
-        <member name="M:CitizenFX.MsgPack.MsgPackRegistry.Serialize(CitizenFX.MsgPack.MsgPackSerializer,System.Object)">
-            <summary>
-            Find or create the serializer that fits typeof( <paramref name="obj"/>) and call it to serialize the given object
-            </summary>
-            <param name="serializer"></param>
-            <param name="obj"></param>
-            <exception cref="T:System.Runtime.Serialization.SerializationException"></exception>
-        </member>
-        <member name="T:CitizenFX.MsgPack.MsgPackSerializer">
-            <summary>
-            Serializer class to serialize any data to the MsgPack format.
             </summary>
         </member>
         <member name="T:System.Runtime.CompilerServices.SkipLocalsInitAttribute">
