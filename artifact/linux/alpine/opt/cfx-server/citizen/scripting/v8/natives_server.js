@@ -1677,13 +1677,6 @@ global.HasVehicleBeenOwnedByPlayer = function (vehicle) {
 };
 
 /**
- * INVOKE_FUNCTION_REFERENCE
- */
-global.InvokeFunctionReference = function (referenceIdentity, argsSerialized, argsLength, retvalLength) {
-	return _in(0x00000000, 0xe3551879, _ts(referenceIdentity), _ts(argsSerialized), argsLength, _ii(retvalLength) /* may be optional */, _r, _s);
-};
-
-/**
  * IS_ACE_ALLOWED
  */
 global.IsAceAllowed = function (object) {

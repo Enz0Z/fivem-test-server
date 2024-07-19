@@ -1883,11 +1883,6 @@
             HAS_VEHICLE_BEEN_OWNED_BY_PLAYER
             </summary>
         </member>
-        <member name="M:CitizenFX.Server.Native.Natives.InvokeFunctionReference(CitizenFX.Core.CString,CitizenFX.Core.CString,System.Int32,System.Int32@)">
-            <summary>
-            INVOKE_FUNCTION_REFERENCE
-            </summary>
-        </member>
         <member name="M:CitizenFX.Server.Native.Natives.IsAceAllowed(CitizenFX.Core.CString)">
             <summary>
             IS_ACE_ALLOWED
@@ -5198,11 +5193,6 @@
         <member name="F:CitizenFX.Server.Native.Hash.HAS_VEHICLE_BEEN_OWNED_BY_PLAYER">
             <summary>
             HAS_VEHICLE_BEEN_OWNED_BY_PLAYER
-            </summary>
-        </member>
-        <member name="F:CitizenFX.Server.Native.Hash.INVOKE_FUNCTION_REFERENCE">
-            <summary>
-            INVOKE_FUNCTION_REFERENCE
             </summary>
         </member>
         <member name="F:CitizenFX.Server.Native.Hash.IS_ACE_ALLOWED">

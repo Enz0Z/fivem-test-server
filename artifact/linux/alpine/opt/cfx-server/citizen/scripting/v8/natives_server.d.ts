@@ -1359,11 +1359,6 @@ declare function HasVehicleBeenDamagedByBullets(vehicle: number): boolean;
 declare function HasVehicleBeenOwnedByPlayer(vehicle: number): boolean;
 
 /**
- * INVOKE_FUNCTION_REFERENCE
- */
-declare function InvokeFunctionReference(referenceIdentity: string, argsSerialized: string, argsLength: number, retvalLength?: number): [string, number];
-
-/**
  * IS_ACE_ALLOWED
  */
 declare function IsAceAllowed(object: string): boolean;

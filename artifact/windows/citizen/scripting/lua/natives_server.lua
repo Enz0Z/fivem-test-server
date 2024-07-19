@@ -1319,11 +1319,6 @@ function Global.HasVehicleBeenOwnedByPlayer(vehicle)
 	return _in(0xe4e83a5b, vehicle, _r)
 end
 
---- INVOKE_FUNCTION_REFERENCE
-function Global.InvokeFunctionReference(referenceIdentity, argsSerialized, argsLength, retvalLength)
-	return _in(0xe3551879, _ts(referenceIdentity), _ts(argsSerialized), argsLength, _ii(retvalLength) --[[ may be optional ]], _s)
-end
-
 --- IS_ACE_ALLOWED
 function Global.IsAceAllowed(object)
 	return _in(0x7ebb9929, _ts(object), _r)

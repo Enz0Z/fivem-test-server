@@ -592,6 +592,14 @@
             Should only be called by <see cref="M:CitizenFX.Core.BaseScript.Enable"/> or any other code that guarantees that it is only called once
             </summary>
         </member>
+        <member name="M:CitizenFX.Core.MsgPackDeserializer.DeserializeArray(System.Byte[],System.String)">
+            <summary>
+            Starts deserialization from an array type
+            </summary>
+            <param name="data">a byte array</param>
+            <param name="netSource">from whom came this?</param>
+            <returns>arguments that can be passed into dynamic delegates</returns>
+        </member>
         <member name="M:CitizenFX.Core.MsgPackDeserializer.DeserializeArray(System.Byte*,System.Int64,System.String)">
             <summary>
             Starts deserialization from an array type
@@ -7760,11 +7768,6 @@
             If the entity is a vehicle, the vehicle type. If it is not a vehicle, the return value will be null.
             </returns>
         </member>
-        <member name="M:CitizenFX.Shared.Native.Natives.InvokeFunctionReference(CitizenFX.Core.CString,CitizenFX.Core.CString,System.Int32,System.Int32@)">
-            <summary>
-            INVOKE_FUNCTION_REFERENCE
-            </summary>
-        </member>
         <member name="M:CitizenFX.Shared.Native.Natives.IsAceAllowed(CitizenFX.Core.CString)">
             <summary>
             IS_ACE_ALLOWED
@@ -8200,11 +8203,6 @@
             *   submarine
             *   trailer
             *   train
-            </summary>
-        </member>
-        <member name="F:CitizenFX.Shared.Native.Hash.INVOKE_FUNCTION_REFERENCE">
-            <summary>
-            INVOKE_FUNCTION_REFERENCE
             </summary>
         </member>
         <member name="F:CitizenFX.Shared.Native.Hash.IS_ACE_ALLOWED">
