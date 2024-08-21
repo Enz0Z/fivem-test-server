@@ -675,6 +675,41 @@ function Global.GetHashKey(model)
 	return _in(0x98eff6f1, _ts(model), _ri)
 end
 
+--- **Note** This native will always return `1000.0` unless [SET_VEHICLE_BODY_HEALTH](#\_0xB77D05AC8C78AADB), [SET_VEHICLE_ENGINE_HEALTH](#\_0x45F6D8EEF34ABEF1), or [SET_VEHICLE_PETROL_TANK_HEALTH](#\_0x70DB57649FA8D0D8) have been called with a value greater than `1000.0`.
+-- @param heli The helicopter to check
+-- @return Returns the current health of the helicopter's body.
+function Global.GetHeliBodyHealth(heli)
+	return _in(0xa886495d, heli, _ri)
+end
+
+--- This is a getter for [SET_DISABLE_HELI_EXPLODE_FROM_BODY_DAMAGE](#\_0xEDBC8405B3895CC9)
+-- @param heli The helicopter to check
+-- @return Returns `true` if the helicopter is set to be protected from exploding due to minor body damage, `false` otherwise.
+function Global.GetHeliDisableExplodeFromBodyDamage(heli)
+	return _in(0x82afc0a3, heli, _r)
+end
+
+--- **Note** This native will always return `1000.0` unless [SET_VEHICLE_BODY_HEALTH](#\_0xB77D05AC8C78AADB), [SET_VEHICLE_ENGINE_HEALTH](#\_0x45F6D8EEF34ABEF1), or [SET_VEHICLE_PETROL_TANK_HEALTH](#\_0x70DB57649FA8D0D8) have been called with a value greater than `1000.0`.
+-- @param heli The helicopter to check
+-- @return Returns the current health of the helicopter's engine.
+function Global.GetHeliEngineHealth(heli)
+	return _in(0xa0fa0354, heli, _ri)
+end
+
+--- **Note** This native will always return `1000.0` unless [SET_VEHICLE_BODY_HEALTH](#\_0xB77D05AC8C78AADB), [SET_VEHICLE_ENGINE_HEALTH](#\_0x45F6D8EEF34ABEF1), or [SET_VEHICLE_PETROL_TANK_HEALTH](#\_0x70DB57649FA8D0D8) have been called with a value greater than `1000.0`.
+-- @param heli The helicopter to check
+-- @return Returns the current health of the helicopter's gas tank.
+function Global.GetHeliGasTankHealth(heli)
+	return _in(0xd4ec7858, heli, _ri)
+end
+
+--- GET_HELI_MAIN_ROTOR_DAMAGE_SCALE
+-- @param heli The helicopter to check
+-- @return Returns a value representing the damage scaling factor applied to the helicopter's main rotor. The value ranges from `0.0` (no damage scaling) to`  1.0 ` (full damage scaling).
+function Global.GetHeliMainRotorDamageScale(heli)
+	return _in(0xc37d668, heli, _rf)
+end
+
 --- GET_HELI_MAIN_ROTOR_HEALTH
 -- @param vehicle The target vehicle.
 -- @return See the client-side [GET_HELI_MAIN_ROTOR_HEALTH](https://docs.fivem.net/natives/?\_0xE4CB7541F413D2C5) for the return value.
@@ -682,11 +717,60 @@ function Global.GetHeliMainRotorHealth(vehicle)
 	return _in(0xf01e2aab, vehicle, _rf)
 end
 
---- GET_HELI_TAIL_ROTOR_HEALTH
+--- GET_HELI_PITCH_CONTROL
+-- @param heli The helicopter to check.
+-- @return Returns a value representing the pitch control of the helicopter. The values range from `-1.0` (nose down) to `1.0` (nose up), with `0.0` indicating no pitch input.
+function Global.GetHeliPitchControl(heli)
+	return _in(0x1944ac95, heli, _rf)
+end
+
+--- GET_HELI_REAR_ROTOR_DAMAGE_SCALE
+-- @param heli The helicopter to check
+-- @return Returns a value representing the damage scaling factor applied to the helicopter's rear rotor. The value ranges from `0.0` (no damage scaling) to`  1.0 ` (full damage scaling).
+function Global.GetHeliRearRotorDamageScale(heli)
+	return _in(0xc40161e2, heli, _rf)
+end
+
+--- This native is a getter for [SET_HELI_TAIL_ROTOR_HEALTH](#\_0xFE205F38AAA58E5B)
 -- @param vehicle The target vehicle.
--- @return See the client-side [GET_HELI_TAIL_ROTOR_HEALTH](https://docs.fivem.net/natives/?\_0xAE8CE82A4219AC8C) for the return value.
+-- @return Returns the health of the helicopter's rear rotor. The maximum health value is `1000`.
+function Global.GetHeliRearRotorHealth(vehicle)
+	return _in(0x33ee6e2b, vehicle, _rf)
+end
+
+--- GET_HELI_ROLL_CONTROL
+-- @param heli The helicopter to check.
+-- @return Returns a value representing the roll control of the helicopter. The values range from `-1.0` (roll left) to `1.0` (roll right), with `0.0` indicating no roll input.
+function Global.GetHeliRollControl(heli)
+	return _in(0x12948de9, heli, _rf)
+end
+
+--- GET_HELI_TAIL_ROTOR_DAMAGE_SCALE
+-- @param heli The helicopter to check
+-- @return Returns a value representing the damage scaling factor applied to the helicopter's tail rotor. The value ranges from `0.0` (no damage scaling) to`  1.0 ` (full damage scaling).
+function Global.GetHeliTailRotorDamageScale(heli)
+	return _in(0x22239130, heli, _rf)
+end
+
+--- **Note**: This native is deprecated, please use [`GET_HELI_REAR_ROTOR_HEALTH`](#\_0x33EE6E2B) instead.
+-- @param vehicle The target vehicle.
+-- @return Return the health of the rear rotor of the helicopter, not the tail rotor.
 function Global.GetHeliTailRotorHealth(vehicle)
 	return _in(0xa41bc13d, vehicle, _rf)
+end
+
+--- GET_HELI_THROTTLE_CONTROL
+-- @param heli The helicopter to check.
+-- @return Returns a value representing the throttle control of the helicopter. The value ranges from `0.0` (no throttle) to `2.0` (full throttle).
+function Global.GetHeliThrottleControl(heli)
+	return _in(0x8e86238d, heli, _rf)
+end
+
+--- GET_HELI_YAW_CONTROL
+-- @param heli The helicopter to check.
+-- @return Returns a value the yaw control of the helicopter. The value ranges from `-1.0` (yaw left) to `1.0` (yaw right), with `0.0` meaning no yaw input.
+function Global.GetHeliYawControl(heli)
+	return _in(0x8fdc0768, heli, _rf)
 end
 
 --- GET_HOST_ID
@@ -702,6 +786,13 @@ end
 --- GET_INVOKING_RESOURCE
 function Global.GetInvokingResource()
 	return _in(0x4d52fe5b, _s)
+end
+
+--- GET_IS_HELI_ENGINE_RUNNING
+-- @param heli The helicopter to check
+-- @return Returns `true` if the helicopter's engine is running, `false` if it is not.
+function Global.GetIsHeliEngineRunning(heli)
+	return _in(0x3efe38d1, heli, _r)
 end
 
 --- GET_IS_VEHICLE_ENGINE_RUNNING
@@ -966,6 +1057,13 @@ function Global.GetPlayerTimeInPursuit(playerSrc, lastPursuit)
 	return _in(0x7ade63e1, _ts(playerSrc), lastPursuit, _ri)
 end
 
+--- Gets the current time online for a specified player.
+-- @param playerSrc A player.
+-- @return The current time online in seconds.
+function Global.GetPlayerTimeOnline(playerSrc)
+	return _in(0x67d2e605, _ts(playerSrc), _ri)
+end
+
 --- Gets a player's token. Tokens can be used to enhance banning logic, however are specific to a server.
 -- @param playerSrc A player.
 -- @param index Index between 0 and GET_NUM_PLAYER_TOKENS.
@@ -1085,10 +1183,31 @@ function Global.GetSelectedPedWeapon(ped)
 	return _in(0xd240123e, ped, _ri)
 end
 
+--- GET_STATE_BAG_KEYS
+-- @param bagName The name of the bag.
+-- @return Returns an array containing all keys for which the state bag has associated values.
+function Global.GetStateBagKeys(bagName)
+	return _in(0x78d864c7, _ts(bagName), _ro)
+end
+
 --- Returns the value of a state bag key.
 -- @return Value.
 function Global.GetStateBagValue(bagName, key)
 	return _in(0x637f4c75, _ts(bagName), _ts(key), _ro)
+end
+
+--- GET_THRUSTER_SIDE_RCS_THROTTLE
+-- @param jetpack The jetpack to check.
+-- @return Returns a value representing the side RCS (Reaction Control System) throttle of the jetpack. The values range from `0.0` (no throttle) to `1.0` (full throttle).
+function Global.GetThrusterSideRcsThrottle(jetpack)
+	return _in(0x1c939e87, jetpack, _rf)
+end
+
+--- GET_THRUSTER_THROTTLE
+-- @param jetpack The jetpack to check.
+-- @return Returns a value representing the main throttle of the jetpack. The values range from `0.0` (no throttle) to `1.0` (full throttle)
+function Global.GetThrusterThrottle(jetpack)
+	return _in(0x94e24c96, jetpack, _rf)
 end
 
 --- GET_TRAIN_CARRIAGE_ENGINE
@@ -1198,6 +1317,22 @@ end
 -- @return The lock on state.
 function Global.GetVehicleHomingLockonState(vehicle)
 	return _in(0xfbde9fd8, vehicle, _ri)
+end
+
+--- This is a getter for the client-side native [`START_VEHICLE_HORN`](https://docs.fivem.net/natives/?\_0x9C8C6504B5B63D2C), which allows you to return the horn type of the vehicle.
+-- **Note**: This native only gets the hash value set with `START_VEHICLE_HORN`. If a wrong hash is passed into `START_VEHICLE_HORN`, it will return this wrong hash.
+-- ```cpp
+-- enum eHornTypes
+-- {
+-- NORMAL = 1330140148,
+-- HELDDOWN = -2087385909,
+-- AGGRESSIVE = -92810745
+-- }
+-- ```
+-- @param vehicle The vehicle to check the horn type.
+-- @return Returns the vehicle horn type hash, or `0` if one is not set.
+function Global.GetVehicleHornType(vehicle)
+	return _in(0xdea49773, vehicle, _ri)
 end
 
 --- GET_VEHICLE_INTERIOR_COLOUR
@@ -1362,6 +1497,20 @@ end
 -- @return Whether or not the ped's flash light is on.
 function Global.IsFlashLightOn(ped)
 	return _in(0x76876154, ped, _r)
+end
+
+--- This is a getter for [SET_HELI_TAIL_EXPLODE_THROW_DASHBOARD](#\_0x3EC8BF18AA453FE9)
+-- @param heli The helicopter to check
+-- @return Returns `true` if the helicopter's tail boom can break, `false` if it cannot.
+function Global.IsHeliTailBoomBreakable(heli)
+	return _in(0x23e46bd7, heli, _r)
+end
+
+--- IS_HELI_TAIL_BOOM_BROKEN
+-- @param heli The helicopter to check
+-- @return Returns `true` if the helicopter's tail boom is broken, `false` if it is intact.
+function Global.IsHeliTailBoomBroken(heli)
+	return _in(0x2c59f987, heli, _r)
 end
 
 --- This native checks if the given ped is a player.
@@ -2803,6 +2952,14 @@ end
 --- START_RESOURCE
 function Global.StartResource(resourceName)
 	return _in(0x29b440dc, _ts(resourceName), _r)
+end
+
+--- STATE_BAG_HAS_KEY
+-- @param bagName The name of the bag.
+-- @param key The key used to check data existence.
+-- @return Returns true if the data associated with the specified key exists; otherwise, returns false.
+function Global.StateBagHasKey(bagName, key)
+	return _in(0x12a330, _ts(bagName), _ts(key), _r)
 end
 
 --- STOP_RESOURCE

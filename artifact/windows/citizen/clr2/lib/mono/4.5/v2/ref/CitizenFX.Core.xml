@@ -7726,6 +7726,17 @@
             The resource state. One of `"missing", "started", "starting", "stopped", "stopping", "uninitialized" or "unknown"`.
             </returns>
         </member>
+        <member name="M:CitizenFX.Shared.Native.Natives.GetStateBagKeys(CitizenFX.Core.CString)">
+            <summary>
+            GET_STATE_BAG_KEYS
+            </summary>
+            <param name="bagName">
+            The name of the bag.
+            </param>
+            <returns>
+            Returns an array containing all keys for which the state bag has associated values.
+            </returns>
+        </member>
         <member name="M:CitizenFX.Shared.Native.Natives.GetStateBagValue(CitizenFX.Core.CString,CitizenFX.Core.CString)">
             <summary>
             Returns the value of a state bag key.
@@ -7937,6 +7948,20 @@
             </param>
             <returns>
             A KVP find handle to use with [FIND_KVP](#\_0xBD7BEBC5) and close with [END_FIND_KVP](#\_0xB3210203)
+            </returns>
+        </member>
+        <member name="M:CitizenFX.Shared.Native.Natives.StateBagHasKey(CitizenFX.Core.CString,CitizenFX.Core.CString)">
+            <summary>
+            STATE_BAG_HAS_KEY
+            </summary>
+            <param name="bagName">
+            The name of the bag.
+            </param>
+            <param name="key">
+            The key used to check data existence.
+            </param>
+            <returns>
+            Returns true if the data associated with the specified key exists; otherwise, returns false.
             </returns>
         </member>
         <member name="M:CitizenFX.Shared.Native.Natives.TriggerEventInternal(CitizenFX.Core.CString,CitizenFX.Core.CString,System.Int32)">
@@ -8172,6 +8197,11 @@
             Returns the current state of the specified resource.
             </summary>
         </member>
+        <member name="F:CitizenFX.Shared.Native.Hash.GET_STATE_BAG_KEYS">
+            <summary>
+            GET_STATE_BAG_KEYS
+            </summary>
+        </member>
         <member name="F:CitizenFX.Shared.Native.Hash.GET_STATE_BAG_VALUE">
             <summary>
             Returns the value of a state bag key.
@@ -8305,6 +8335,11 @@
         <member name="F:CitizenFX.Shared.Native.Hash.START_FIND_KVP">
             <summary>
             START_FIND_KVP
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Shared.Native.Hash.STATE_BAG_HAS_KEY">
+            <summary>
+            STATE_BAG_HAS_KEY
             </summary>
         </member>
         <member name="F:CitizenFX.Shared.Native.Hash.TRIGGER_EVENT_INTERNAL">

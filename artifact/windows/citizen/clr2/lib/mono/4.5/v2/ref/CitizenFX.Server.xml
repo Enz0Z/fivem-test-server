@@ -1024,6 +1024,61 @@
             This native converts the passed string to a hash.
             </summary>
         </member>
+        <member name="M:CitizenFX.Server.Native.Natives.GetHeliBodyHealth(System.Int32)">
+            <summary>
+            **Note** This native will always return `1000.0` unless [SET_VEHICLE_BODY_HEALTH](#\_0xB77D05AC8C78AADB), [SET_VEHICLE_ENGINE_HEALTH](#\_0x45F6D8EEF34ABEF1), or [SET_VEHICLE_PETROL_TANK_HEALTH](#\_0x70DB57649FA8D0D8) have been called with a value greater than `1000.0`.
+            </summary>
+            <param name="heli">
+            The helicopter to check
+            </param>
+            <returns>
+            Returns the current health of the helicopter's body.
+            </returns>
+        </member>
+        <member name="M:CitizenFX.Server.Native.Natives.GetHeliDisableExplodeFromBodyDamage(System.Int32)">
+            <summary>
+            This is a getter for [SET_DISABLE_HELI_EXPLODE_FROM_BODY_DAMAGE](#\_0xEDBC8405B3895CC9)
+            </summary>
+            <param name="heli">
+            The helicopter to check
+            </param>
+            <returns>
+            Returns `true` if the helicopter is set to be protected from exploding due to minor body damage, `false` otherwise.
+            </returns>
+        </member>
+        <member name="M:CitizenFX.Server.Native.Natives.GetHeliEngineHealth(System.Int32)">
+            <summary>
+            **Note** This native will always return `1000.0` unless [SET_VEHICLE_BODY_HEALTH](#\_0xB77D05AC8C78AADB), [SET_VEHICLE_ENGINE_HEALTH](#\_0x45F6D8EEF34ABEF1), or [SET_VEHICLE_PETROL_TANK_HEALTH](#\_0x70DB57649FA8D0D8) have been called with a value greater than `1000.0`.
+            </summary>
+            <param name="heli">
+            The helicopter to check
+            </param>
+            <returns>
+            Returns the current health of the helicopter's engine.
+            </returns>
+        </member>
+        <member name="M:CitizenFX.Server.Native.Natives.GetHeliGasTankHealth(System.Int32)">
+            <summary>
+            **Note** This native will always return `1000.0` unless [SET_VEHICLE_BODY_HEALTH](#\_0xB77D05AC8C78AADB), [SET_VEHICLE_ENGINE_HEALTH](#\_0x45F6D8EEF34ABEF1), or [SET_VEHICLE_PETROL_TANK_HEALTH](#\_0x70DB57649FA8D0D8) have been called with a value greater than `1000.0`.
+            </summary>
+            <param name="heli">
+            The helicopter to check
+            </param>
+            <returns>
+            Returns the current health of the helicopter's gas tank.
+            </returns>
+        </member>
+        <member name="M:CitizenFX.Server.Native.Natives.GetHeliMainRotorDamageScale(System.Int32)">
+            <summary>
+            GET_HELI_MAIN_ROTOR_DAMAGE_SCALE
+            </summary>
+            <param name="heli">
+            The helicopter to check
+            </param>
+            <returns>
+            Returns a value representing the damage scaling factor applied to the helicopter's main rotor. The value ranges from `0.0` (no damage scaling) to`  1.0 ` (full damage scaling).
+            </returns>
+        </member>
         <member name="M:CitizenFX.Server.Native.Natives.GetHeliMainRotorHealth(System.Int32)">
             <summary>
             GET_HELI_MAIN_ROTOR_HEALTH
@@ -1035,15 +1090,92 @@
             See the client-side [GET_HELI_MAIN_ROTOR_HEALTH](https://docs.fivem.net/natives/?\_0xE4CB7541F413D2C5) for the return value.
             </returns>
         </member>
-        <member name="M:CitizenFX.Server.Native.Natives.GetHeliTailRotorHealth(System.Int32)">
+        <member name="M:CitizenFX.Server.Native.Natives.GetHeliPitchControl(System.Int32)">
             <summary>
-            GET_HELI_TAIL_ROTOR_HEALTH
+            GET_HELI_PITCH_CONTROL
+            </summary>
+            <param name="heli">
+            The helicopter to check.
+            </param>
+            <returns>
+            Returns a value representing the pitch control of the helicopter. The values range from `-1.0` (nose down) to `1.0` (nose up), with `0.0` indicating no pitch input.
+            </returns>
+        </member>
+        <member name="M:CitizenFX.Server.Native.Natives.GetHeliRearRotorDamageScale(System.Int32)">
+            <summary>
+            GET_HELI_REAR_ROTOR_DAMAGE_SCALE
+            </summary>
+            <param name="heli">
+            The helicopter to check
+            </param>
+            <returns>
+            Returns a value representing the damage scaling factor applied to the helicopter's rear rotor. The value ranges from `0.0` (no damage scaling) to`  1.0 ` (full damage scaling).
+            </returns>
+        </member>
+        <member name="M:CitizenFX.Server.Native.Natives.GetHeliRearRotorHealth(System.Int32)">
+            <summary>
+            This native is a getter for [SET_HELI_TAIL_ROTOR_HEALTH](#\_0xFE205F38AAA58E5B)
             </summary>
             <param name="vehicle">
             The target vehicle.
             </param>
             <returns>
-            See the client-side [GET_HELI_TAIL_ROTOR_HEALTH](https://docs.fivem.net/natives/?\_0xAE8CE82A4219AC8C) for the return value.
+            Returns the health of the helicopter's rear rotor. The maximum health value is `1000`.
+            </returns>
+        </member>
+        <member name="M:CitizenFX.Server.Native.Natives.GetHeliRollControl(System.Int32)">
+            <summary>
+            GET_HELI_ROLL_CONTROL
+            </summary>
+            <param name="heli">
+            The helicopter to check.
+            </param>
+            <returns>
+            Returns a value representing the roll control of the helicopter. The values range from `-1.0` (roll left) to `1.0` (roll right), with `0.0` indicating no roll input.
+            </returns>
+        </member>
+        <member name="M:CitizenFX.Server.Native.Natives.GetHeliTailRotorDamageScale(System.Int32)">
+            <summary>
+            GET_HELI_TAIL_ROTOR_DAMAGE_SCALE
+            </summary>
+            <param name="heli">
+            The helicopter to check
+            </param>
+            <returns>
+            Returns a value representing the damage scaling factor applied to the helicopter's tail rotor. The value ranges from `0.0` (no damage scaling) to`  1.0 ` (full damage scaling).
+            </returns>
+        </member>
+        <member name="M:CitizenFX.Server.Native.Natives.GetHeliTailRotorHealth(System.Int32)">
+            <summary>
+            **Note**: This native is deprecated, please use [`GET_HELI_REAR_ROTOR_HEALTH`](#\_0x33EE6E2B) instead.
+            </summary>
+            <param name="vehicle">
+            The target vehicle.
+            </param>
+            <returns>
+            Return the health of the rear rotor of the helicopter, not the tail rotor.
+            </returns>
+        </member>
+        <member name="M:CitizenFX.Server.Native.Natives.GetHeliThrottleControl(System.Int32)">
+            <summary>
+            GET_HELI_THROTTLE_CONTROL
+            </summary>
+            <param name="heli">
+            The helicopter to check.
+            </param>
+            <returns>
+            Returns a value representing the throttle control of the helicopter. The value ranges from `0.0` (no throttle) to `2.0` (full throttle).
+            </returns>
+        </member>
+        <member name="M:CitizenFX.Server.Native.Natives.GetHeliYawControl(System.Int32)">
+            <summary>
+            GET_HELI_YAW_CONTROL
+            </summary>
+            <param name="heli">
+            The helicopter to check.
+            </param>
+            <returns>
+            Returns a value the yaw control of the helicopter. The value ranges from `-1.0` (yaw left) to `1.0` (yaw right), with `0.0` meaning no yaw input.
             </returns>
         </member>
         <member name="M:CitizenFX.Server.Native.Natives.GetHostId">
@@ -1060,6 +1192,17 @@
             <summary>
             GET_INVOKING_RESOURCE
             </summary>
+        </member>
+        <member name="M:CitizenFX.Server.Native.Natives.GetIsHeliEngineRunning(System.Int32)">
+            <summary>
+            GET_IS_HELI_ENGINE_RUNNING
+            </summary>
+            <param name="heli">
+            The helicopter to check
+            </param>
+            <returns>
+            Returns `true` if the helicopter's engine is running, `false` if it is not.
+            </returns>
         </member>
         <member name="M:CitizenFX.Server.Native.Natives.GetIsVehicleEngineRunning(System.Int32)">
             <summary>
@@ -1420,6 +1563,17 @@
             Otherwise, will return the milliseconds of the pursuit.
             </returns>
         </member>
+        <member name="M:CitizenFX.Server.Native.Natives.GetPlayerTimeOnline(CitizenFX.Core.CString)">
+            <summary>
+            Gets the current time online for a specified player.
+            </summary>
+            <param name="playerSrc">
+            A player.
+            </param>
+            <returns>
+            The current time online in seconds.
+            </returns>
+        </member>
         <member name="M:CitizenFX.Server.Native.Natives.GetPlayerToken(CitizenFX.Core.CString,System.Int32)">
             <summary>
             Gets a player's token. Tokens can be used to enhance banning logic, however are specific to a server.
@@ -1603,12 +1757,45 @@
             The weapon hash.
             </returns>
         </member>
+        <member name="M:CitizenFX.Server.Native.Natives.GetStateBagKeys(CitizenFX.Core.CString)">
+            <summary>
+            GET_STATE_BAG_KEYS
+            </summary>
+            <param name="bagName">
+            The name of the bag.
+            </param>
+            <returns>
+            Returns an array containing all keys for which the state bag has associated values.
+            </returns>
+        </member>
         <member name="M:CitizenFX.Server.Native.Natives.GetStateBagValue(CitizenFX.Core.CString,CitizenFX.Core.CString)">
             <summary>
             Returns the value of a state bag key.
             </summary>
             <returns>
             Value.
+            </returns>
+        </member>
+        <member name="M:CitizenFX.Server.Native.Natives.GetThrusterSideRcsThrottle(System.Int32)">
+            <summary>
+            GET_THRUSTER_SIDE_RCS_THROTTLE
+            </summary>
+            <param name="jetpack">
+            The jetpack to check.
+            </param>
+            <returns>
+            Returns a value representing the side RCS (Reaction Control System) throttle of the jetpack. The values range from `0.0` (no throttle) to `1.0` (full throttle).
+            </returns>
+        </member>
+        <member name="M:CitizenFX.Server.Native.Natives.GetThrusterThrottle(System.Int32)">
+            <summary>
+            GET_THRUSTER_THROTTLE
+            </summary>
+            <param name="jetpack">
+            The jetpack to check.
+            </param>
+            <returns>
+            Returns a value representing the main throttle of the jetpack. The values range from `0.0` (no throttle) to `1.0` (full throttle)
             </returns>
         </member>
         <member name="M:CitizenFX.Server.Native.Natives.GetTrainCarriageEngine(System.Int32)">
@@ -1741,6 +1928,28 @@
             </param>
             <returns>
             The lock on state.
+            </returns>
+        </member>
+        <member name="M:CitizenFX.Server.Native.Natives.GetVehicleHornType(System.Int32)">
+            <summary>
+            This is a getter for the client-side native [`START_VEHICLE_HORN`](https://docs.fivem.net/natives/?\_0x9C8C6504B5B63D2C), which allows you to return the horn type of the vehicle.
+            
+            **Note**: This native only gets the hash value set with `START_VEHICLE_HORN`. If a wrong hash is passed into `START_VEHICLE_HORN`, it will return this wrong hash.
+            
+            ```cpp
+            enum eHornTypes
+            {
+                NORMAL = 1330140148,
+                HELDDOWN = -2087385909,
+                AGGRESSIVE = -92810745
+            }
+            ```
+            </summary>
+            <param name="vehicle">
+            The vehicle to check the horn type.
+            </param>
+            <returns>
+            Returns the vehicle horn type hash, or `0` if one is not set.
             </returns>
         </member>
         <member name="M:CitizenFX.Server.Native.Natives.GetVehicleInteriorColour(System.Int32,System.Int32@)">
@@ -1946,6 +2155,28 @@
             </param>
             <returns>
             Whether or not the ped's flash light is on.
+            </returns>
+        </member>
+        <member name="M:CitizenFX.Server.Native.Natives.IsHeliTailBoomBreakable(System.Int32)">
+            <summary>
+            This is a getter for [SET_HELI_TAIL_EXPLODE_THROW_DASHBOARD](#\_0x3EC8BF18AA453FE9)
+            </summary>
+            <param name="heli">
+            The helicopter to check
+            </param>
+            <returns>
+            Returns `true` if the helicopter's tail boom can break, `false` if it cannot.
+            </returns>
+        </member>
+        <member name="M:CitizenFX.Server.Native.Natives.IsHeliTailBoomBroken(System.Int32)">
+            <summary>
+            IS_HELI_TAIL_BOOM_BROKEN
+            </summary>
+            <param name="heli">
+            The helicopter to check
+            </param>
+            <returns>
+            Returns `true` if the helicopter's tail boom is broken, `false` if it is intact.
             </returns>
         </member>
         <member name="M:CitizenFX.Server.Native.Natives.IsPedAPlayer(System.Int32)">
@@ -3783,6 +4014,20 @@
             START_RESOURCE
             </summary>
         </member>
+        <member name="M:CitizenFX.Server.Native.Natives.StateBagHasKey(CitizenFX.Core.CString,CitizenFX.Core.CString)">
+            <summary>
+            STATE_BAG_HAS_KEY
+            </summary>
+            <param name="bagName">
+            The name of the bag.
+            </param>
+            <param name="key">
+            The key used to check data existence.
+            </param>
+            <returns>
+            Returns true if the data associated with the specified key exists; otherwise, returns false.
+            </returns>
+        </member>
         <member name="M:CitizenFX.Server.Native.Natives.StopResource(CitizenFX.Core.CString)">
             <summary>
             STOP_RESOURCE
@@ -4652,14 +4897,74 @@
             This native converts the passed string to a hash.
             </summary>
         </member>
+        <member name="F:CitizenFX.Server.Native.Hash.GET_HELI_BODY_HEALTH">
+            <summary>
+            **Note** This native will always return `1000.0` unless [SET_VEHICLE_BODY_HEALTH](#\_0xB77D05AC8C78AADB), [SET_VEHICLE_ENGINE_HEALTH](#\_0x45F6D8EEF34ABEF1), or [SET_VEHICLE_PETROL_TANK_HEALTH](#\_0x70DB57649FA8D0D8) have been called with a value greater than `1000.0`.
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Server.Native.Hash.GET_HELI_DISABLE_EXPLODE_FROM_BODY_DAMAGE">
+            <summary>
+            This is a getter for [SET_DISABLE_HELI_EXPLODE_FROM_BODY_DAMAGE](#\_0xEDBC8405B3895CC9)
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Server.Native.Hash.GET_HELI_ENGINE_HEALTH">
+            <summary>
+            **Note** This native will always return `1000.0` unless [SET_VEHICLE_BODY_HEALTH](#\_0xB77D05AC8C78AADB), [SET_VEHICLE_ENGINE_HEALTH](#\_0x45F6D8EEF34ABEF1), or [SET_VEHICLE_PETROL_TANK_HEALTH](#\_0x70DB57649FA8D0D8) have been called with a value greater than `1000.0`.
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Server.Native.Hash.GET_HELI_GAS_TANK_HEALTH">
+            <summary>
+            **Note** This native will always return `1000.0` unless [SET_VEHICLE_BODY_HEALTH](#\_0xB77D05AC8C78AADB), [SET_VEHICLE_ENGINE_HEALTH](#\_0x45F6D8EEF34ABEF1), or [SET_VEHICLE_PETROL_TANK_HEALTH](#\_0x70DB57649FA8D0D8) have been called with a value greater than `1000.0`.
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Server.Native.Hash.GET_HELI_MAIN_ROTOR_DAMAGE_SCALE">
+            <summary>
+            GET_HELI_MAIN_ROTOR_DAMAGE_SCALE
+            </summary>
+        </member>
         <member name="F:CitizenFX.Server.Native.Hash.GET_HELI_MAIN_ROTOR_HEALTH">
             <summary>
             GET_HELI_MAIN_ROTOR_HEALTH
             </summary>
         </member>
+        <member name="F:CitizenFX.Server.Native.Hash.GET_HELI_PITCH_CONTROL">
+            <summary>
+            GET_HELI_PITCH_CONTROL
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Server.Native.Hash.GET_HELI_REAR_ROTOR_DAMAGE_SCALE">
+            <summary>
+            GET_HELI_REAR_ROTOR_DAMAGE_SCALE
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Server.Native.Hash.GET_HELI_REAR_ROTOR_HEALTH">
+            <summary>
+            This native is a getter for [SET_HELI_TAIL_ROTOR_HEALTH](#\_0xFE205F38AAA58E5B)
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Server.Native.Hash.GET_HELI_ROLL_CONTROL">
+            <summary>
+            GET_HELI_ROLL_CONTROL
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Server.Native.Hash.GET_HELI_TAIL_ROTOR_DAMAGE_SCALE">
+            <summary>
+            GET_HELI_TAIL_ROTOR_DAMAGE_SCALE
+            </summary>
+        </member>
         <member name="F:CitizenFX.Server.Native.Hash.GET_HELI_TAIL_ROTOR_HEALTH">
             <summary>
-            GET_HELI_TAIL_ROTOR_HEALTH
+            **Note**: This native is deprecated, please use [`GET_HELI_REAR_ROTOR_HEALTH`](#\_0x33EE6E2B) instead.
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Server.Native.Hash.GET_HELI_THROTTLE_CONTROL">
+            <summary>
+            GET_HELI_THROTTLE_CONTROL
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Server.Native.Hash.GET_HELI_YAW_CONTROL">
+            <summary>
+            GET_HELI_YAW_CONTROL
             </summary>
         </member>
         <member name="F:CitizenFX.Server.Native.Hash.GET_HOST_ID">
@@ -4675,6 +4980,11 @@
         <member name="F:CitizenFX.Server.Native.Hash.GET_INVOKING_RESOURCE">
             <summary>
             GET_INVOKING_RESOURCE
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Server.Native.Hash.GET_IS_HELI_ENGINE_RUNNING">
+            <summary>
+            GET_IS_HELI_ENGINE_RUNNING
             </summary>
         </member>
         <member name="F:CitizenFX.Server.Native.Hash.GET_IS_VEHICLE_ENGINE_RUNNING">
@@ -4888,6 +5198,11 @@
             If the player is evading, the timer will pause.
             </summary>
         </member>
+        <member name="F:CitizenFX.Server.Native.Hash.GET_PLAYER_TIME_ONLINE">
+            <summary>
+            Gets the current time online for a specified player.
+            </summary>
+        </member>
         <member name="F:CitizenFX.Server.Native.Hash.GET_PLAYER_TOKEN">
             <summary>
             Gets a player's token. Tokens can be used to enhance banning logic, however are specific to a server.
@@ -4978,9 +5293,24 @@
             Note, the client-side [GET_SELECTED_PED_WEAPON](#\_0x0A6DB4965674D243) native returns the weapon selected via the HUD (weapon wheel). This data is not available to FXServer.
             </summary>
         </member>
+        <member name="F:CitizenFX.Server.Native.Hash.GET_STATE_BAG_KEYS">
+            <summary>
+            GET_STATE_BAG_KEYS
+            </summary>
+        </member>
         <member name="F:CitizenFX.Server.Native.Hash.GET_STATE_BAG_VALUE">
             <summary>
             Returns the value of a state bag key.
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Server.Native.Hash.GET_THRUSTER_SIDE_RCS_THROTTLE">
+            <summary>
+            GET_THRUSTER_SIDE_RCS_THROTTLE
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Server.Native.Hash.GET_THRUSTER_THROTTLE">
+            <summary>
+            GET_THRUSTER_THROTTLE
             </summary>
         </member>
         <member name="F:CitizenFX.Server.Native.Hash.GET_TRAIN_CARRIAGE_ENGINE">
@@ -5080,6 +5410,22 @@
         <member name="F:CitizenFX.Server.Native.Hash.GET_VEHICLE_HOMING_LOCKON_STATE">
             <summary>
             Gets the lock on state for the specified vehicle. See the client-side [GET_VEHICLE_HOMING_LOCKON_STATE](#\_0xE6B0E8CFC3633BF0) native for a description of lock on states.
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Server.Native.Hash.GET_VEHICLE_HORN_TYPE">
+            <summary>
+            This is a getter for the client-side native [`START_VEHICLE_HORN`](https://docs.fivem.net/natives/?\_0x9C8C6504B5B63D2C), which allows you to return the horn type of the vehicle.
+            
+            **Note**: This native only gets the hash value set with `START_VEHICLE_HORN`. If a wrong hash is passed into `START_VEHICLE_HORN`, it will return this wrong hash.
+            
+            ```cpp
+            enum eHornTypes
+            {
+                NORMAL = 1330140148,
+                HELDDOWN = -2087385909,
+                AGGRESSIVE = -92810745
+            }
+            ```
             </summary>
         </member>
         <member name="F:CitizenFX.Server.Native.Hash.GET_VEHICLE_INTERIOR_COLOUR">
@@ -5228,6 +5574,16 @@
         <member name="F:CitizenFX.Server.Native.Hash.IS_FLASH_LIGHT_ON">
             <summary>
             IS_FLASH_LIGHT_ON
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Server.Native.Hash.IS_HELI_TAIL_BOOM_BREAKABLE">
+            <summary>
+            This is a getter for [SET_HELI_TAIL_EXPLODE_THROW_DASHBOARD](#\_0x3EC8BF18AA453FE9)
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Server.Native.Hash.IS_HELI_TAIL_BOOM_BROKEN">
+            <summary>
+            IS_HELI_TAIL_BOOM_BROKEN
             </summary>
         </member>
         <member name="F:CitizenFX.Server.Native.Hash.IS_PED_A_PLAYER">
@@ -6559,6 +6915,11 @@
         <member name="F:CitizenFX.Server.Native.Hash.START_RESOURCE">
             <summary>
             START_RESOURCE
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Server.Native.Hash.STATE_BAG_HAS_KEY">
+            <summary>
+            STATE_BAG_HAS_KEY
             </summary>
         </member>
         <member name="F:CitizenFX.Server.Native.Hash.STOP_RESOURCE">

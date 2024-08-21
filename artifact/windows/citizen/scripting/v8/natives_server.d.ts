@@ -698,6 +698,41 @@ declare function GetGameTimer(): number;
 declare function GetHashKey(model: string): number;
 
 /**
+ * **Note** This native will always return `1000.0` unless [SET_VEHICLE_BODY_HEALTH](#\_0xB77D05AC8C78AADB), [SET_VEHICLE_ENGINE_HEALTH](#\_0x45F6D8EEF34ABEF1), or [SET_VEHICLE_PETROL_TANK_HEALTH](#\_0x70DB57649FA8D0D8) have been called with a value greater than `1000.0`.
+ * @param heli The helicopter to check
+ * @return Returns the current health of the helicopter's body.
+ */
+declare function GetHeliBodyHealth(heli: number): number;
+
+/**
+ * This is a getter for [SET_DISABLE_HELI_EXPLODE_FROM_BODY_DAMAGE](#\_0xEDBC8405B3895CC9)
+ * @param heli The helicopter to check
+ * @return Returns `true` if the helicopter is set to be protected from exploding due to minor body damage, `false` otherwise.
+ */
+declare function GetHeliDisableExplodeFromBodyDamage(heli: number): boolean;
+
+/**
+ * **Note** This native will always return `1000.0` unless [SET_VEHICLE_BODY_HEALTH](#\_0xB77D05AC8C78AADB), [SET_VEHICLE_ENGINE_HEALTH](#\_0x45F6D8EEF34ABEF1), or [SET_VEHICLE_PETROL_TANK_HEALTH](#\_0x70DB57649FA8D0D8) have been called with a value greater than `1000.0`.
+ * @param heli The helicopter to check
+ * @return Returns the current health of the helicopter's engine.
+ */
+declare function GetHeliEngineHealth(heli: number): number;
+
+/**
+ * **Note** This native will always return `1000.0` unless [SET_VEHICLE_BODY_HEALTH](#\_0xB77D05AC8C78AADB), [SET_VEHICLE_ENGINE_HEALTH](#\_0x45F6D8EEF34ABEF1), or [SET_VEHICLE_PETROL_TANK_HEALTH](#\_0x70DB57649FA8D0D8) have been called with a value greater than `1000.0`.
+ * @param heli The helicopter to check
+ * @return Returns the current health of the helicopter's gas tank.
+ */
+declare function GetHeliGasTankHealth(heli: number): number;
+
+/**
+ * GET_HELI_MAIN_ROTOR_DAMAGE_SCALE
+ * @param heli The helicopter to check
+ * @return Returns a value representing the damage scaling factor applied to the helicopter's main rotor. The value ranges from `0.0` (no damage scaling) to`  1.0 ` (full damage scaling).
+ */
+declare function GetHeliMainRotorDamageScale(heli: number): number;
+
+/**
  * GET_HELI_MAIN_ROTOR_HEALTH
  * @param vehicle The target vehicle.
  * @return See the client-side [GET_HELI_MAIN_ROTOR_HEALTH](https://docs.fivem.net/natives/?\_0xE4CB7541F413D2C5) for the return value.
@@ -705,11 +740,60 @@ declare function GetHashKey(model: string): number;
 declare function GetHeliMainRotorHealth(vehicle: number): number;
 
 /**
- * GET_HELI_TAIL_ROTOR_HEALTH
+ * GET_HELI_PITCH_CONTROL
+ * @param heli The helicopter to check.
+ * @return Returns a value representing the pitch control of the helicopter. The values range from `-1.0` (nose down) to `1.0` (nose up), with `0.0` indicating no pitch input.
+ */
+declare function GetHeliPitchControl(heli: number): number;
+
+/**
+ * GET_HELI_REAR_ROTOR_DAMAGE_SCALE
+ * @param heli The helicopter to check
+ * @return Returns a value representing the damage scaling factor applied to the helicopter's rear rotor. The value ranges from `0.0` (no damage scaling) to`  1.0 ` (full damage scaling).
+ */
+declare function GetHeliRearRotorDamageScale(heli: number): number;
+
+/**
+ * This native is a getter for [SET_HELI_TAIL_ROTOR_HEALTH](#\_0xFE205F38AAA58E5B)
  * @param vehicle The target vehicle.
- * @return See the client-side [GET_HELI_TAIL_ROTOR_HEALTH](https://docs.fivem.net/natives/?\_0xAE8CE82A4219AC8C) for the return value.
+ * @return Returns the health of the helicopter's rear rotor. The maximum health value is `1000`.
+ */
+declare function GetHeliRearRotorHealth(vehicle: number): number;
+
+/**
+ * GET_HELI_ROLL_CONTROL
+ * @param heli The helicopter to check.
+ * @return Returns a value representing the roll control of the helicopter. The values range from `-1.0` (roll left) to `1.0` (roll right), with `0.0` indicating no roll input.
+ */
+declare function GetHeliRollControl(heli: number): number;
+
+/**
+ * GET_HELI_TAIL_ROTOR_DAMAGE_SCALE
+ * @param heli The helicopter to check
+ * @return Returns a value representing the damage scaling factor applied to the helicopter's tail rotor. The value ranges from `0.0` (no damage scaling) to`  1.0 ` (full damage scaling).
+ */
+declare function GetHeliTailRotorDamageScale(heli: number): number;
+
+/**
+ * **Note**: This native is deprecated, please use [`GET_HELI_REAR_ROTOR_HEALTH`](#\_0x33EE6E2B) instead.
+ * @param vehicle The target vehicle.
+ * @return Return the health of the rear rotor of the helicopter, not the tail rotor.
  */
 declare function GetHeliTailRotorHealth(vehicle: number): number;
+
+/**
+ * GET_HELI_THROTTLE_CONTROL
+ * @param heli The helicopter to check.
+ * @return Returns a value representing the throttle control of the helicopter. The value ranges from `0.0` (no throttle) to `2.0` (full throttle).
+ */
+declare function GetHeliThrottleControl(heli: number): number;
+
+/**
+ * GET_HELI_YAW_CONTROL
+ * @param heli The helicopter to check.
+ * @return Returns a value the yaw control of the helicopter. The value ranges from `-1.0` (yaw left) to `1.0` (yaw right), with `0.0` meaning no yaw input.
+ */
+declare function GetHeliYawControl(heli: number): number;
 
 /**
  * GET_HOST_ID
@@ -725,6 +809,13 @@ declare function GetInstanceId(): number;
  * GET_INVOKING_RESOURCE
  */
 declare function GetInvokingResource(): string;
+
+/**
+ * GET_IS_HELI_ENGINE_RUNNING
+ * @param heli The helicopter to check
+ * @return Returns `true` if the helicopter's engine is running, `false` if it is not.
+ */
+declare function GetIsHeliEngineRunning(heli: number): boolean;
 
 /**
  * GET_IS_VEHICLE_ENGINE_RUNNING
@@ -989,6 +1080,13 @@ Otherwise, will return the milliseconds of the pursuit.
 declare function GetPlayerTimeInPursuit(playerSrc: string, lastPursuit: boolean): number;
 
 /**
+ * Gets the current time online for a specified player.
+ * @param playerSrc A player.
+ * @return The current time online in seconds.
+ */
+declare function GetPlayerTimeOnline(playerSrc: string): number;
+
+/**
  * Gets a player's token. Tokens can be used to enhance banning logic, however are specific to a server.
  * @param playerSrc A player.
  * @param index Index between 0 and GET_NUM_PLAYER_TOKENS.
@@ -1108,10 +1206,31 @@ declare function GetResourceState(resourceName: string): string;
 declare function GetSelectedPedWeapon(ped: number): number;
 
 /**
+ * GET_STATE_BAG_KEYS
+ * @param bagName The name of the bag.
+ * @return Returns an array containing all keys for which the state bag has associated values.
+ */
+declare function GetStateBagKeys(bagName: string): any;
+
+/**
  * Returns the value of a state bag key.
  * @return Value.
  */
 declare function GetStateBagValue(bagName: string, key: string): any;
+
+/**
+ * GET_THRUSTER_SIDE_RCS_THROTTLE
+ * @param jetpack The jetpack to check.
+ * @return Returns a value representing the side RCS (Reaction Control System) throttle of the jetpack. The values range from `0.0` (no throttle) to `1.0` (full throttle).
+ */
+declare function GetThrusterSideRcsThrottle(jetpack: number): number;
+
+/**
+ * GET_THRUSTER_THROTTLE
+ * @param jetpack The jetpack to check.
+ * @return Returns a value representing the main throttle of the jetpack. The values range from `0.0` (no throttle) to `1.0` (full throttle)
+ */
+declare function GetThrusterThrottle(jetpack: number): number;
 
 /**
  * GET_TRAIN_CARRIAGE_ENGINE
@@ -1221,6 +1340,22 @@ declare function GetVehicleHeadlightsColour(vehicle: number): number;
  * @return The lock on state.
  */
 declare function GetVehicleHomingLockonState(vehicle: number): number;
+
+/**
+ * This is a getter for the client-side native [`START_VEHICLE_HORN`](https://docs.fivem.net/natives/?\_0x9C8C6504B5B63D2C), which allows you to return the horn type of the vehicle.
+ * **Note**: This native only gets the hash value set with `START_VEHICLE_HORN`. If a wrong hash is passed into `START_VEHICLE_HORN`, it will return this wrong hash.
+ * ```cpp
+ * enum eHornTypes
+ * {
+ * NORMAL = 1330140148,
+ * HELDDOWN = -2087385909,
+ * AGGRESSIVE = -92810745
+ * }
+ * ```
+ * @param vehicle The vehicle to check the horn type.
+ * @return Returns the vehicle horn type hash, or `0` if one is not set.
+ */
+declare function GetVehicleHornType(vehicle: number): number;
 
 /**
  * GET_VEHICLE_INTERIOR_COLOUR
@@ -1385,6 +1520,20 @@ declare function IsEntityVisible(entity: number): boolean;
  * @return Whether or not the ped's flash light is on.
  */
 declare function IsFlashLightOn(ped: number): boolean;
+
+/**
+ * This is a getter for [SET_HELI_TAIL_EXPLODE_THROW_DASHBOARD](#\_0x3EC8BF18AA453FE9)
+ * @param heli The helicopter to check
+ * @return Returns `true` if the helicopter's tail boom can break, `false` if it cannot.
+ */
+declare function IsHeliTailBoomBreakable(heli: number): boolean;
+
+/**
+ * IS_HELI_TAIL_BOOM_BROKEN
+ * @param heli The helicopter to check
+ * @return Returns `true` if the helicopter's tail boom is broken, `false` if it is intact.
+ */
+declare function IsHeliTailBoomBroken(heli: number): boolean;
 
 /**
  * This native checks if the given ped is a player.
@@ -2834,6 +2983,14 @@ declare function StartFindKvp(prefix: string): number;
  * START_RESOURCE
  */
 declare function StartResource(resourceName: string): boolean;
+
+/**
+ * STATE_BAG_HAS_KEY
+ * @param bagName The name of the bag.
+ * @param key The key used to check data existence.
+ * @return Returns true if the data associated with the specified key exists; otherwise, returns false.
+ */
+declare function StateBagHasKey(bagName: string, key: string): boolean;
 
 /**
  * STOP_RESOURCE
