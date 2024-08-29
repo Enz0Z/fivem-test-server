@@ -687,6 +687,22 @@ declare function GetGameBuildNumber(): number;
 declare function GetGameName(): string;
 
 /**
+ * Returns a list of entity handles (script GUID) for all entities in the specified pool - the data returned is an array as
+ * follows:
+ * ```json
+ * [ 770, 1026, 1282, 1538, 1794, 2050, 2306, 2562, 2818, 3074, 3330, 3586, 3842, 4098, 4354, 4610, ...]
+ * ```
+ * ### Supported pools
+ * -   `CPed`: Peds (including animals) and players.
+ * -   `CObject`: Objects (props), doors, and projectiles.
+ * -   `CVehicle`: Vehicles.
+ * -   `CPickup`: Pickups.
+ * @param poolName The pool name to get a list of entities from.
+ * @return An array containing entity handles for each entity in the named pool.
+ */
+declare function GetGamePool(poolName: string): any;
+
+/**
  * Gets the current game timer in milliseconds.
  * @return The game time.
  */
