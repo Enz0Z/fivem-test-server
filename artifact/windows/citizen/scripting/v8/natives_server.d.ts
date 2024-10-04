@@ -558,6 +558,13 @@ declare function GetEntityMaxHealth(entity: number): number;
 declare function GetEntityModel(entity: number): number;
 
 /**
+ * GET_ENTITY_ORPHAN_MODE
+ * @param entity The entity to get the orphan mode of
+ * @return Returns the entities current orphan mode, refer to enum in [SET_ENTITY_ORPHAN_MODE](#\_0x489E9162)
+ */
+declare function GetEntityOrphanMode(entity: number): number;
+
+/**
  * This native gets an entity's population type.
  * @param entity the entity to obtain the population type from
  * @return Returns the population type ID, defined by the below enumeration:```cpp
@@ -696,6 +703,7 @@ declare function GetGameName(): string;
  * ### Supported pools
  * *   `CPed`: Peds (including animals) and players.
  * *   `CObject`: Objects (props), doors, and projectiles.
+ * *   `CNetObject`: Networked objects
  * *   `CVehicle`: Vehicles.
  * *   `CPickup`: Pickups.
  * @param poolName The pool name to get a list of entities from.
@@ -1397,6 +1405,33 @@ declare function GetVehicleLivery(vehicle: number): number;
 declare function GetVehicleLockOnTarget(vehicle: number): number;
 
 /**
+ * Getter to check the neon colour of a vehicle. This native is the server side getter of [GET_VEHICLE_NEON_LIGHTS_COLOUR](#\_0x7619EEE8C886757F).
+ * @param vehicle The vehicle to check.
+ * @param red Pointer to an integer where the red component of the neon color will be stored.
+ * @param green Pointer to an integer where the green component of the neon color will be stored.
+ * @param blue Pointer to an integer where the blue component of the neon color will be stored.
+ * @return None. The neon color values are retrieved and stored in the `red`, `green`, and `blue` pointers. Make sure to store the returned values in variables for further use.
+ */
+declare function GetVehicleNeonColour(vehicle: number): [number, number, number];
+
+/**
+ * Getter to check if one of the neon lights of a vehicle is enabled. This native is the server side getter of [IS_VEHICLE_NEON_LIGHT_ENABLED](#\_0x8C4B92553E4766A5).
+ * ```cpp
+ * enum neonIndex
+ * {
+ * NEON_BACK = 0,   // Back neon
+ * NEON_RIGHT = 1,  // Right neon
+ * NEON_LEFT = 2,   // Left neon
+ * NEON_FRONT = 3   // Front neon
+ * };
+ * ```
+ * @param vehicle The vehicle to check.
+ * @param neonIndex A value from the neonIndex enum representing the neon light to check.
+ * @return Returns `true` if the specified neon light is enabled, `false` otherwise.
+ */
+declare function GetVehicleNeonEnabled(vehicle: number, neonIndex: number): boolean;
+
+/**
  * GET_VEHICLE_NUMBER_PLATE_TEXT
  */
 declare function GetVehicleNumberPlateText(vehicle: number): string;
@@ -1945,6 +1980,28 @@ declare function SetEntityHeading(entity: number, heading: number): void;
  * @param ignore Define if the entity ignores the request control filter policy.
  */
 declare function SetEntityIgnoreRequestControlFilter(entity: number, ignore: boolean): void;
+
+/**
+ * ```cpp
+ * enum EntityOrphanMode {
+ * // Default, this will delete the entity when it isn't relevant to any players
+ * // NOTE: this *doesn't* mean when they're no longer in scope
+ * DeleteWhenNotRelevant = 0,
+ * // The entity will be deleted whenever its original owner disconnects
+ * // NOTE: if this is set when the entities original owner has already left it will be
+ * // marked for deletion (similar to just calling DELETE_ENTITY)
+ * DeleteOnOwnerDisconnect = 1,
+ * // The entity will never be deleted by the server when it does relevancy checks
+ * // you should only use this on entities that need to be relatively persistent
+ * KeepEntity = 2
+ * }
+ * ```
+ * Sets what happens when the entity is orphaned and no longer has its original owner.
+ * **NOTE**: This native doesn't guarantee the persistence of the entity.
+ * @param entity The entity to set the orphan mode of
+ * @param orphanMode The mode that the server should use for determining if an entity should be removed.
+ */
+declare function SetEntityOrphanMode(entity: number, orphanMode: number): void;
 
 /**
  * Sets the rotation of a specified entity in the game world.
