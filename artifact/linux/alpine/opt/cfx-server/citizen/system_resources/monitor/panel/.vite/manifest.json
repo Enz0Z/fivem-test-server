@@ -1,30 +1,30 @@
 {
   "../node_modules/@fontsource-variable/inter/files/inter-cyrillic-ext-wght-normal.woff2": {
-    "file": "inter-cyrillic-ext-wght-normal-DIEz8p5i.woff2",
+    "file": "inter-cyrillic-ext-wght-normal-B2xhLi22.woff2",
     "src": "../node_modules/@fontsource-variable/inter/files/inter-cyrillic-ext-wght-normal.woff2"
   },
   "../node_modules/@fontsource-variable/inter/files/inter-cyrillic-wght-normal.woff2": {
-    "file": "inter-cyrillic-wght-normal-BmJJXa8e.woff2",
+    "file": "inter-cyrillic-wght-normal-CMZtQduZ.woff2",
     "src": "../node_modules/@fontsource-variable/inter/files/inter-cyrillic-wght-normal.woff2"
   },
   "../node_modules/@fontsource-variable/inter/files/inter-greek-ext-wght-normal.woff2": {
-    "file": "inter-greek-ext-wght-normal-D5AYLNiq.woff2",
+    "file": "inter-greek-ext-wght-normal-CGAr0uHJ.woff2",
     "src": "../node_modules/@fontsource-variable/inter/files/inter-greek-ext-wght-normal.woff2"
   },
   "../node_modules/@fontsource-variable/inter/files/inter-greek-wght-normal.woff2": {
-    "file": "inter-greek-wght-normal-DyIDNIyN.woff2",
+    "file": "inter-greek-wght-normal-CaVNZxsx.woff2",
     "src": "../node_modules/@fontsource-variable/inter/files/inter-greek-wght-normal.woff2"
   },
   "../node_modules/@fontsource-variable/inter/files/inter-latin-ext-wght-normal.woff2": {
-    "file": "inter-latin-ext-wght-normal-CN1pIXkb.woff2",
+    "file": "inter-latin-ext-wght-normal-CFHvXkgd.woff2",
     "src": "../node_modules/@fontsource-variable/inter/files/inter-latin-ext-wght-normal.woff2"
   },
   "../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2": {
-    "file": "inter-latin-wght-normal-BgVq2Tq4.woff2",
+    "file": "inter-latin-wght-normal-C2S99t-D.woff2",
     "src": "../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2"
   },
   "../node_modules/@fontsource-variable/inter/files/inter-vietnamese-wght-normal.woff2": {
-    "file": "inter-vietnamese-wght-normal-_GQuwPVU.woff2",
+    "file": "inter-vietnamese-wght-normal-CBcvBZtf.woff2",
     "src": "../node_modules/@fontsource-variable/inter/files/inter-vietnamese-wght-normal.woff2"
   },
   "../node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-cyrillic-wght-normal.woff2": {
@@ -48,21 +48,21 @@
     "src": "../node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-vietnamese-wght-normal.woff2"
   },
   "index.html": {
-    "file": "index-0a4OFQy1.js",
+    "file": "index-BEwhab-0.js",
     "name": "index",
     "src": "index.html",
     "isEntry": true,
     "css": [
-      "index-T2xXHN99.css"
+      "index-CmbuFY8h.css"
     ],
     "assets": [
-      "inter-cyrillic-ext-wght-normal-DIEz8p5i.woff2",
-      "inter-cyrillic-wght-normal-BmJJXa8e.woff2",
-      "inter-greek-ext-wght-normal-D5AYLNiq.woff2",
-      "inter-greek-wght-normal-DyIDNIyN.woff2",
-      "inter-vietnamese-wght-normal-_GQuwPVU.woff2",
-      "inter-latin-ext-wght-normal-CN1pIXkb.woff2",
-      "inter-latin-wght-normal-BgVq2Tq4.woff2",
+      "inter-cyrillic-ext-wght-normal-B2xhLi22.woff2",
+      "inter-cyrillic-wght-normal-CMZtQduZ.woff2",
+      "inter-greek-ext-wght-normal-CGAr0uHJ.woff2",
+      "inter-greek-wght-normal-CaVNZxsx.woff2",
+      "inter-vietnamese-wght-normal-CBcvBZtf.woff2",
+      "inter-latin-ext-wght-normal-CFHvXkgd.woff2",
+      "inter-latin-wght-normal-C2S99t-D.woff2",
       "jetbrains-mono-cyrillic-wght-normal-BptiBwAt.woff2",
       "jetbrains-mono-greek-wght-normal-BW1JPxja.woff2",
       "jetbrains-mono-vietnamese-wght-normal-By-yputv.woff2",
