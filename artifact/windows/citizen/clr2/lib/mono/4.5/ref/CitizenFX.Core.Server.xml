@@ -6522,6 +6522,20 @@
             ![example](https://i.imgur.com/9hQl3DB.png)
             </summary>
         </member>
+        <member name="F:CitizenFX.Core.Native.Hash.ADD_CONVAR_CHANGE_LISTENER">
+            <summary>
+            Adds a listener for Console Variable changes.
+            
+            The function called expects to match the following signature:
+            
+            ```ts
+            function ConVarChangeListener(conVarName: string, reserved: any);
+            ```
+            
+            *   **conVarName**: The ConVar that changed.
+            *   **reserved**: Currently unused.
+            </summary>
+        </member>
         <member name="F:CitizenFX.Core.Native.Hash.ADD_PED_DECORATION_FROM_HASHES">
             <summary>
             Applies an Item from a PedDecorationCollection to a ped. These include tattoos and shirt decals.
@@ -6808,6 +6822,16 @@
         <member name="F:CitizenFX.Core.Native.Hash.GET_CONVAR">
             <summary>
             Can be used to get a console variable of type `char*`, for example a string.
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Core.Native.Hash.GET_CONVAR_BOOL">
+            <summary>
+            Can be used to get a console variable casted back to `bool`.
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Core.Native.Hash.GET_CONVAR_FLOAT">
+            <summary>
+            This will have floating point inaccuracy.
             </summary>
         </member>
         <member name="F:CitizenFX.Core.Native.Hash.GET_CONVAR_INT">
@@ -7956,6 +7980,11 @@
             Removes the blip from your map.
             
             **Note:** This function only works on the script that created the blip, if you wish to remove blips created by other scripts, see [`SET_THIS_SCRIPT_CAN_REMOVE_BLIPS_CREATED_BY_ANY_SCRIPT`](#\_0x86A652570E5F25DD).
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Core.Native.Hash.REMOVE_CONVAR_CHANGE_LISTENER">
+            <summary>
+            REMOVE_CONVAR_CHANGE_LISTENER
             </summary>
         </member>
         <member name="F:CitizenFX.Core.Native.Hash.REMOVE_STATE_BAG_CHANGE_HANDLER">
@@ -9483,6 +9512,26 @@
             The blip handle that can be manipulated with every `SetBlip` natives
             </returns>
         </member>
+        <member name="M:CitizenFX.Core.Native.API.AddConvarChangeListener(System.String,CitizenFX.Core.Native.InputArgument)">
+            <summary>
+            Adds a listener for Console Variable changes.
+            The function called expects to match the following signature:
+            ```ts
+            function ConVarChangeListener(conVarName: string, reserved: any);
+            ```
+            *   **conVarName**: The ConVar that changed.
+            *   **reserved**: Currently unused.
+            </summary>
+            <param name="conVarFilter">
+            The Console Variable to listen for, this can be a pattern like "test:\*", or null for any
+            </param>
+            <param name="handler">
+            The handler function.
+            </param>
+            <returns>
+            A cookie to remove the change handler.
+            </returns>
+        </member>
         <member name="M:CitizenFX.Core.Native.API.AddPedDecorationFromHashes(System.Int32,System.UInt32,System.UInt32)">
             <summary>
             Applies an Item from a PedDecorationCollection to a ped. These include tattoos and shirt decals.
@@ -10081,6 +10130,34 @@
             </param>
             <returns>
             Returns the convar value if it can be found, otherwise it returns the assigned `default`.
+            </returns>
+        </member>
+        <member name="M:CitizenFX.Core.Native.API.GetConvarBool(System.String,System.Boolean)">
+            <summary>
+            Can be used to get a console variable casted back to `bool`.
+            </summary>
+            <param name="varName">
+            The console variable to look up.
+            </param>
+            <param name="defaultValue">
+            The default value to set if none is found.
+            </param>
+            <returns>
+            Returns the convar value if it can be found, otherwise it returns the assigned `default`.
+            </returns>
+        </member>
+        <member name="M:CitizenFX.Core.Native.API.GetConvarFloat(System.String,System.Single)">
+            <summary>
+            This will have floating point inaccuracy.
+            </summary>
+            <param name="varName">
+            The console variable to get
+            </param>
+            <param name="defaultValue">
+            The default value to set, if none are found.
+            </param>
+            <returns>
+            Returns the value set in varName, or `default` if none are specified
             </returns>
         </member>
         <member name="M:CitizenFX.Core.Native.API.GetConvarInt(System.String,System.Int32)">
@@ -11940,6 +12017,14 @@
             </summary>
             <param name="blip">
             Blip handle to remove.
+            </param>
+        </member>
+        <member name="M:CitizenFX.Core.Native.API.RemoveConvarChangeListener(System.Int32)">
+            <summary>
+            REMOVE_CONVAR_CHANGE_LISTENER
+            </summary>
+            <param name="cookie">
+            The cookie returned from [ADD_CONVAR_CHANGE_LISTENER](#\_0xAB7F7241)
             </param>
         </member>
         <member name="M:CitizenFX.Core.Native.API.RemoveStateBagChangeHandler(System.Int32)">

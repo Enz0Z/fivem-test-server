@@ -88,6 +88,20 @@ function Global.AddBlipForRadius(posX, posY, posZ, radius)
 	return _in(0x4626756c, posX, posY, posZ, radius, _ri)
 end
 
+--- Adds a listener for Console Variable changes.
+-- The function called expects to match the following signature:
+-- ```ts
+-- function ConVarChangeListener(conVarName: string, reserved: any);
+-- ```
+-- *   **conVarName**: The ConVar that changed.
+-- *   **reserved**: Currently unused.
+-- @param conVarFilter The Console Variable to listen for, this can be a pattern like "test:\*", or null for any
+-- @param handler The handler function.
+-- @return A cookie to remove the change handler.
+function Global.AddConvarChangeListener(conVarFilter, handler)
+	return _in(0xab7f7241, _ts(conVarFilter), _mfr(handler), _ri)
+end
+
 --- Applies an Item from a PedDecorationCollection to a ped. These include tattoos and shirt decals.
 -- collection - PedDecorationCollection filename hash
 -- overlay - Item name hash
@@ -458,6 +472,22 @@ end
 -- @return Returns the convar value if it can be found, otherwise it returns the assigned `default`.
 function Global.GetConvar(varName, default_)
 	return _in(0x6ccd2564, _ts(varName), _ts(default_), _s)
+end
+
+--- Can be used to get a console variable casted back to `bool`.
+-- @param varName The console variable to look up.
+-- @param defaultValue The default value to set if none is found.
+-- @return Returns the convar value if it can be found, otherwise it returns the assigned `default`.
+function Global.GetConvarBool(varName, defaultValue)
+	return _in(0x7e8ebfe5, _ts(varName), defaultValue, _r)
+end
+
+--- This will have floating point inaccuracy.
+-- @param varName The console variable to get
+-- @param defaultValue The default value to set, if none are found.
+-- @return Returns the value set in varName, or `default` if none are specified
+function Global.GetConvarFloat(varName, defaultValue)
+	return _in(0x9e666d, _ts(varName), defaultValue, _rf)
 end
 
 --- Can be used to get a console variable casted back to `int` (an integer value).
@@ -1834,6 +1864,12 @@ end
 -- @param blip Blip handle to remove.
 function Global.RemoveBlip(blip)
 	return _in(0xd8c3c1cd, _ii(blip) --[[ may be optional ]])
+end
+
+--- REMOVE_CONVAR_CHANGE_LISTENER
+-- @param cookie The cookie returned from [ADD_CONVAR_CHANGE_LISTENER](#\_0xAB7F7241)
+function Global.RemoveConvarChangeListener(cookie)
+	return _in(0xeac49841, cookie)
 end
 
 --- **Experimental**: This native may be altered or removed in future versions of CitizenFX without warning.

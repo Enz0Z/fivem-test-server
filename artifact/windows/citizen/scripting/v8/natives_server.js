@@ -103,6 +103,22 @@ global.AddBlipForRadius = function (posX, posY, posZ, radius) {
 };
 
 /**
+ * Adds a listener for Console Variable changes.
+ * The function called expects to match the following signature:
+ * ```ts
+ * function ConVarChangeListener(conVarName: string, reserved: any);
+ * ```
+ * *   **conVarName**: The ConVar that changed.
+ * *   **reserved**: Currently unused.
+ * @param conVarFilter The Console Variable to listen for, this can be a pattern like "test:\*", or null for any
+ * @param handler The handler function.
+ * @return A cookie to remove the change handler.
+ */
+global.AddConvarChangeListener = function (conVarFilter, handler) {
+	return _in(0x00000000, 0xab7f7241, _ts(conVarFilter), _mfr(handler), _r, _ri);
+};
+
+/**
  * Applies an Item from a PedDecorationCollection to a ped. These include tattoos and shirt decals.
  * collection - PedDecorationCollection filename hash
  * overlay - Item name hash
@@ -554,6 +570,26 @@ global.GetConsoleBuffer = function () {
  */
 global.GetConvar = function (varName, default_) {
 	return _in(0x00000000, 0x6ccd2564, _ts(varName), _ts(default_), _r, _s);
+};
+
+/**
+ * Can be used to get a console variable casted back to `bool`.
+ * @param varName The console variable to look up.
+ * @param defaultValue The default value to set if none is found.
+ * @return Returns the convar value if it can be found, otherwise it returns the assigned `default`.
+ */
+global.GetConvarBool = function (varName, defaultValue) {
+	return _in(0x00000000, 0x7e8ebfe5, _ts(varName), defaultValue, _r);
+};
+
+/**
+ * This will have floating point inaccuracy.
+ * @param varName The console variable to get
+ * @param defaultValue The default value to set, if none are found.
+ * @return Returns the value set in varName, or `default` if none are specified
+ */
+global.GetConvarFloat = function (varName, defaultValue) {
+	return _in(0x00000000, 0x009e666d, _ts(varName), _fv(defaultValue), _r, _rf);
 };
 
 /**
@@ -2315,6 +2351,14 @@ global.RemoveAllPedWeapons = function (ped, p1) {
  */
 global.RemoveBlip = function (blip) {
 	return _in(0x00000000, 0xd8c3c1cd, _ii(blip) /* may be optional */);
+};
+
+/**
+ * REMOVE_CONVAR_CHANGE_LISTENER
+ * @param cookie The cookie returned from [ADD_CONVAR_CHANGE_LISTENER](#\_0xAB7F7241)
+ */
+global.RemoveConvarChangeListener = function (cookie) {
+	return _in(0x00000000, 0xeac49841, cookie);
 };
 
 /**

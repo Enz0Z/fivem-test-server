@@ -65,6 +65,20 @@ declare function AddBlipForEntity(entity: number): number;
 declare function AddBlipForRadius(posX: number, posY: number, posZ: number, radius: number): number;
 
 /**
+ * Adds a listener for Console Variable changes.
+ * The function called expects to match the following signature:
+ * ```ts
+ * function ConVarChangeListener(conVarName: string, reserved: any);
+ * ```
+ * *   **conVarName**: The ConVar that changed.
+ * *   **reserved**: Currently unused.
+ * @param conVarFilter The Console Variable to listen for, this can be a pattern like "test:\*", or null for any
+ * @param handler The handler function.
+ * @return A cookie to remove the change handler.
+ */
+declare function AddConvarChangeListener(conVarFilter: string, handler: Function): number;
+
+/**
  * Applies an Item from a PedDecorationCollection to a ped. These include tattoos and shirt decals.
  * collection - PedDecorationCollection filename hash
  * overlay - Item name hash
@@ -481,6 +495,22 @@ declare function GetConsoleBuffer(): string;
  * @return Returns the convar value if it can be found, otherwise it returns the assigned `default`.
  */
 declare function GetConvar(varName: string, default_: string): string;
+
+/**
+ * Can be used to get a console variable casted back to `bool`.
+ * @param varName The console variable to look up.
+ * @param defaultValue The default value to set if none is found.
+ * @return Returns the convar value if it can be found, otherwise it returns the assigned `default`.
+ */
+declare function GetConvarBool(varName: string, defaultValue: boolean): boolean;
+
+/**
+ * This will have floating point inaccuracy.
+ * @param varName The console variable to get
+ * @param defaultValue The default value to set, if none are found.
+ * @return Returns the value set in varName, or `default` if none are specified
+ */
+declare function GetConvarFloat(varName: string, defaultValue: number): number;
 
 /**
  * Can be used to get a console variable casted back to `int` (an integer value).
@@ -1856,6 +1886,12 @@ declare function RemoveAllPedWeapons(ped: number, p1: boolean): void;
  * @param blip Blip handle to remove.
  */
 declare function RemoveBlip(blip: number): void;
+
+/**
+ * REMOVE_CONVAR_CHANGE_LISTENER
+ * @param cookie The cookie returned from [ADD_CONVAR_CHANGE_LISTENER](#\_0xAB7F7241)
+ */
+declare function RemoveConvarChangeListener(cookie: number): void;
 
 /**
  * **Experimental**: This native may be altered or removed in future versions of CitizenFX without warning.
