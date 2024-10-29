@@ -7,13 +7,13 @@ set -xe
 JOB_SLOTS=${JOB_SLOTS:-24}
 
 # upgrade to edge (keep v3.12 for downgrades)
-echo http://dl-cdn.alpinelinux.org/alpine/v3.12/main > /etc/apk/repositories
-echo http://dl-cdn.alpinelinux.org/alpine/v3.14/main >> /etc/apk/repositories
-echo http://dl-cdn.alpinelinux.org/alpine/v3.16/main >> /etc/apk/repositories # for LLVM 13
-echo http://dl-cdn.alpinelinux.org/alpine/v3.16/community >> /etc/apk/repositories # for LLVM 13 ('lld')
-echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories
-echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
-echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories
+echo http://dl-cdn.alpinelinux.org/alpine/v3.12/main >/etc/apk/repositories
+echo http://dl-cdn.alpinelinux.org/alpine/v3.14/main >>/etc/apk/repositories
+echo http://dl-cdn.alpinelinux.org/alpine/v3.16/main >>/etc/apk/repositories      # for LLVM 13
+echo http://dl-cdn.alpinelinux.org/alpine/v3.16/community >>/etc/apk/repositories # for LLVM 13 ('lld')
+echo http://dl-cdn.alpinelinux.org/alpine/edge/main >>/etc/apk/repositories
+echo http://dl-cdn.alpinelinux.org/alpine/edge/community >>/etc/apk/repositories
+echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >>/etc/apk/repositories
 
 # some dance to upgrade alpine-keys
 apk --no-cache upgrade alpine-keys
@@ -31,11 +31,11 @@ apk add --no-cache curl ca-certificates
 curl --http1.1 -sLo /etc/apk/keys/peachypies@protonmail.ch-5adb3818.rsa.pub https://runtime.fivem.net/client/alpine/peachypies@protonmail.ch-5adb3818.rsa.pub
 curl -sLo /etc/apk/keys/hydrogen@fivem.net-614370b9.rsa.pub https://mirrors.fivem.net/build/linux/hydrogen@fivem.net-614370b9.rsa.pub
 
-echo https://runtime.fivem.net/client/alpine/builds >> /etc/apk/repositories
-echo https://runtime.fivem.net/client/alpine/main >> /etc/apk/repositories
-echo https://runtime.fivem.net/client/alpine/testing >> /etc/apk/repositories
-echo https://runtime.fivem.net/client/alpine/community >> /etc/apk/repositories
-echo https://mirrors.fivem.net/build/linux/packages/cfx >> /etc/apk/repositories
+echo https://runtime.fivem.net/client/alpine/builds >>/etc/apk/repositories
+echo https://runtime.fivem.net/client/alpine/main >>/etc/apk/repositories
+echo https://runtime.fivem.net/client/alpine/testing >>/etc/apk/repositories
+echo https://runtime.fivem.net/client/alpine/community >>/etc/apk/repositories
+echo https://mirrors.fivem.net/build/linux/packages/cfx >>/etc/apk/repositories
 apk --no-cache update
 
 # uninstall old curl
@@ -66,3 +66,42 @@ cd ../../
 mv bin/release/premake5 /usr/local/bin
 cd ..
 rm -rf premake-*
+
+# install specific glibc version to enable running binaries compiled against it instead of alpine's muslc
+# See: https://github.com/oven-sh/bun/blob/14c23cc429521bd935b2a0dafa36b0966685b0fe/dockerhub/alpine/Dockerfile
+GLIBC_VERSION=2.34-r0
+GLIBC_VERSION_AARCH64=2.26-r1
+
+arch="$(apk --print-arch)" \
+    && cd /tmp \
+    && case "${arch##*-}" in \
+      x86_64) curl "https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-${GLIBC_VERSION}.apk" \
+        -fsSLO \
+        --compressed \
+        --retry 5 \
+        || (echo "error: failed to download: glibc v${GLIBC_VERSION}" && exit 1) \
+      && mv "glibc-${GLIBC_VERSION}.apk" glibc.apk \
+      && curl "https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-bin-${GLIBC_VERSION}.apk" \
+        -fsSLO \
+        --compressed \
+        --retry 5 \
+        || (echo "error: failed to download: glibc-bin v${GLIBC_VERSION}" && exit 1) \
+      && mv "glibc-bin-${GLIBC_VERSION}.apk" glibc-bin.apk ;; \
+      aarch64) curl "https://raw.githubusercontent.com/squishyu/alpine-pkg-glibc-aarch64-bin/master/glibc-${GLIBC_VERSION_AARCH64}.apk" \
+        -fsSLO \
+        --compressed \
+        --retry 5 \
+        || (echo "error: failed to download: glibc v${GLIBC_VERSION_AARCH64}" && exit 1) \
+      && mv "glibc-${GLIBC_VERSION_AARCH64}.apk" glibc.apk \
+      && curl "https://raw.githubusercontent.com/squishyu/alpine-pkg-glibc-aarch64-bin/master/glibc-bin-${GLIBC_VERSION_AARCH64}.apk" \
+        -fsSLO \
+        --compressed \
+        --retry 5 \
+        || (echo "error: failed to download: glibc-bin v${GLIBC_VERSION_AARCH64}" && exit 1) \
+      && mv "glibc-bin-${GLIBC_VERSION_AARCH64}.apk" glibc-bin.apk ;; \
+      *) echo "error: unsupported architecture '$arch'"; exit 1 ;; \
+    esac
+
+apk --no-cache --force-overwrite --allow-untrusted add \
+      /tmp/glibc.apk \
+      /tmp/glibc-bin.apk
