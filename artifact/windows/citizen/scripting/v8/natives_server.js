@@ -1269,14 +1269,17 @@ global.GetPlayerGuid = function (playerSrc) {
 };
 
 /**
- * GET_PLAYER_IDENTIFIER
+ * To get the number of identifiers, use [GET_NUM_PLAYER_IDENTIFIERS](?\_0xFF7F66AB)
+ * To get a specific type of identifier, use [GET_PLAYER_IDENTIFIER_BY_TYPE](?\_0xA61C8FC6)
+ * @return Returns the identifier at the specific index, if out of bounds returns `null`
  */
-global.GetPlayerIdentifier = function (playerSrc, identifier) {
-	return _in(0x00000000, 0x7302dbcf, _ts(playerSrc), identifier, _r, _s);
+global.GetPlayerIdentifier = function (playerSrc, indentiferIndex) {
+	return _in(0x00000000, 0x7302dbcf, _ts(playerSrc), indentiferIndex, _r, _s);
 };
 
 /**
  * Get an identifier from a player by the type of the identifier.
+ * Known [Identifiers](https://docs.fivem.net/docs/scripting-reference/runtimes/lua/functions/GetPlayerIdentifiers/#identifier-types)
  * @param playerSrc The player to get the identifier for
  * @param identifierType The string to match in an identifier, this can be `"license"` for example.
  * @return The identifier that matches the string provided
