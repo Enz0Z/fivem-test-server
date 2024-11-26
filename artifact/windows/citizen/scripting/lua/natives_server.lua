@@ -1027,8 +1027,8 @@ end
 --- To get the number of identifiers, use [GET_NUM_PLAYER_IDENTIFIERS](?\_0xFF7F66AB)
 -- To get a specific type of identifier, use [GET_PLAYER_IDENTIFIER_BY_TYPE](?\_0xA61C8FC6)
 -- @return Returns the identifier at the specific index, if out of bounds returns `null`
-function Global.GetPlayerIdentifier(playerSrc, indentiferIndex)
-	return _in(0x7302dbcf, _ts(playerSrc), indentiferIndex, _s)
+function Global.GetPlayerIdentifier(playerSrc, identiferIndex)
+	return _in(0x7302dbcf, _ts(playerSrc), identiferIndex, _s)
 end
 
 --- Get an identifier from a player by the type of the identifier.

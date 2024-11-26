@@ -1051,7 +1051,7 @@ declare function GetPlayerGuid(playerSrc: string): string;
  * To get a specific type of identifier, use [GET_PLAYER_IDENTIFIER_BY_TYPE](?\_0xA61C8FC6)
  * @return Returns the identifier at the specific index, if out of bounds returns `null`
  */
-declare function GetPlayerIdentifier(playerSrc: string, indentiferIndex: number): string;
+declare function GetPlayerIdentifier(playerSrc: string, identiferIndex: number): string;
 
 /**
  * Get an identifier from a player by the type of the identifier.

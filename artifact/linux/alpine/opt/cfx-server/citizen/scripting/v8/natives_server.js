@@ -1273,8 +1273,8 @@ global.GetPlayerGuid = function (playerSrc) {
  * To get a specific type of identifier, use [GET_PLAYER_IDENTIFIER_BY_TYPE](?_0xA61C8FC6)
  * @return Returns the identifier at the specific index, if out of bounds returns `null`
  */
-global.GetPlayerIdentifier = function (playerSrc, indentiferIndex) {
-	return _in(0x00000000, 0x7302dbcf, _ts(playerSrc), indentiferIndex, _r, _s);
+global.GetPlayerIdentifier = function (playerSrc, identiferIndex) {
+	return _in(0x00000000, 0x7302dbcf, _ts(playerSrc), identiferIndex, _r, _s);
 };
 
 /**
