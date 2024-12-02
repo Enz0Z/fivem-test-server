@@ -1516,6 +1516,13 @@ declare function GetVehicleRoofLivery(vehicle: number): number;
 declare function GetVehicleSteeringAngle(vehicle: number): number;
 
 /**
+ * GET_VEHICLE_TOTAL_REPAIRS
+ * @return Returns the total amount of repairs. Each repair will increase the count to make it possible to detect client repairs. 
+The value has a range from 0 to 15. Next value after 15 is 0.
+ */
+declare function GetVehicleTotalRepairs(vehicle: number): number;
+
+/**
  * Returns the type of the passed vehicle.
  * For client scripts, reference the more detailed [GET_VEHICLE_TYPE_RAW](#_0xDE73BC10) native.
  * ### Vehicle types

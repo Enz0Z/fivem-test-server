@@ -7651,6 +7651,11 @@
             GET_VEHICLE_STEERING_ANGLE
             </summary>
         </member>
+        <member name="F:CitizenFX.Core.Native.Hash.GET_VEHICLE_TOTAL_REPAIRS">
+            <summary>
+            GET_VEHICLE_TOTAL_REPAIRS
+            </summary>
+        </member>
         <member name="F:CitizenFX.Core.Native.Hash.GET_VEHICLE_TYPE">
             <summary>
             Returns the type of the passed vehicle.
@@ -11503,6 +11508,15 @@
             <summary>
             GET_VEHICLE_STEERING_ANGLE
             </summary>
+        </member>
+        <member name="M:CitizenFX.Core.Native.API.GetVehicleTotalRepairs(System.Int32)">
+            <summary>
+            GET_VEHICLE_TOTAL_REPAIRS
+            </summary>
+            <returns>
+            Returns the total amount of repairs. Each repair will increase the count to make it possible to detect client repairs.
+            The value has a range from 0 to 15. Next value after 15 is 0.
+            </returns>
         </member>
         <member name="M:CitizenFX.Core.Native.API.GetVehicleType(System.Int32)">
             <summary>
