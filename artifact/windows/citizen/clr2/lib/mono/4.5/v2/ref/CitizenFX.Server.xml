@@ -550,6 +550,8 @@
         <member name="M:CitizenFX.Server.Native.Natives.DeleteEntity(System.Int32)">
             <summary>
             Deletes the specified entity.
+            
+            **NOTE**: For trains this will only work if called on the train engine, it will not work on its carriages.
             </summary>
             <param name="entity">
             The entity to delete.
@@ -574,6 +576,14 @@
             </summary>
             <param name="key">
             The key to delete
+            </param>
+        </member>
+        <member name="M:CitizenFX.Server.Native.Natives.DeleteTrain(System.Int32)">
+            <summary>
+            Deletes the specified `entity` and any carriage its attached to, or that is attached to it.
+            </summary>
+            <param name="entity">
+            The carriage to delete.
             </param>
         </member>
         <member name="M:CitizenFX.Server.Native.Natives.DoesBoatSinkWhenWrecked(System.Int32)">
@@ -4817,6 +4827,8 @@
         <member name="F:CitizenFX.Server.Native.Hash.DELETE_ENTITY">
             <summary>
             Deletes the specified entity.
+            
+            **NOTE**: For trains this will only work if called on the train engine, it will not work on its carriages.
             </summary>
         </member>
         <member name="F:CitizenFX.Server.Native.Hash.DELETE_FUNCTION_REFERENCE">
@@ -4832,6 +4844,11 @@
         <member name="F:CitizenFX.Server.Native.Hash.DELETE_RESOURCE_KVP_NO_SYNC">
             <summary>
             Nonsynchronous [DELETE_RESOURCE_KVP](#\_0x7389B5DF) operation; see [FLUSH_RESOURCE_KVP](#\_0x5240DA5A).
+            </summary>
+        </member>
+        <member name="F:CitizenFX.Server.Native.Hash.DELETE_TRAIN">
+            <summary>
+            Deletes the specified `entity` and any carriage its attached to, or that is attached to it.
             </summary>
         </member>
         <member name="F:CitizenFX.Server.Native.Hash.DOES_BOAT_SINK_WHEN_WRECKED">

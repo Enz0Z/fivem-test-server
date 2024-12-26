@@ -356,6 +356,7 @@ global.CreateVehicleServerSetter = function (modelHash, type, x, y, z, heading) 
 
 /**
  * Deletes the specified entity.
+ * **NOTE**: For trains this will only work if called on the train engine, it will not work on its carriages.
  * @param entity The entity to delete.
  */
 global.DeleteEntity = function (entity) {
@@ -383,6 +384,14 @@ global.DeleteResourceKvp = function (key) {
  */
 global.DeleteResourceKvpNoSync = function (key) {
 	return _in(0x00000000, 0x04152c90, _ts(key));
+};
+
+/**
+ * Deletes the specified `entity` and any carriage its attached to, or that is attached to it.
+ * @param entity The carriage to delete.
+ */
+global.DeleteTrain = function (entity) {
+	return _in(0x00000000, 0x523ba3da, entity);
 };
 
 /**

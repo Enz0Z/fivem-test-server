@@ -307,6 +307,7 @@ function Global.CreateVehicleServerSetter(modelHash, type, x, y, z, heading)
 end
 
 --- Deletes the specified entity.
+-- **NOTE**: For trains this will only work if called on the train engine, it will not work on its carriages.
 -- @param entity The entity to delete.
 function Global.DeleteEntity(entity)
 	return _in(0xfaa3d236, entity)
@@ -327,6 +328,12 @@ end
 -- @param key The key to delete
 function Global.DeleteResourceKvpNoSync(key)
 	return _in(0x4152c90, _ts(key))
+end
+
+--- Deletes the specified `entity` and any carriage its attached to, or that is attached to it.
+-- @param entity The carriage to delete.
+function Global.DeleteTrain(entity)
+	return _in(0x523ba3da, entity)
 end
 
 --- DOES_BOAT_SINK_WHEN_WRECKED

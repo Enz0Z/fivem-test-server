@@ -332,6 +332,7 @@ declare function CreateVehicleServerSetter(modelHash: string | number, _type: st
 
 /**
  * Deletes the specified entity.
+ * **NOTE**: For trains this will only work if called on the train engine, it will not work on its carriages.
  * @param entity The entity to delete.
  */
 declare function DeleteEntity(entity: number): void;
@@ -352,6 +353,12 @@ declare function DeleteResourceKvp(key: string): void;
  * @param key The key to delete
  */
 declare function DeleteResourceKvpNoSync(key: string): void;
+
+/**
+ * Deletes the specified `entity` and any carriage its attached to, or that is attached to it.
+ * @param entity The carriage to delete.
+ */
+declare function DeleteTrain(entity: number): void;
 
 /**
  * DOES_BOAT_SINK_WHEN_WRECKED
