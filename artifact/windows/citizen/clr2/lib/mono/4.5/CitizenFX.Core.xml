@@ -7857,7 +7857,13 @@
         </member>
         <member name="F:CitizenFX.Core.Native.Hash.LOAD_PLAYER_COMMERCE_DATA_EXT">
             <summary>
-            Requests the commerce data from Tebex for the specified player, including the owned SKUs. Use `IS_PLAYER_COMMERCE_INFO_LOADED` to check if it has loaded.
+            Requests the commerce data from Tebex for the specified player, including the owned SKUs.
+            
+            Use [`IS_PLAYER_COMMERCE_INFO_LOADED_EXT`](#\_0x1D14F4FE) to check if it has loaded.
+            
+            This will not automatically update whenever a client purchases a package, if you want to fetch new purchases you will need to call this native again.
+            
+            This native will temporarily cache the players commerce data for 10 seconds, a call to this native after 10 seconds will re-fetch the players commerce data.
             </summary>
         </member>
         <member name="F:CitizenFX.Core.Native.Hash.LOAD_RESOURCE_FILE">
@@ -11839,7 +11845,10 @@
         </member>
         <member name="M:CitizenFX.Core.Native.API.LoadPlayerCommerceDataExt(System.String)">
             <summary>
-            Requests the commerce data from Tebex for the specified player, including the owned SKUs. Use `IS_PLAYER_COMMERCE_INFO_LOADED` to check if it has loaded.
+            Requests the commerce data from Tebex for the specified player, including the owned SKUs.
+            Use [`IS_PLAYER_COMMERCE_INFO_LOADED_EXT`](#\_0x1D14F4FE) to check if it has loaded.
+            This will not automatically update whenever a client purchases a package, if you want to fetch new purchases you will need to call this native again.
+            This native will temporarily cache the players commerce data for 10 seconds, a call to this native after 10 seconds will re-fetch the players commerce data.
             </summary>
             <param name="playerSrc">
             The player handle
