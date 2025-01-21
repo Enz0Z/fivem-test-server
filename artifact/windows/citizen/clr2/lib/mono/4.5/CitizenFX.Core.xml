@@ -7535,7 +7535,7 @@
         </member>
         <member name="F:CitizenFX.Core.Native.Hash.GET_VEHICLE_DOOR_STATUS">
             <summary>
-            GET_VEHICLE_DOOR_STATUS
+            Returns the open position of the specified door on the target vehicle.
             </summary>
         </member>
         <member name="F:CitizenFX.Core.Native.Hash.GET_VEHICLE_ENGINE_HEALTH">
@@ -9935,7 +9935,7 @@
             Heading to face towards, in degrees.
             </param>
             <returns>
-            A script handle for the vehicle.
+            A script handle for the vehicle, or 0 if the vehicle failed to be created.
             </returns>
         </member>
         <member name="M:CitizenFX.Core.Native.API.DeleteEntity(System.Int32)">
@@ -11347,8 +11347,28 @@
         </member>
         <member name="M:CitizenFX.Core.Native.API.GetVehicleDoorStatus(System.Int32)">
             <summary>
-            GET_VEHICLE_DOOR_STATUS
+            Returns the open position of the specified door on the target vehicle.
             </summary>
+            <param name="vehicle">
+            The target vehicle.
+            </param>
+            <param name="doorIndex">
+            Index of door to check (0-6).
+            </param>
+            <returns>
+            A number from 0 to 7.
+            </returns>
+        </member>
+        <member name="M:CitizenFX.Core.Native.API.GetVehicleDoorStatus(System.Int32,System.Int32)">
+            <summary>
+            Returns the open position of the specified door on the target vehicle.
+            </summary>
+            <param name="vehicle">
+            The target vehicle.
+            </param>
+            <param name="doorIndex">
+            Index of door to check (0-6).
+            </param>
             <returns>
             A number from 0 to 7.
             </returns>

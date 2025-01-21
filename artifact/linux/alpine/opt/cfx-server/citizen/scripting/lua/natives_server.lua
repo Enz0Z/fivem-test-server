@@ -301,7 +301,7 @@ end
 -- @param y Spawn coordinate Y component.
 -- @param z Spawn coordinate Z component.
 -- @param heading Heading to face towards, in degrees.
--- @return A script handle for the vehicle.
+-- @return A script handle for the vehicle, or 0 if the vehicle failed to be created.
 function Global.CreateVehicleServerSetter(modelHash, type, x, y, z, heading)
 	return _in(0x6ae51d4b, _ch(modelHash), _ts(type), x, y, z, heading, _ri)
 end
@@ -1348,10 +1348,12 @@ function Global.GetVehicleDoorLockStatus(vehicle)
 	return _in(0xd72cef2, vehicle, _ri)
 end
 
---- GET_VEHICLE_DOOR_STATUS
+--- Returns the open position of the specified door on the target vehicle.
+-- @param vehicle The target vehicle.
+-- @param doorIndex Index of door to check (0-6).
 -- @return A number from 0 to 7.
-function Global.GetVehicleDoorStatus(vehicle)
-	return _in(0x6e35c49c, vehicle, _ri)
+function Global.GetVehicleDoorStatus(vehicle, doorIndex)
+	return _in(0x6e35c49c, vehicle, doorIndex, _ri)
 end
 
 --- Currently it only works when set to "all players".

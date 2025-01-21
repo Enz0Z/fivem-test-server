@@ -326,7 +326,7 @@ declare function CreateVehicle(modelHash: string | number, x: number, y: number,
  * @param y Spawn coordinate Y component.
  * @param z Spawn coordinate Z component.
  * @param heading Heading to face towards, in degrees.
- * @return A script handle for the vehicle.
+ * @return A script handle for the vehicle, or 0 if the vehicle failed to be created.
  */
 declare function CreateVehicleServerSetter(modelHash: string | number, _type: string, x: number, y: number, z: number, heading: number): number;
 
@@ -1362,10 +1362,12 @@ declare function GetVehicleDirtLevel(vehicle: number): number;
 declare function GetVehicleDoorLockStatus(vehicle: number): number;
 
 /**
- * GET_VEHICLE_DOOR_STATUS
+ * Returns the open position of the specified door on the target vehicle.
+ * @param vehicle The target vehicle.
+ * @param doorIndex Index of door to check (0-6).
  * @return A number from 0 to 7.
  */
-declare function GetVehicleDoorStatus(vehicle: number): number;
+declare function GetVehicleDoorStatus(vehicle: number, doorIndex: number): number;
 
 /**
  * Currently it only works when set to "all players".
