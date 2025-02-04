@@ -326,7 +326,7 @@ declare function CreateVehicle(modelHash: string | number, x: number, y: number,
  * @param y Spawn coordinate Y component.
  * @param z Spawn coordinate Z component.
  * @param heading Heading to face towards, in degrees.
- * @return A script handle for the vehicle.
+ * @return A script handle for the vehicle, or 0 if the vehicle failed to be created.
  */
 declare function CreateVehicleServerSetter(modelHash: string | number, _type: string, x: number, y: number, z: number, heading: number): number;
 
@@ -1371,10 +1371,12 @@ declare function GetVehicleDirtLevel(vehicle: number): number;
 declare function GetVehicleDoorLockStatus(vehicle: number): number;
 
 /**
- * GET_VEHICLE_DOOR_STATUS
+ * Returns the open position of the specified door on the target vehicle.
+ * @param vehicle The target vehicle.
+ * @param doorIndex Index of door to check (0-6).
  * @return A number from 0 to 7.
  */
-declare function GetVehicleDoorStatus(vehicle: number): number;
+declare function GetVehicleDoorStatus(vehicle: number, doorIndex: number): number;
 
 /**
  * Currently it only works when set to "all players".
@@ -1759,7 +1761,10 @@ declare function IsVehicleWindowIntact(vehicle: number, windowIndex: number): bo
 declare function LoadPlayerCommerceData(playerSrc: string): void;
 
 /**
- * Requests the commerce data from Tebex for the specified player, including the owned SKUs. Use `IS_PLAYER_COMMERCE_INFO_LOADED` to check if it has loaded.
+ * Requests the commerce data from Tebex for the specified player, including the owned SKUs.
+ * Use [`IS_PLAYER_COMMERCE_INFO_LOADED_EXT`](#_0x1D14F4FE) to check if it has loaded.
+ * This will not automatically update whenever a client purchases a package, if you want to fetch new purchases you will need to call this native again.
+ * This native will temporarily cache the players commerce data for 10 seconds, a call to this native after 10 seconds will re-fetch the players commerce data.
  * @param playerSrc The player handle
  */
 declare function LoadPlayerCommerceDataExt(playerSrc: string): void;

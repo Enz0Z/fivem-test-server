@@ -348,7 +348,7 @@ global.CreateVehicle = function (modelHash, x, y, z, heading, isNetwork, netMiss
  * @param y Spawn coordinate Y component.
  * @param z Spawn coordinate Z component.
  * @param heading Heading to face towards, in degrees.
- * @return A script handle for the vehicle.
+ * @return A script handle for the vehicle, or 0 if the vehicle failed to be created.
  */
 global.CreateVehicleServerSetter = function (modelHash, type, x, y, z, heading) {
 	return _in(0x00000000, 0x6ae51d4b, _ch(modelHash), _ts(type), _fv(x), _fv(y), _fv(z), _fv(heading), _r, _ri);
@@ -1679,11 +1679,13 @@ global.GetVehicleDoorLockStatus = function (vehicle) {
 };
 
 /**
- * GET_VEHICLE_DOOR_STATUS
+ * Returns the open position of the specified door on the target vehicle.
+ * @param vehicle The target vehicle.
+ * @param doorIndex Index of door to check (0-6).
  * @return A number from 0 to 7.
  */
-global.GetVehicleDoorStatus = function (vehicle) {
-	return _in(0x00000000, 0x6e35c49c, vehicle, _r, _ri);
+global.GetVehicleDoorStatus = function (vehicle, doorIndex) {
+	return _in(0x00000000, 0x6e35c49c, vehicle, doorIndex, _r, _ri);
 };
 
 /**
@@ -2183,7 +2185,10 @@ global.LoadPlayerCommerceData = function (playerSrc) {
 };
 
 /**
- * Requests the commerce data from Tebex for the specified player, including the owned SKUs. Use `IS_PLAYER_COMMERCE_INFO_LOADED` to check if it has loaded.
+ * Requests the commerce data from Tebex for the specified player, including the owned SKUs.
+ * Use [`IS_PLAYER_COMMERCE_INFO_LOADED_EXT`](#_0x1D14F4FE) to check if it has loaded.
+ * This will not automatically update whenever a client purchases a package, if you want to fetch new purchases you will need to call this native again.
+ * This native will temporarily cache the players commerce data for 10 seconds, a call to this native after 10 seconds will re-fetch the players commerce data.
  * @param playerSrc The player handle
  */
 global.LoadPlayerCommerceDataExt = function (playerSrc) {
