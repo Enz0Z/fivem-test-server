@@ -1173,6 +1173,15 @@ global.GetPedMaxHealth = function (ped) {
 };
 
 /**
+ * Gets the current relationship group hash of a ped.
+ * @param ped The target ped
+ * @return The relationship group hash.
+ */
+global.GetPedRelationshipGroupHash = function (ped) {
+	return _in(0x00000000, 0x354f283c, ped, _r, _ri);
+};
+
+/**
  * Gets the script task command currently assigned to the ped.
  * @param ped The target ped.
  * @return The script task command currently assigned to the ped. A value of 0x811E343C denotes no script task is assigned.
@@ -1253,6 +1262,15 @@ global.GetPlayerEndpoint = function (playerSrc) {
  */
 global.GetPlayerFakeWantedLevel = function (playerSrc) {
 	return _in(0x00000000, 0x0098d244, _ts(playerSrc), _r, _ri);
+};
+
+/**
+ * Gets the focus position (i.e. the position of the active camera in the game world) of a player.
+ * @param playerSrc The player to get the focus position of
+ * @return Returns a `Vector3` containing the focus position of the player.
+ */
+global.GetPlayerFocusPos = function (playerSrc) {
+	return _in(0x00000000, 0x586f80ff, _ts(playerSrc), _r, _rv);
 };
 
 /**
@@ -1464,10 +1482,14 @@ global.GetPlayerWeaponDefenseModifier_2 = function (playerId) {
  * ```
  * [
  * {
- * "name": "cmdlist"
+ * "name": "cmdlist",
+ * "resource": "resource",
+ * "arity" = -1,
  * },
  * {
  * "name": "command1"
+ * "resource": "resource_2",
+ * "arity" = -1,
  * }
  * ]
  * ```
@@ -1484,6 +1506,29 @@ global.GetRegisteredCommands = function () {
  */
 global.GetResourceByFindIndex = function (findIndex) {
 	return _in(0x00000000, 0x387246b7, findIndex, _r, _s);
+};
+
+/**
+ * Returns all commands registered by the specified resource.
+ * The data returned adheres to the following layout:
+ * ```
+ * [
+ * {
+ * "name": "cmdlist",
+ * "resource": "example_resource",
+ * "arity" = -1,
+ * },
+ * {
+ * "name": "command1"
+ * "resource": "example_resource2",
+ * "arity" = -1,
+ * }
+ * ]
+ * ```
+ * @return An object containing registered commands.
+ */
+global.GetResourceCommands = function (resource) {
+	return _in(0x00000000, 0x97628584, _ts(resource), _r, _ro);
 };
 
 /**
@@ -2104,6 +2149,15 @@ global.IsPlayerCommerceInfoLoadedExt = function (playerSrc) {
  */
 global.IsPlayerEvadingWantedLevel = function (playerSrc) {
 	return _in(0x00000000, 0x89a3881a, _ts(playerSrc), _r);
+};
+
+/**
+ * IS_PLAYER_IN_FREE_CAM_MODE
+ * @param playerSrc The player to get the free camera mode status of
+ * @return Returns if the player is in free camera mode.
+ */
+global.IsPlayerInFreeCamMode = function (playerSrc) {
+	return _in(0x00000000, 0x1f14f2ac, _ts(playerSrc), _r);
 };
 
 /**

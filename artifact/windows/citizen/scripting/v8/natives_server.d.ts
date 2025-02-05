@@ -973,6 +973,13 @@ declare function GetPedInVehicleSeat(vehicle: number, seatIndex: number): number
 declare function GetPedMaxHealth(ped: number): number;
 
 /**
+ * Gets the current relationship group hash of a ped.
+ * @param ped The target ped
+ * @return The relationship group hash.
+ */
+declare function GetPedRelationshipGroupHash(ped: number): number;
+
+/**
  * Gets the script task command currently assigned to the ped.
  * @param ped The target ped.
  * @return The script task command currently assigned to the ped. A value of 0x811E343C denotes no script task is assigned.
@@ -1036,6 +1043,13 @@ declare function GetPlayerEndpoint(playerSrc: string): string;
  * @return The fake wanted level
  */
 declare function GetPlayerFakeWantedLevel(playerSrc: string): number;
+
+/**
+ * Gets the focus position (i.e. the position of the active camera in the game world) of a player.
+ * @param playerSrc The player to get the focus position of
+ * @return Returns a `Vector3` containing the focus position of the player.
+ */
+declare function GetPlayerFocusPos(playerSrc: string): number[];
 
 /**
  * GET_PLAYER_FROM_INDEX
@@ -1200,10 +1214,14 @@ declare function GetPlayerWeaponDefenseModifier_2(playerId: string): number;
  * ```
  * [
  * {
- * "name": "cmdlist"
+ * "name": "cmdlist",
+ * "resource": "resource",
+ * "arity" = -1,
  * },
  * {
  * "name": "command1"
+ * "resource": "resource_2",
+ * "arity" = -1,
  * }
  * ]
  * ```
@@ -1217,6 +1235,27 @@ declare function GetRegisteredCommands(): any;
  * @return The resource name as a `string`
  */
 declare function GetResourceByFindIndex(findIndex: number): string;
+
+/**
+ * Returns all commands registered by the specified resource.
+ * The data returned adheres to the following layout:
+ * ```
+ * [
+ * {
+ * "name": "cmdlist",
+ * "resource": "example_resource",
+ * "arity" = -1,
+ * },
+ * {
+ * "name": "command1"
+ * "resource": "example_resource2",
+ * "arity" = -1,
+ * }
+ * ]
+ * ```
+ * @return An object containing registered commands.
+ */
+declare function GetResourceCommands(resource: string): any;
 
 /**
  * A getter for [SET_RESOURCE_KVP_FLOAT](#\_0x9ADD2938).
@@ -1697,6 +1736,13 @@ declare function IsPlayerCommerceInfoLoadedExt(playerSrc: string): boolean;
  * @return boolean value, depending if the player is evading his wanted level or not.
  */
 declare function IsPlayerEvadingWantedLevel(playerSrc: string): boolean;
+
+/**
+ * IS_PLAYER_IN_FREE_CAM_MODE
+ * @param playerSrc The player to get the free camera mode status of
+ * @return Returns if the player is in free camera mode.
+ */
+declare function IsPlayerInFreeCamMode(playerSrc: string): boolean;
 
 /**
  * IS_PLAYER_USING_SUPER_JUMP

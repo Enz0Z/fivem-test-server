@@ -950,6 +950,13 @@ function Global.GetPedMaxHealth(ped)
 	return _in(0xa45b6c8d, ped, _ri)
 end
 
+--- Gets the current relationship group hash of a ped.
+-- @param ped The target ped
+-- @return The relationship group hash.
+function Global.GetPedRelationshipGroupHash(ped)
+	return _in(0x354f283c, ped, _ri)
+end
+
 --- Gets the script task command currently assigned to the ped.
 -- @param ped The target ped.
 -- @return The script task command currently assigned to the ped. A value of 0x811E343C denotes no script task is assigned.
@@ -1013,6 +1020,13 @@ end
 -- @return The fake wanted level
 function Global.GetPlayerFakeWantedLevel(playerSrc)
 	return _in(0x98d244, _ts(playerSrc), _ri)
+end
+
+--- Gets the focus position (i.e. the position of the active camera in the game world) of a player.
+-- @param playerSrc The player to get the focus position of
+-- @return Returns a `Vector3` containing the focus position of the player.
+function Global.GetPlayerFocusPos(playerSrc)
+	return _in(0x586f80ff, _ts(playerSrc), _rv)
 end
 
 --- GET_PLAYER_FROM_INDEX
@@ -1177,10 +1191,14 @@ end
 -- ```
 -- [
 -- {
--- "name": "cmdlist"
+-- "name": "cmdlist",
+-- "resource": "resource",
+-- "arity" = -1,
 -- },
 -- {
 -- "name": "command1"
+-- "resource": "resource_2",
+-- "arity" = -1,
 -- }
 -- ]
 -- ```
@@ -1194,6 +1212,27 @@ end
 -- @return The resource name as a `string`
 function Global.GetResourceByFindIndex(findIndex)
 	return _in(0x387246b7, findIndex, _s)
+end
+
+--- Returns all commands registered by the specified resource.
+-- The data returned adheres to the following layout:
+-- ```
+-- [
+-- {
+-- "name": "cmdlist",
+-- "resource": "example_resource",
+-- "arity" = -1,
+-- },
+-- {
+-- "name": "command1"
+-- "resource": "example_resource2",
+-- "arity" = -1,
+-- }
+-- ]
+-- ```
+-- @return An object containing registered commands.
+function Global.GetResourceCommands(resource)
+	return _in(0x97628584, _ts(resource), _ro)
 end
 
 --- A getter for [SET_RESOURCE_KVP_FLOAT](#_0x9ADD2938).
@@ -1691,6 +1730,13 @@ end
 -- @return boolean value, depending if the player is evading his wanted level or not.
 function Global.IsPlayerEvadingWantedLevel(playerSrc)
 	return _in(0x89a3881a, _ts(playerSrc), _r)
+end
+
+--- IS_PLAYER_IN_FREE_CAM_MODE
+-- @param playerSrc The player to get the free camera mode status of
+-- @return Returns if the player is in free camera mode.
+function Global.IsPlayerInFreeCamMode(playerSrc)
+	return _in(0x1f14f2ac, _ts(playerSrc), _r)
 end
 
 --- IS_PLAYER_USING_SUPER_JUMP
