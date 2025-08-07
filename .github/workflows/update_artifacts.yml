@@ -27,7 +27,7 @@ jobs:
       run: |
         cd artifact/
         wget $(curl -s 'https://changelogs-live.fivem.net/api/changelog/versions/linux/server' | jq -r '.latest_download')
-        wget $(curl -s 'https://changelogs-live.fivem.net/api/changelog/versions/windows/server' | jq -r '.latest_download')
+        wget $(curl -s 'https://changelogs-live.fivem.net/api/changelog/versions/win32/server' | jq -r '.latest_download')
         unzip server.zip -d windows/
         mkdir linux/
         tar -xf fx.tar.xz -C linux/
